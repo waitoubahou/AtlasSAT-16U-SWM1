@@ -1,0 +1,1104 @@
+{
+  "inputs": {
+    "a": 6928.1363,
+    "e": 0.001,
+    "i": 1.7016960206944713,
+    "node": 0.11280360977164586,
+    "peri": 0.0,
+    "true": 0.0,
+    "mu": 398600.4415,
+    "radius": 6378.1363,
+    "j2": 0.001082626724392697
+  },
+  "time": {
+    "jd_tt": 2461334.000800741,
+    "centuries": 0.26800823547545255,
+    "zeta_arcsec": 618.1074736366714,
+    "theta_arcsec": 537.140376749638,
+    "z_arcsec": 618.1644231498891
+  },
+  "initial": {
+    "radius_km": 6921.208163700001,
+    "speed_km_s": 7.59267780074803,
+    "r_MODEq_km": [
+      6877.219847189927,
+      779.0825493389541,
+      0.0
+    ],
+    "v_MODEq_km_s": [
+      0.1115563265276574,
+      -0.9847446634847196,
+      7.527721389618638
+    ],
+    "precession_matrix": [
+      [
+        0.999978647627393,
+        -0.00599356924531986,
+        -0.0026041153952176114
+      ],
+      [
+        0.005993569244383679,
+        0.9999820383720918,
+        -7.804415789067408e-06
+      ],
+      [
+        0.002604115397372304,
+        -7.803696795328827e-06,
+        0.9999966092553012
+      ]
+    ],
+    "r_EME2000_km": [
+      6881.742487435804,
+      737.8494623786722,
+      -17.915154364512446
+    ],
+    "v_EME2000_km_s": [
+      0.12525486438460848,
+      -0.9854543404905708,
+      7.527413044846698
+    ],
+    "archived_EME2000": [
+      6881.742487435804,
+      737.8494623786729,
+      -17.91515436451214,
+      0.1252548643846083,
+      -0.9854543404905708,
+      7.527413044846698
+    ],
+    "position_difference_m": 7.474220619177036e-10,
+    "velocity_difference_mm_s": 1.6653345369377348e-10
+  },
+  "two_body": {
+    "p_km": 6928.1293718637,
+    "perigee_km": 6921.2081637,
+    "apogee_km": 6935.064436299999,
+    "acceleration_m_s2": 8.320969931666296,
+    "energy_km2_s2": -28.76678692796503,
+    "angular_momentum_km2_s": 52550.503578881035,
+    "period_min": 95.64986578993849,
+    "n_rad_s": 0.0010948238584008066,
+    "v_apogee_km_s": 7.577507615331951,
+    "check_epoch_UTC": "2026-10-20T13:00:00+00:00",
+    "worked_chi_sqrtkm": 328.0016179492729,
+    "worked_z": 15.52871605273424,
+    "worked_C": 0.10930608760420245,
+    "worked_S": 0.07610888048590077,
+    "worked_F": -0.6990822795204736,
+    "worked_G_s": -653.969815887077,
+    "worked_r_km": [
+      -4892.817125790079,
+      128.63990951310086,
+      -4910.176756093272
+    ],
+    "worked_v_km_s": [
+      5.31425407326754,
+      1.2652091661026685,
+      -5.25464873178691
+    ],
+    "worked_reference_state": [
+      -4892.817125790007,
+      128.6399095131103,
+      -4910.176756093281,
+      5.314254073267627,
+      1.265209166102673,
+      -5.254648731786859
+    ],
+    "worked_position_error_m": 7.393045529223915e-08,
+    "worked_velocity_error_mm_s": 1.0079162037310538e-07,
+    "position_error_max_m": 0.003757851166795215,
+    "velocity_error_max_mm_s": 0.0041181488458021534,
+    "records": 20161,
+    "internal_report_position_error_max_m": 0.0013018245401154502,
+    "internal_report_velocity_error_max_mm_s": 0.0014267842539507473,
+    "max_OEM_report_timestamp_difference_s": 1.5372643247246742e-07,
+    "max_OEM_vs_unaligned_report_position_m": 0.0036204709696172938,
+    "nominal_refined_position_max_m": 0.003620397866952472,
+    "nominal_refined_velocity_max_mm_s": 0.003972966697270148
+  },
+  "j2": {
+    "rates": {
+      "mean_motion_rad_s": 0.0010948238584008066,
+      "node_deg_day": 0.9736523422936773,
+      "peri_deg_day": -3.412002332752565,
+      "mean_anomaly_rad_s": 0.0010941089425117799,
+      "mean_latitude_period_min": 95.77269849321755
+    },
+    "energy_mean_prediction": {
+      "initial_J2_potential_km2_s2": -0.026474537423367098,
+      "unperturbed_average_J2_potential_km2_s2": 0.012523069589833812,
+      "first_order_mean_sma_shift_km": -9.392106857044965,
+      "estimated_mean_osculating_sma_km": 6918.744193142955
+    },
+    "energy_mean_timing_rates": {
+      "mean_motion_rad_s": 0.0010970539288986125,
+      "node_deg_day": 0.9782862194877832,
+      "peri_deg_day": -3.4282409829454377,
+      "mean_anomaly_rad_s": 0.0010963356105297788,
+      "mean_latitude_period_min": 95.57834702582885
+    },
+    "mean_a_diagnostic_km": 6918.753022236983,
+    "diagnostic_mean_a_rates": {
+      "mean_motion_rad_s": 0.001097051828956071,
+      "node_deg_day": 0.9782818500898229,
+      "peri_deg_day": -3.4282256711186334,
+      "mean_anomaly_rad_s": 0.00109633351379552,
+      "mean_latitude_period_min": 95.57852966481813
+    },
+    "initial_central_acceleration_MODEq_km_s2": [
+      -0.008268085312338611,
+      -0.0009366460759460481,
+      -0.0
+    ],
+    "initial_J2_acceleration_MODEq_km_s2": [
+      -1.1402464281186322e-05,
+      -1.2917226929371524e-06,
+      -0.0
+    ],
+    "inertial_fit_rates_deg_day": {
+      "seven": 0.9784484731676945,
+      "thirty": 0.9784868269172042
+    }
+  },
+  "sso": {
+    "required_deg_day": 0.9856473320990837,
+    "estimated_inclination_deg": 97.59293820280489,
+    "rate_difference_theory_deg_day": -0.011994989805406475,
+    "approximate_theory_LTDN_drift_s_day": -2.878797553297554,
+    "approximate_fitted7_LTDN_drift_s_day": -1.7277261435334257,
+    "approximate_fitted30_LTDN_drift_s_day": -1.7185212436510788,
+    "predicted_over_exact7days_s": -12.09408300473398,
+    "predicted_over_exact30days_s": -51.555637309532365,
+    "archived_first_to_last7_s": -11.96251339863963,
+    "archived_first_to_last30_s": -52.00264352171686
+  },
+  "recurrence": {
+    "saved_nodal_period_min": 95.5783355926631,
+    "nodal_revs_day": 15.066175729791,
+    "fractional_excess": 0.06617572979100039,
+    "relative_rotation_deg_day": 360.00716050518184,
+    "adjacent_longitude_spacing_deg": 23.89505916842083,
+    "approximate_daily_comb_shift_deg": 1.5812729788693833,
+    "parallel_km_degree": 96.21777728372551,
+    "approximate_daily_comb_shift_km": 152.14657130562753,
+    "beat_days": 15.111280270852346,
+    "fifteen_orbit_block_h": 23.894583898165774,
+    "fifteen_orbit_block_longitude_remainder_deg": 1.5741124736875918,
+    "near_rational_226_periods_days": 15.000488780515182,
+    "old_additive_open_gap_days": 12.282644344326512,
+    "consistent_flat_edge_open_gap_days": 12.254284487290864
+  },
+  "sensor": {
+    "full_cross_fov_deg": 3.124449833684796,
+    "full_along_slit_deg": 0.0010417414456637077,
+    "swath_reach": [
+      {
+        "roll_limit_deg": 0,
+        "outer_look_deg": 1.562224916842398,
+        "flat_half_reach_km": 15.0,
+        "old_additive_half_reach_km": 15.0,
+        "central_angle_deg": 0.13475173844149352,
+        "ground_arc_km": 15.000494906815446,
+        "slant_km": 550.222153527474
+      },
+      {
+        "roll_limit_deg": 10,
+        "outer_look_deg": 11.562224916842396,
+        "flat_half_reach_km": 112.52094334072129,
+        "old_additive_half_reach_km": 111.97983938965574,
+        "central_angle_deg": 1.012676386281755,
+        "ground_arc_km": 112.73061965925736,
+        "slant_km": 562.4088255897925
+      },
+      {
+        "roll_limit_deg": 20,
+        "outer_look_deg": 21.5622249168424,
+        "flat_half_reach_km": 217.3410563517571,
+        "old_additive_half_reach_km": 215.1836288464113,
+        "central_angle_deg": 1.9661230047862852,
+        "ground_arc_km": 218.86781172975023,
+        "slant_km": 595.4232096976934
+      }
+    ],
+    "spherical_horizon_ground_angle_deg": 22.984051530527708
+  },
+  "event_examples": [
+    {
+      "event": 1,
+      "target": {
+        "id": "massa_-14000_-20500",
+        "subregion": "massa",
+        "latitude_deg": "29.915261651026675",
+        "longitude_deg": "-9.644302568688747",
+        "weight_km2": "0.0010000000000057936",
+        "is_reference": "False"
+      },
+      "epoch_utc": "2026-10-24T22:51:42.018630Z",
+      "q_km": [
+        5454.749025411345,
+        -926.9407186662505,
+        3162.235348718281
+      ],
+      "normal": [
+        0.8545137833375828,
+        -0.14520991098713731,
+        0.49871863393821425
+      ],
+      "source_knots_s": [
+        384600.0,
+        384630.0,
+        384660.0,
+        384690.0,
+        384720.0,
+        384750.0,
+        384780.0,
+        384810.0
+      ],
+      "entry_s": 384702.01792374044,
+      "exit_s": 384702.0193368848,
+      "fan_root_s": 384702.0186303125,
+      "duration_ms": 1.4131443458609283,
+      "look": {
+        "alpha_rad": -0.023444721117315506,
+        "beta_rad": -1.1596361466543952e-12,
+        "roll_rad": -0.0,
+        "down_km": 548.6620860729727,
+        "cross_km": -12.865586893172846,
+        "along_km": -6.362483873090241e-10,
+        "r": [
+          5923.454603237737,
+          -1020.4619019781829,
+          3431.984264576003
+        ],
+        "v": [
+          -3.934861733714903,
+          -0.9251982125472623,
+          6.516015704490425
+        ],
+        "los": [
+          -468.70557782639116,
+          93.52118331193242,
+          -269.7489158577223
+        ],
+        "down_axis": [
+          -0.8558049474033443,
+          0.14743361819168907,
+          -0.49584394745410215
+        ],
+        "along_axis": [
+          -0.5131405267895481,
+          -0.12066042295473035,
+          0.8497810671570241
+        ],
+        "cross_axis": [
+          -0.06545755698239973,
+          -0.9816844658846818,
+          -0.17891595142581074
+        ]
+      },
+      "radial_groundtrack": {
+        "intercept_km": [
+          5453.9245456629305,
+          -939.5737095833568,
+          3159.9437278828705
+        ],
+        "latitude_deg": 29.89141370121286,
+        "longitude_deg": -9.77467251550366,
+        "geocentric_latitude_deg": 29.725416595362745
+      },
+      "horizon_dot_km": 548.6243901068724,
+      "slant_range_km": 548.8129080297327,
+      "interpolated_saved_Sun_elevation_deg": -62.321852472238824,
+      "target_ray_error_m": 0.0,
+      "entry_difference_s": -2.916203811764717e-08,
+      "exit_difference_s": -2.9453076422214508e-08,
+      "saved_entry_s": 384702.0179237696,
+      "saved_exit_s": 384702.01933691424,
+      "saved_elevation_deg": -62.32185455310723
+    },
+    {
+      "event": 2,
+      "target": {
+        "id": "oued-essafa_18500_22000",
+        "subregion": "oued-essafa",
+        "latitude_deg": "30.299427590079357",
+        "longitude_deg": "-9.30671038366797",
+        "weight_km2": "0.038940171643843786",
+        "is_reference": "False"
+      },
+      "epoch_utc": "2026-11-01T11:23:49.101073Z",
+      "q_km": [
+        5439.0348916273315,
+        -891.3302262844774,
+        3199.076250673778
+      ],
+      "normal": [
+        0.8520354615706626,
+        -0.13962862454389507,
+        0.5045189980903079
+      ],
+      "source_knots_s": [
+        1034520.0,
+        1034550.0,
+        1034580.0,
+        1034610.0,
+        1034640.0,
+        1034670.0,
+        1034700.0,
+        1034730.0
+      ],
+      "entry_s": 1034629.1003574084,
+      "exit_s": 1034629.1017892079,
+      "fan_root_s": 1034629.1010733081,
+      "duration_ms": 1.4317994937300682,
+      "look": {
+        "alpha_rad": -0.02679968349784001,
+        "beta_rad": 1.7189232831318376e-13,
+        "roll_rad": -0.0,
+        "down_km": 554.9011860183184,
+        "cross_km": -14.8747374547536,
+        "along_km": 9.538325684843585e-11,
+        "r": [
+          5916.8073312079605,
+          -953.5889292575082,
+          3474.746223540201
+        ],
+        "v": [
+          3.462231785385212,
+          -2.160230148724127,
+          -6.483846790823914
+        ],
+        "los": [
+          -477.772439580629,
+          62.258702973030836,
+          -275.669972866423
+        ],
+        "down_axis": [
+          -0.8540905138281034,
+          0.13765046130107125,
+          -0.501579250659802
+        ],
+        "along_axis": [
+          0.45166681886417287,
+          -0.2819299144702083,
+          -0.8464706776161472
+        ],
+        "cross_axis": [
+          0.2579272744902422,
+          0.9495092805393864,
+          -0.17862151954233269
+        ]
+      },
+      "radial_groundtrack": {
+        "intercept_km": [
+          5442.893955039808,
+          -877.2101452877525,
+          3196.432494201767
+        ],
+        "latitude_deg": 30.27181012674679,
+        "longitude_deg": -9.155411521342856,
+        "geocentric_latitude_deg": 30.104537499942406
+      },
+      "horizon_dot_km": 554.852896659984,
+      "slant_range_km": 555.1005170767581,
+      "interpolated_saved_Sun_elevation_deg": 43.12958871791534,
+      "target_ray_error_m": 1.0231815394945443e-09,
+      "entry_difference_s": 1.5459954738616943e-07,
+      "exit_difference_s": 1.5390105545520782e-07,
+      "saved_entry_s": 1034629.1003572538,
+      "saved_exit_s": 1034629.101789054,
+      "saved_elevation_deg": 43.12958787914077
+    }
+  ],
+  "solar_examples": [
+    {
+      "event": 1,
+      "saved_elevation_deg": -62.32185455310723,
+      "difference_deg": 0.2395763492571703,
+      "fractional_year_rad": 5.103195698530907,
+      "equation_of_time_min": 15.949444702011153,
+      "declination_deg": -11.640458281997793,
+      "hour_angle_deg": 157.26813623181397,
+      "UTC_based_LMST_h": 22.218718337087417,
+      "approximate_apparent_solar_time_h": 22.484542415454264,
+      "elevation_deg": -62.08227820385006
+    },
+    {
+      "event": 2,
+      "saved_elevation_deg": 43.12958787914077,
+      "difference_deg": 0.3191708428013982,
+      "fractional_year_rad": 5.232686194952265,
+      "equation_of_time_min": 16.378922312067793,
+      "declination_deg": -14.181097275696132,
+      "hour_angle_deg": -14.257392001484362,
+      "UTC_based_LMST_h": 10.77652516136658,
+      "approximate_apparent_solar_time_h": 11.049507199901042,
+      "elevation_deg": 43.44875872194217
+    }
+  ],
+  "gap": {
+    "start_utc": "2026-11-02T11:17:35.047317+00:00",
+    "end_utc": "2026-11-15T11:30:46.896619+00:00",
+    "elapsed_seconds": 1123991.849302,
+    "hours": 312.21995813944443,
+    "saved_float64_hours": 312.21995813943926,
+    "timestamp_rounding_difference_s": 1.862645149230957e-08,
+    "per_scenario": {
+      "0": {
+        "daylight_count": 0,
+        "events": [],
+        "maximum_complete_gap": null,
+        "observed_no_access_span_h": 720.0
+      },
+      "10": {
+        "daylight_count": 3,
+        "events": [
+          {
+            "scenario": "S30_R10",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "10",
+            "entry_s": "948605.2774549609",
+            "exit_s": "948605.2789127408",
+            "mid_s": "948605.2781838508",
+            "entry_utc": "2026-10-31T11:30:05.277455Z",
+            "exit_utc": "2026-10-31T11:30:05.278913Z",
+            "duration_ms": "1.4577799011021852",
+            "cross_track_angle_deg": "10.71423733019484",
+            "required_roll_deg": "10.0",
+            "min_solar_elevation_deg": "43.79930753167121",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R10",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "10",
+            "entry_s": "1034630.2997747285",
+            "exit_s": "1034630.301211559",
+            "mid_s": "1034630.3004931437",
+            "entry_utc": "2026-11-01T11:23:50.299775Z",
+            "exit_utc": "2026-11-01T11:23:50.301212Z",
+            "duration_ms": "1.436830498278141",
+            "cross_track_angle_deg": "-4.422408893945064",
+            "required_roll_deg": "-4.422408893945064",
+            "min_solar_elevation_deg": "43.06636658649006",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R10",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "10",
+            "entry_s": "2330671.938997172",
+            "exit_s": "2330671.9404239873",
+            "mid_s": "2330671.93971058",
+            "entry_utc": "2026-11-16T11:24:31.938997Z",
+            "exit_utc": "2026-11-16T11:24:31.940424Z",
+            "duration_ms": "1.4268155209720135",
+            "cross_track_angle_deg": "-1.6601393036010381",
+            "required_roll_deg": "-1.6601393036010381",
+            "min_solar_elevation_deg": "38.92770188761584",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          }
+        ],
+        "maximum_complete_gap": {
+          "start_utc": "2026-11-01T11:23:50.301212Z",
+          "end_utc": "2026-11-16T11:24:31.938997Z",
+          "start_s": 1034630.301211559,
+          "end_s": 2330671.938997172,
+          "hours": 360.0115660515591
+        },
+        "observed_no_access_span_h": null
+      },
+      "20": {
+        "daylight_count": 6,
+        "events": [
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "948605.2774549042",
+            "exit_s": "948605.2789127973",
+            "mid_s": "948605.2781838507",
+            "entry_utc": "2026-10-31T11:30:05.277455Z",
+            "exit_utc": "2026-10-31T11:30:05.278913Z",
+            "duration_ms": "1.4578931732103229",
+            "cross_track_angle_deg": "10.714237330194825",
+            "required_roll_deg": "10.714237330194825",
+            "min_solar_elevation_deg": "43.799307531609784",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "1034630.2997747285",
+            "exit_s": "1034630.301211559",
+            "mid_s": "1034630.3004931437",
+            "entry_utc": "2026-11-01T11:23:50.299775Z",
+            "exit_utc": "2026-11-01T11:23:50.301212Z",
+            "duration_ms": "1.436830498278141",
+            "cross_track_angle_deg": "-4.422408893945064",
+            "required_roll_deg": "-4.422408893945064",
+            "min_solar_elevation_deg": "43.06636658649006",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "1120655.0457925862",
+            "exit_s": "1120655.0473174104",
+            "mid_s": "1120655.0465549983",
+            "entry_utc": "2026-11-02T11:17:35.045793Z",
+            "exit_utc": "2026-11-02T11:17:35.047317Z",
+            "duration_ms": "1.524824183434248",
+            "cross_track_angle_deg": "-18.94115730706499",
+            "required_roll_deg": "-18.94115730706499",
+            "min_solar_elevation_deg": "42.297774603983946",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "2244646.8966193916",
+            "exit_s": "2244646.89808768",
+            "mid_s": "2244646.8973535355",
+            "entry_utc": "2026-11-15T11:30:46.896619Z",
+            "exit_utc": "2026-11-15T11:30:46.898088Z",
+            "duration_ms": "1.4682882465422153",
+            "cross_track_angle_deg": "13.386763164584183",
+            "required_roll_deg": "13.386763164584183",
+            "min_solar_elevation_deg": "39.57527717980535",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "2330671.938997172",
+            "exit_s": "2330671.9404239873",
+            "mid_s": "2330671.93971058",
+            "entry_utc": "2026-11-16T11:24:31.938997Z",
+            "exit_utc": "2026-11-16T11:24:31.940424Z",
+            "duration_ms": "1.4268155209720135",
+            "cross_track_angle_deg": "-1.6601393036010381",
+            "required_roll_deg": "-1.6601393036010381",
+            "min_solar_elevation_deg": "38.92770188761584",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          },
+          {
+            "scenario": "S30_R20",
+            "target_id": "sidi-bibi_-10750_19500",
+            "swath_km": "30",
+            "roll_limit_deg": "20",
+            "entry_s": "2416696.7018474457",
+            "exit_s": "2416696.703342739",
+            "mid_s": "2416696.7025950924",
+            "entry_utc": "2026-11-17T11:18:16.701847Z",
+            "exit_utc": "2026-11-17T11:18:16.703343Z",
+            "duration_ms": "1.495293341577053",
+            "cross_track_angle_deg": "-16.5065566335806",
+            "required_roll_deg": "-16.5065566335806",
+            "min_solar_elevation_deg": "38.24494012018002",
+            "daylight": "True",
+            "daylight_10deg": "True"
+          }
+        ],
+        "maximum_complete_gap": {
+          "start_utc": "2026-11-02T11:17:35.047317Z",
+          "end_utc": "2026-11-15T11:30:46.896619Z",
+          "start_s": 1120655.0473174104,
+          "end_s": 2244646.8966193916,
+          "hours": 312.21995813943926
+        },
+        "observed_no_access_span_h": null
+      }
+    }
+  },
+  "aggregation": {
+    "target_count": 14494,
+    "raw_event_rows": 268689,
+    "excluded_REF_event_rows": 18,
+    "agricultural_event_rows": 268671,
+    "agricultural_area_km2": 396.47216497229573,
+    "historical_REF_excluded": true,
+    "coverage": [
+      {
+        "scenario": "S30_R00",
+        "mode": "geometric",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.035747602413288435,
+        "max": 0.99500617697805,
+        "reference_mean": 0.03574760241328842,
+        "mean_residual": 1.3877787807814457e-17,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "geometric",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.07404481094223489,
+        "max": 0.99500617697805,
+        "reference_mean": 0.07404481094223486,
+        "mean_residual": 2.7755575615628914e-17,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "geometric",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.11517447865359956,
+        "max": 0.99500617697805,
+        "reference_mean": 0.11517447865359953,
+        "mean_residual": 2.7755575615628914e-17,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.03563299759328107,
+        "max": 0.99500617697805,
+        "reference_mean": 0.035632997593281056,
+        "mean_residual": 1.3877787807814457e-17,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.07380742740718248,
+        "max": 0.99500617697805,
+        "reference_mean": 0.07380742740718245,
+        "mean_residual": 2.7755575615628914e-17,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.11480523569730464,
+        "max": 0.99500617697805,
+        "reference_mean": 0.11480523569730462,
+        "mean_residual": 1.3877787807814457e-17,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight_10deg",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.03563299759328107,
+        "max": 0.99500617697805,
+        "reference_mean": 0.035632997593281056,
+        "mean_residual": 1.3877787807814457e-17,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight_10deg",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.07380742740718248,
+        "max": 0.99500617697805,
+        "reference_mean": 0.07380742740718245,
+        "mean_residual": 2.7755575615628914e-17,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight_10deg",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.11480523569730464,
+        "max": 0.99500617697805,
+        "reference_mean": 0.11480523569730462,
+        "mean_residual": 1.3877787807814457e-17,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "geometric",
+        "hours": 24,
+        "windows": 697,
+        "min": -5.495603971894525e-15,
+        "mean": 0.19326635010933477,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.19326635010933746,
+        "mean_residual": -2.6922908347160046e-15,
+        "reference_windows": 697,
+        "min_residual": -5.495603971894525e-15,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "geometric",
+        "hours": 48,
+        "windows": 673,
+        "min": -5.495603971894525e-15,
+        "mean": 0.34280333733462987,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.34280333733463236,
+        "mean_residual": -2.4980018054066022e-15,
+        "reference_windows": 673,
+        "min_residual": -5.495603971894525e-15,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "geometric",
+        "hours": 72,
+        "windows": 649,
+        "min": -5.495603971894525e-15,
+        "mean": 0.5034000709186525,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.5034000709186548,
+        "mean_residual": -2.3314683517128287e-15,
+        "reference_windows": 649,
+        "min_residual": -5.495603971894525e-15,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.07422941555917391,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.07422941555917195,
+        "mean_residual": 1.9567680809018384e-15,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.14819896381091227,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.14819896381091016,
+        "mean_residual": 2.1094237467877974e-15,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.2276392952923631,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.2276392952923609,
+        "mean_residual": 2.192690473634684e-15,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight_10deg",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.07422941555917391,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.07422941555917195,
+        "mean_residual": 1.9567680809018384e-15,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight_10deg",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.14819896381091227,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.14819896381091016,
+        "mean_residual": 2.1094237467877974e-15,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight_10deg",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.2276392952923631,
+        "max": 0.9999999999999972,
+        "reference_mean": 0.2276392952923609,
+        "mean_residual": 2.192690473634684e-15,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.4416913763379853e-15
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "geometric",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.40861176955554385,
+        "max": 0.9999999999999944,
+        "reference_mean": 0.4086117695555436,
+        "mean_residual": 2.220446049250313e-16,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 6.661338147750939e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "geometric",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.5658282368205253,
+        "max": 0.9999999999999944,
+        "reference_mean": 0.5658282368205249,
+        "mean_residual": 4.440892098500626e-16,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 6.661338147750939e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "geometric",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.6992332871806056,
+        "max": 0.9999999999999944,
+        "reference_mean": 0.6992332871806053,
+        "mean_residual": 3.3306690738754696e-16,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 6.661338147750939e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.20659971305595287,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.2065997130559528,
+        "mean_residual": 8.326672684688674e-17,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.28528974739970114,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.28528974739970103,
+        "mean_residual": 1.1102230246251565e-16,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.33436055469953585,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.33436055469953563,
+        "mean_residual": 2.220446049250313e-16,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight_10deg",
+        "hours": 24,
+        "windows": 697,
+        "min": 0.0,
+        "mean": 0.20659971305595287,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.2065997130559528,
+        "mean_residual": 8.326672684688674e-17,
+        "reference_windows": 697,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight_10deg",
+        "hours": 48,
+        "windows": 673,
+        "min": 0.0,
+        "mean": 0.28528974739970114,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.28528974739970103,
+        "mean_residual": 1.1102230246251565e-16,
+        "reference_windows": 673,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight_10deg",
+        "hours": 72,
+        "windows": 649,
+        "min": 0.0,
+        "mean": 0.33436055469953585,
+        "max": 0.9999999999999941,
+        "reference_mean": 0.33436055469953563,
+        "mean_residual": 2.220446049250313e-16,
+        "reference_windows": 649,
+        "min_residual": 0.0,
+        "max_residual": 3.3306690738754696e-16
+      }
+    ],
+    "gaps": [
+      {
+        "scenario": "S30_R00",
+        "mode": "geometric",
+        "no_access_targets": 50,
+        "maximum_complete_gap_h": 540.5488652263658,
+        "maximizing_target": "massa_-11750_-21750",
+        "maximum_observed_span_h": 720.0,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight",
+        "no_access_targets": 88,
+        "maximum_complete_gap_h": 360.01156368734576,
+        "maximizing_target": "oued-essafa_18250_22000",
+        "maximum_observed_span_h": 720.0,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R00",
+        "mode": "daylight_10deg",
+        "no_access_targets": 88,
+        "maximum_complete_gap_h": 360.01156368734576,
+        "maximizing_target": "oued-essafa_18250_22000",
+        "maximum_observed_span_h": 720.0,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "geometric",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 180.53754356180576,
+        "maximizing_target": "massa_-21250_-21500",
+        "maximum_observed_span_h": 180.53754356180576,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 360.0115660515591,
+        "maximizing_target": "sidi-bibi_-10750_19500",
+        "maximum_observed_span_h": 360.0115660515591,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R10",
+        "mode": "daylight_10deg",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 360.0115660515591,
+        "maximizing_target": "sidi-bibi_-10750_19500",
+        "maximum_observed_span_h": 360.0115660515591,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "geometric",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 155.58182068054563,
+        "maximizing_target": "oued-essafa_13500_24750",
+        "maximum_observed_span_h": 155.58182068054563,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 312.21995813943926,
+        "maximizing_target": "sidi-bibi_-10750_19500",
+        "maximum_observed_span_h": 312.21995813943926,
+        "targets_with_observed_72h_failure": 14494
+      },
+      {
+        "scenario": "S30_R20",
+        "mode": "daylight_10deg",
+        "no_access_targets": 0,
+        "maximum_complete_gap_h": 312.21995813943926,
+        "maximizing_target": "sidi-bibi_-10750_19500",
+        "maximum_observed_span_h": 312.21995813943926,
+        "targets_with_observed_72h_failure": 14494
+      }
+    ]
+  }
+}

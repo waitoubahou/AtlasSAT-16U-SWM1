@@ -1,0 +1,28 @@
+{
+  "version": "Public controlled geometry fixture v0.1",
+  "optical": {
+    "reference_altitude_km": 550.0,
+    "swaths_km": [
+      30
+    ],
+    "roll_limits_deg": [
+      0,
+      10,
+      20
+    ],
+    "along_track_sample_m": 10.0,
+    "solar_elevation_min_deg": 0.0,
+    "solar_elevation_sensitivity_deg": 10.0,
+    "regional_center_lat_lon_deg": [
+      30.1,
+      -9.5
+    ],
+    "supported_target_radius_km": 150.0,
+    "regional_prefilter_km": 2000.0,
+    "candidate_slant_filter_km": 1600.0,
+    "crossing_xtol_s": 1e-07,
+    "boundary_xtol_s": 1e-08,
+    "window_bracket_halfwidth_s": 0.1
+  },
+  "scope": "Provisional geometry settings; no real target set or kernels; not a full OEM pipeline config"
+}

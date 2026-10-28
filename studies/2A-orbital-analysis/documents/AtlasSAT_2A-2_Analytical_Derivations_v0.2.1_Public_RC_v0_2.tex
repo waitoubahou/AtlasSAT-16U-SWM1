@@ -1,0 +1,2319 @@
+
+\RequirePackage{fix-cm}
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,top=20mm,bottom=22mm,left=20mm,right=20mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{microtype,helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{tikz}
+\usepackage{xcolor,booktabs,array,tabularx,colortbl,enumitem,hyperref,fancyhdr,titlesec,mdframed,longtable,needspace,amsmath,amssymb,siunitx,graphicx}
+\definecolor{atlasblue}{HTML}{0C447C}
+\definecolor{atlasbluelight}{HTML}{185FA5}
+\definecolor{atlasgray}{HTML}{444441}
+\definecolor{atlaslightgray}{HTML}{F1EFE8}
+\definecolor{headerbg}{HTML}{E6F1FB}
+\definecolor{rowalt}{HTML}{F8F8F6}
+\definecolor{todobg}{HTML}{FAEEDA}
+\definecolor{warnborder}{HTML}{BA7517}
+
+% Local numerical-matrix cell protection; exact entries/brackets remain unchanged.
+\makeatletter
+\newsavebox{\AtlasTableMathBox}
+\newcount\AtlasTableMathIndex
+\newcommand{\AtlasTableMath}[1]{%
+  \begingroup
+  \let\AtlasSavedRowColor\CT@row@color
+  \global\let\CT@row@color\relax
+  \sbox{\AtlasTableMathBox}{\hspace{1pt}\(#1\)\hspace{1pt}}%
+  \global\advance\AtlasTableMathIndex by 1
+  \typeout{ATLASMATH \the\AtlasTableMathIndex\space W=\the\wd\AtlasTableMathBox\space C=\the\linewidth}%
+  \usebox{\AtlasTableMathBox}%
+  \global\let\CT@row@color\AtlasSavedRowColor
+  \endgroup}
+\makeatother
+
+\hypersetup{colorlinks=true,linkcolor=atlasblue,urlcolor=atlasbluelight,citecolor=atlasblue,
+pdftitle={AtlasSAT-16U Document 2A-2: Analytical Derivations and Independent Verification},
+pdfauthor={Wassim Ait Oubahou},pdfsubject={Public-distribution derivative RC v0.2; v0.2.1; discrete recurrence and analytical verification; preliminary numerical study}}
+\titleformat{\section}{\normalfont\bfseries\color{atlasblue}\fontsize{13}{16}\selectfont}{\thesection}{8pt}{}[\vspace{-2pt}\textcolor{atlasblue}{\rule{\linewidth}{0.6pt}}]
+\titleformat{\subsection}{\normalfont\bfseries\color{atlasgray}\fontsize{11}{14}\selectfont}{\thesubsection}{6pt}{}
+\titleformat{\subsubsection}{\normalfont\bfseries\color{atlasgray}\fontsize{10}{13}\selectfont}{}{0pt}{}
+\titlespacing{\section}{0pt}{14pt}{7pt}
+\titlespacing{\subsection}{0pt}{11pt}{5pt}
+\titlespacing{\subsubsection}{0pt}{9pt}{4pt}
+\setlength{\headheight}{21pt}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{atlasblue}\leaders\hrule height\headrulewidth\hfill}}
+\fancyhead[L]{\textcolor{atlasgray}{\fontsize{8}{10}\selectfont\textbf{AtlasSAT-16U} | Analytical Verification | Doc 2A-2}}
+\fancyhead[R]{\textcolor{atlasgray}{\fontsize{8}{10}\selectfont v0.2.1 | 27 Oct 2026}}
+\fancyfoot[L]{\textcolor{atlasgray}{\fontsize{7.5}{9}\selectfont Wassim Ait Oubahou --- \href{mailto:wassim.aitoubahou@gmail.com}{wassim.aitoubahou@gmail.com}}}
+\fancyfoot[R]{\textcolor{atlasgray}{\fontsize{7.5}{9}\selectfont Page \thepage}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\textcolor{atlasgray}{\fontsize{7.5}{9}\selectfont Preliminary engineering calculation book}}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=*,itemsep=3pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt,topsep=3pt}
+\newmdenv[backgroundcolor=todobg,linecolor=warnborder,linewidth=.8pt,innertopmargin=8pt,innerbottommargin=8pt,innerleftmargin=10pt,innerrightmargin=10pt,roundcorner=4pt]{warnbox}
+\newmdenv[backgroundcolor=atlaslightgray,linecolor=atlasblue,linewidth=.6pt,innertopmargin=8pt,innerbottommargin=8pt,innerleftmargin=10pt,innerrightmargin=10pt,roundcorner=4pt]{infobox}
+\setlength{\emergencystretch}{3em}
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{8pt}
+\AddToHook{cmd/section/before}{\Needspace{6\baselineskip}}
+\AddToHook{cmd/subsection/before}{\Needspace{5\baselineskip}}
+\AddToHook{cmd/subsubsection/before}{\Needspace{4\baselineskip}}
+\allowdisplaybreaks[2]
+\numberwithin{equation}{section}
+\AddToHook{shipout/foreground}{\ifnum\value{page}=3\relax
+\begin{tikzpicture}[remember picture,overlay]\node[anchor=south west,inner sep=0pt,text width=170mm] at ([xshift=20mm,yshift=3mm]current page.south west) {\fontsize{6.3}{7.3}\selectfont\color{atlasgray}Public RC v0.2: full calculation companion/source register are internal references; \href{PUBLIC_EVIDENCE_AVAILABILITY.md}{public evidence index}.};\end{tikzpicture}\fi
+\ifnum\value{page}=49\relax\begin{tikzpicture}[remember picture,overlay]\node[anchor=south west,inner sep=0pt,text width=170mm] at ([xshift=20mm,yshift=3mm]current page.south west) {\fontsize{6.3}{7.3}\selectfont\color{atlasgray}Public RC v0.2: full calculation companion/source register are internal references; \href{PUBLIC_EVIDENCE_AVAILABILITY.md}{public evidence index}.};\end{tikzpicture}\fi}
+\begin{document}
+\thispagestyle{plain}
+\begin{mdframed}[backgroundcolor=atlasblue,linewidth=0pt,innertopmargin=20pt,innerbottommargin=20pt,innerleftmargin=20pt,innerrightmargin=20pt]
+\begin{minipage}[c]{.66\linewidth}
+{\fontsize{22}{26}\selectfont\bfseries\color{white}AtlasSAT-16U}\\[6pt]
+{\fontsize{15}{19}\selectfont\color{white!85!atlasblue}Analytical Derivations \&\\Independent Verification}\\[5pt]
+{\fontsize{10}{13}\selectfont\color{white!70!atlasblue}Document 2A-2 --- Engineering Calculation Book}
+\end{minipage}\hfill
+\begin{minipage}[c]{.29\linewidth}\raggedleft
+{\fontsize{9}{12}\selectfont\color{white!75!atlasblue}
+Document: \textbf{2A-2}\\Version: \textbf{v0.2.1}\\Date: \textbf{27 October 2026}\\[8pt]
+Author:\\\textbf{Wassim Ait Oubahou}}
+\end{minipage}
+\end{mdframed}
+\vspace{10pt}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule\rowcolor{headerbg}\multicolumn{2}{l}{\textbf{\textcolor{atlasblue}{Document information}}}\\\midrule
+Project & AtlasSAT-16U / Souss Water Observation CubeSat\\
+\rowcolor{rowalt}Reference study & Frozen v0.2 / v0.3 / v0.4, GUI-first v0.1 and 2A-1 RevD3.4\\
+Study interval & 20 October--19 November 2026, assumed epoch\\
+\rowcolor{rowalt}New investigation & Discrete recurrence, independent node counts and approximate absolute phase\\
+Evidence & Original 67 comparisons retained; 17 new rows, full CSV supplementary\\
+\rowcolor{rowalt}Publication status & Standalone v0.2 calculation companion for independent engineering review\\
+\bottomrule
+\end{tabularx}
+\vspace{10pt}
+\begin{infobox}
+\textbf{\textcolor{atlasblue}{What this revision adds.}}
+The archived Sidi Bibi daylight opportunities have verified 15-cycle intra-cluster spacing and a 196-cycle long gap within a 226-cycle near return. Model A gives approximately 314.882 h; Model B gives 312.222563 h, about 9.377 s longer than the saved 312.219958 h complete gap. The residual is explained through node timing and event phase. An unfitted first-order model also tests absolute cluster dates; its limitations are explicit.
+\end{infobox}
+\begin{warnbox}
+\textbf{The daylight revisit verdict remains NOT MET.}
+The preserved complete daylight gap exceeds 72 h. Improved interpretation of timing does not validate optical-access completeness, a common observation schedule, physical payload/attitude performance or actual acquired imagery. No GMAT run or archived result is changed.
+\end{warnbox}
+\vfill
+{\fontsize{8.5}{11}\selectfont\color{atlasgray}
+The complete ten-chapter calculation book is retained. All original numerical outputs and prior publications remain frozen. Independent means an independently implemented calculation route, not external human acceptance or flight validation.}
+\clearpage
+\tableofcontents
+\clearpage
+\section*{Reader's guide}
+The central-force timing relation is given in Equation~\eqref{eq:kepler-period}, the first-order nodal rate in Equation~\eqref{eq:secular-node}, and the complete-gap and weighted-coverage definitions in Equations~\eqref{eq:complete-gap} and~\eqref{eq:weighted-coverage}. The new discrete estimates are Equations~\eqref{eq:discrete-a} and~\eqref{eq:discrete-b}; their comparison is in Table~\ref{tab:discrete-models}. The unfitted approximate phase model is Equation~\eqref{eq:absolute-phase}, with selected dates in Table~\ref{tab:absolute-phase}. Chapters~\ref{ch:7}--\ref{ch:10} distinguish geometry, illumination, gap definitions and opportunity fractions.
+
+
+\begin{sloppypar}This book reconstructs the physics behind the existing workflow. It does not optimise the orbit, update Earth orientation, rerun GMAT or replace published results. Its new computations are independent formulas, closed two-body predictions, local checks on saved states and reaggregation of saved events. The \textbf{\ensuremath{\le}72 h maximum daylight-revisit requirement remains NOT MET}.\end{sloppypar}
+
+
+\begin{sloppypar}The initial elements and an explicit IAU-1976 transformation reproduce the saved initial EME2000 state. A closed two-body solution agrees with the native internal report at millimetre scale; the OEM export has a different residual. First-order J2 theory explains near-SSO behaviour, but using initial osculating elements in a mean-element nodal-period formula gives a clear discrepancy. A roughly 15-day beat explains clustering without predicting the exact 312.22 h optical gap. Independently aggregating all 14,494 targets' saved event/weight data reproduces the published 33.44\% mean rolling 72 h ideal \ensuremath{\pm}20\ensuremath{{}^{\circ}} daylight fraction.\end{sloppypar}
+
+
+\section*{Reading plan and evidence levels}
+
+\begin{sloppypar}Each chapter uses the requested ten-step calculation record. Related scalar quantities share assumptions and a derivation; each actual numerical comparison has an individual CSV row.\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.08\linewidth-1.28000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.42\linewidth-6.72000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.5\linewidth-8.00000pt\relax}@{}}
+\caption{Reading plan and evidence levels}\label{tab:book-1}\\
+\toprule\rowcolor{headerbg}Level & Meaning & Boundary \\\midrule
+\endfirsthead
+\caption[]{Reading plan and evidence levels (continued)}\\
+\toprule\rowcolor{headerbg}Level & Meaning & Boundary \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+A & Independent analytical relation or arithmetic & Does not validate assumed inputs \\
+\rowcolor{rowalt}F & First-order/simplified approximation & Does not exactly reproduce a perturbed orbit \\
+N & Independent numerical implementation & May share saved states, orientation or GIS assumptions \\
+\rowcolor{rowalt}R & Read from an archived output & Copying a result is not independent verification \\
+U & Unresolved or unavailable verification & Neither agreement nor failure established \\
+\rowcolor{rowalt}C & Recurrence prediction conditional on an explicitly saved event anchor & Does not independently establish absolute phase \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}A formula with a saved mean period as input is F/R, not a wholly independent orbit prediction. None of these levels constitutes flight or operational mission validation.\end{sloppypar}
+
+
+\begin{sloppypar}See \textcolor{atlasbluelight}{calculation companion}, \href{../evidence/calculations.json}{calculated values}, \href{../evidence/ANALYTICAL_COMPARISON.csv}{comparison CSV}, \textcolor{atlasbluelight}{source register} and \href{../evidence/ASSUMPTIONS_AND_LIMITATIONS.md}{assumptions register}.\end{sloppypar}
+
+
+\begin{sloppypar}The v0.2 extension in Chapter 5 adds discrete node counts, two recurrence estimates, an unfitted approximate absolute-phase model and an explicitly conditional anchored exercise. All calculations from the other original chapters are retained; their source values are not revised.\end{sloppypar}
+
+
+\section*{Notation, dimensions and constants}
+
+\begin{sloppypar}Vectors are bold. \(r=\|\mathbf r\|\) is geocentric radius; \(R_g\) is the gravity reference radius; \(a_E\) is the ellipsoid's equatorial radius. \(h_{\rm alt}\) is altitude; \(h_o=\|\mathbf r\times\mathbf v\|\) is specific angular momentum. Trigonometric arguments are radians. The companion uses km/s units; output conversions are explicit.\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Notation, dimensions and constants}\label{tab:book-2}\\
+\toprule\rowcolor{headerbg}Input/constant & Adopted value & Source \\\midrule
+\endfirsthead
+\caption[]{Notation, dimensions and constants (continued)}\\
+\toprule\rowcolor{headerbg}Input/constant & Adopted value & Source \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Epoch & 20 October 2026, 12:00:00.000 UTC & \cite{S01} canonical GUI mission \\
+\rowcolor{rowalt}\(a,e,i\) & 6928.1363 km; 0.001; 97.5\ensuremath{{}^{\circ}} & \cite{S01}, EarthMeanOfDate/MODEq \\
+\(\Omega,\omega,f_0\) & 6.463170753756\ensuremath{{}^{\circ}}; 0\ensuremath{{}^{\circ}}; 0\ensuremath{{}^{\circ}} & \cite{S01}; saved AOP 360\ensuremath{{}^{\circ}} is equivalent to 0\ensuremath{{}^{\circ}} \\
+\rowcolor{rowalt}\(\mu\) & 398600.4415 km\textsuperscript{3}/s\textsuperscript{2} & \cite{S02} JGM2.cof POTFIELD \\
+\(R_g\) & 6378.1363 km & \cite{S02}; 6378136.3 m before conversion \\
+\rowcolor{rowalt}\(\bar C_{20}\) & \ensuremath{-}0.000484165390000000 & \cite{S02} RECOEF 2 0 \\
+\(J_2=-\sqrt5\,\bar C_{20}\) & 0.001082626724392697 & Normalized zonal convention, Chapter 3 \\
+\rowcolor{rowalt}\(a_E,f_E\) & 6378.137 km; \(1/298.257223563\) & \cite{S06} frozen WGS84 geometry; NGA standard context \\
+Nominal solar day / design tropical year & 86400 SI s / 365.2422 days & Archived audit convention; approximate year \\
+\rowcolor{rowalt}\(TT-TAI\); archived \(TAI-UTC\) & 32.184 s; 37 s & \cite{S02} MathSpec and archived leap-second model \\
+Sensor reference at 550 km & 30 km cross-track; 10 m projected along-track & \cite{S06} provisional geometry \\
+\rowcolor{rowalt}Ideal roll / Sun gates & 0\ensuremath{{}^{\circ}}, \ensuremath{\pm}10\ensuremath{{}^{\circ}}, \ensuremath{\pm}20\ensuremath{{}^{\circ}} / \ensuremath{\ge}0\ensuremath{{}^{\circ}}, saved \ensuremath{\ge}10\ensuremath{{}^{\circ}} sensitivity & \cite{S06}; no new 20\ensuremath{{}^{\circ}}/30\ensuremath{{}^{\circ}} Sun study \\
+Duration & 2592000 s = 30 days & \cite{S01}; ends 19 November 2026 12:00 UTC \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The gravity radius and geometric ellipsoid radius differ by 0.7 m intentionally. The nominal 550 km is \(a-R_g\), not every instantaneous geodetic altitude. No WGS84 normal-gravity constant silently replaces JGM2's \(\mu\).\end{sloppypar}
+
+
+\section*{Preserved numerical-model contract}
+
+\begin{sloppypar}The native nominal mission retains Earth JGM2 degree/order 2/0, central Earth, drag None, SRP Off, relativistic correction Off and TideModel None; no third-body force is configured. The integrator is PrinceDormand78, InitialStepSize 30 s, Accuracy 1e\ensuremath{-}11, MinStep 0.001 s, MaxStep 30 s, MaxStepAttempts 50, StopIfAccuracyIsViolated true, with RSSStep error control. The archived refined comparison uses 15 s maximum step and 1e\ensuremath{-}12 tolerance; the 0/0 case is the central-force reference.\end{sloppypar}
+
+
+\begin{sloppypar}Dry mass 24 kg, Cd 2.2, Cr 1.5 and drag/SRP areas 0.05 m\textsuperscript{2} are retained conceptual settings. Their values have no force effect when those models are inactive. Native OEM export uses UTC, EME2000, 30 s output, Lagrange interpolation order 7, and km/km/s states. Export cadence and maximum integrator step are separate controls even when both happen to equal 30 s. No optical access, agricultural coverage or tasking command is implied by the native GMAT mission.\end{sloppypar}
+
+
+\begin{sloppypar}The GUI-first canonical execution's saved validation reports 86,401 matching OEM epochs and zero native-state difference from v0.3 for its first run. The separate GUI save/reload run has a small nonzero native difference and a three-target tolerance check. Those archived transfer checks share the physical model; they are R evidence, not independent experimental truth and not new executions in this book.\end{sloppypar}
+
+
+\clearpage\section{Orbital initial conditions}\label{ch:1}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}Can the six elements reconstruct the actual GMAT initial Cartesian state after the correct frame conversion?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}The elements are \textbf{osculating}: the two-body ellipse tangent to the instantaneous state for the adopted \(\mu\). Mean elements belong to a chosen averaging theory and are different. Initial axes are EarthMeanOfDate/MODEq; native OEM axes are EarthMJ2000Eq/EME2000.\end{sloppypar}
+
+
+\begin{sloppypar}GMAT's MathSpec §2.6.6, equations 2.75--2.76 (PDF page 29), deliberately sets the MODEq rotation derivative to zero as negligible. To reproduce its initialization convention, rotate position and velocity alike without adding a precession-rate term. This convention must not be generalized to the Earth-fixed state transform.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use \cite{S01}/\cite{S02}. True anomaly zero means perigee; AOP zero places that perigee at the ascending node of the mean equator of date. The epoch is assumed, not a launch measurement.\end{sloppypar}
+
+
+\subsection*{4. Governing physics}
+
+\begin{equation}p=a(1-e^2),\qquad r=\frac{p}{1+e\cos f}.\label{eq:ch1-1}\end{equation}
+
+\begin{sloppypar}In perifocal axes, with X toward perigee and Z along angular momentum,\end{sloppypar}
+
+
+\begin{equation}\mathbf r_{PQW}=r[\cos f,\sin f,0]^T.\label{eq:ch1-2}\end{equation}
+
+\begin{sloppypar}Since \(r^2\dot f=\sqrt{\mu p}\), differentiating the coordinates and conic equation gives\end{sloppypar}
+
+
+\begin{equation}\mathbf v_{PQW}=\sqrt{\frac{\mu}{p}}[-\sin f,e+\cos f,0]^T.\label{eq:ch1-3}\end{equation}
+
+\begin{sloppypar}For active right-handed rotations,\end{sloppypar}
+
+
+\begin{equation}A_3(\gamma)=\begin{bmatrix}\cos\gamma&-\sin\gamma&0\\\sin\gamma&\cos\gamma&0\\0&0&1\end{bmatrix},
+\quad A_1(\gamma)=\begin{bmatrix}1&0&0\\0&\cos\gamma&-\sin\gamma\\0&\sin\gamma&\cos\gamma\end{bmatrix},\label{eq:ch1-4}\end{equation}
+
+\begin{equation}Q=A_3(\Omega)A_1(i)A_3(\omega),\quad
+\mathbf r_{\rm MOD}=Q\mathbf r_{PQW},\quad \mathbf v_{\rm MOD}=Q\mathbf v_{PQW}.\label{eq:ch1-5}\end{equation}
+
+\begin{sloppypar}Rotations are dimensionless and preserve vector norms.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step solution}
+\begin{enumerate}
+\item Calculate \(p\), \(r_p=a(1-e)\), and \(v_p=\sqrt{\mu/p}(1+e)\).
+\item Form \(Q\) and obtain the two MODEq vectors.
+\item Use \(TT-UTC=69.184\) s in the archived time model and \(T=(JD_{TT}-2451545.0)/36525\).
+\item Compute IAU-1976 precession angles in arcseconds:
+\end{enumerate}
+
+\begin{equation}\begin{aligned}
+\zeta&=2306.2181T+0.30188T^2+0.017998T^3,\\
+\theta&=2004.3109T-0.42665T^2-0.041833T^3,\\
+z&=2306.2181T+1.09468T^2+0.018203T^3.
+\end{aligned}\label{eq:ch1-6}\end{equation}
+
+\begin{enumerate}[start=5]
+\item Convert by \(\pi/(180\cdot3600)\), and form the J2000-to-MOD active matrix
+\end{enumerate}
+\begin{sloppypar}\(P=A_3(z)A_2(-\theta)A_3(\zeta)\).\end{sloppypar}
+
+\begin{enumerate}[start=6]
+\item Apply \(\mathbf r_I=P^T\mathbf r_{\rm MOD}\), \(\mathbf v_I=P^T\mathbf v_{\rm MOD}\).
+\end{enumerate}
+
+\begin{sloppypar}The signs correspond to the declared active convention; GMAT's passive notation is equivalent. The explicit matrix is also compared with ERFA IAU-1976 in the tests.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth-2.48000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.69\linewidth-5.52000pt\relax}@{}}
+\caption{Chapter 1: 6. Numerical substitution}\label{tab:book-3}\\
+\toprule\rowcolor{headerbg}Quantity & Independent result \\\midrule
+\endfirsthead
+\caption[]{Chapter 1: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Independent result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+p & 6928.12937186 km \\
+\rowcolor{rowalt}Initial radius & 6921.2081637 km \\
+Initial speed & 7.59267780075 km/s \\
+\rowcolor{rowalt}TT Julian date & 2461334.000800741 \\
+T (Julian centuries) & 0.26800823547545 \\
+\rowcolor{rowalt}Precession zeta / theta / z & \AtlasTableMath{\begin{bmatrix}618.1074736367\\537.1403767496\\618.1644231499\end{bmatrix}} arcsec \\
+r MODEq & \AtlasTableMath{\begin{bmatrix}6877.21984718993\\779.082549338954\\0\end{bmatrix}} km \\
+\rowcolor{rowalt}v MODEq & \AtlasTableMath{\begin{bmatrix}0.111556326527657\\-0.98474466348472\\7.52772138961864\end{bmatrix}} km/s \\
+r EME2000 & \AtlasTableMath{\begin{bmatrix}6881.742487435804\\737.8494623786722\\-17.91515436451245\end{bmatrix}} km \\
+\rowcolor{rowalt}v EME2000 & \AtlasTableMath{\begin{bmatrix}0.1252548643846085\\-0.9854543404905708\\7.527413044846698\end{bmatrix}} km/s \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The initial nonzero EME2000 Z component is expected: the October 2026 mean equator differs from J2000's equator.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}Use the first state of the original ZIP's seven-day J2 OEM (\cite{S05}), also preserved as \cite{S03}'s \nolinkurl{initial_inertial_state.} The complete original archive member is used because current v0.2 files have an inherited integrity exception; frozen files are neither repaired nor restored.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+
+\begin{sloppypar}Position-vector residual norm: \textbf{7.47422061918e-10 m}; velocity-vector norm: \textbf{1.66533453694e-10 mm/s}. The reference vector is \(\begin{bmatrix}6881.742487435804\\737.8494623786729\\-17.91515436451214\end{bmatrix}\) km and \(\begin{bmatrix}0.1252548643846083\\-0.9854543404905708\\7.527413044846698\end{bmatrix}\) km/s.\end{sloppypar}
+
+
+\begin{sloppypar}These are floating-point/text-precision agreement figures, not physical orbit knowledge. Comparing the untransformed MODEq numbers with EME2000 would create an artificial discrepancy.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}An epoch fixes frame orientation and the relation to Earth and Sun. Copying identical element numbers to another epoch changes that relation. A mean orbit additionally requires a specified averaging theory; initial osculating elements cannot be assumed to be its means.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A + N}, conditional on constants and the documented MODEq state convention. No numerical orbit integration.\end{sloppypar}
+
+
+\clearpage\section{Two-body orbital mechanics}\label{ch:2}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}Do force scale, conserved quantities, orbit dimensions, period and a worked state agree with the archived GMAT central-force reference?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Point-mass Earth; negligible spacecraft mass; no J2, drag, radiation, third bodies or thrust. The proper reference is GMAT degree/order 0/0, not its J2 trajectory.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use the same \(a,e,\mu\). Seed the propagation comparison with the archived initial Cartesian state, deliberately isolating propagation from Chapter 1's initialization check.\end{sloppypar}
+
+
+\subsection*{4. Governing physics and derivation}
+
+\begin{equation}\ddot{\mathbf r}=-\frac{\mu}{r^3}\mathbf r.\label{eq:ch2-1}\end{equation}
+
+\begin{sloppypar}Zero central-force torque gives \(d(\mathbf r\times\mathbf v)/dt=\mathbf r\times\ddot{\mathbf r}=0\). Thus \(\mathbf h_o=\mathbf r\times\mathbf v\) is constant. Taking the dot product with velocity,\end{sloppypar}
+
+
+\begin{equation}\frac{d}{dt}\left(\frac{v^2}{2}\right)
+=-\frac{\mu}{r^3}\mathbf r\cdot\mathbf v
+=\frac{d}{dt}\left(\frac{\mu}{r}\right),\label{eq:ch2-2}\end{equation}
+
+\begin{sloppypar}so \(\epsilon=v^2/2-\mu/r\) is constant. For completeness, the conic solution follows directly from the radial equation. Put \(w=1/r\) and use \(\dot f=h_o/r^2\). Then \(\dot r=-h_o\,dw/df\) and \(\ddot r=-h_o^2w^2\,d^2w/df^2\). Inserting these in \(\ddot r-r\dot f^2=-\mu/r^2\) gives\end{sloppypar}
+
+
+\begin{equation}\frac{d^2w}{df^2}+w=\frac{\mu}{h_o^2}.\label{eq:ch2-3}\end{equation}
+
+\begin{sloppypar}The solution with perigee at \(f=0\) is \(w=(\mu/h_o^2)(1+e\cos f)\), establishing \(p=h_o^2/\mu\). To recover energy from ellipse dimensions, use \(v_p=h_o/r_p\), \(v_a=h_o/r_a\) and equate apsidal energies:\end{sloppypar}
+
+
+\begin{equation}\frac{h_o^2}{2}\left(\frac1{r_p^2}-\frac1{r_a^2}\right)
+=\mu\left(\frac1{r_p}-\frac1{r_a}\right).\label{eq:ch2-4}\end{equation}
+
+\begin{sloppypar}Cancel the common nonzero factor for a noncircular ellipse, giving \(h_o^2=2\mu r_pr_a/(r_p+r_a)=\mu a(1-e^2)\). Substitute at perigee to obtain \(\epsilon=-\mu/(r_p+r_a)=-\mu/(2a)\). The circular result follows by continuity. Together these yield\end{sloppypar}
+
+
+\begin{equation}h_o^2=\mu p,\quad p=a(1-e^2),\quad
+\epsilon=-\frac{\mu}{2a},\quad
+v^2=\mu\left(\frac2r-\frac1a\right).\label{eq:ch2-5}\end{equation}
+
+\begin{sloppypar}At apsides, \(\dot r=0\), so \(r_{p,a}=a(1\mp e)\) and \(v_{p,a}=h_o/r_{p,a}\). Specific energy has units km\textsuperscript{2}/s\textsuperscript{2}, specific angular momentum km\textsuperscript{2}/s, and gravitational acceleration km/s\textsuperscript{2}.\end{sloppypar}
+
+
+\begin{sloppypar}The ellipse's area is \(\pi a^2\sqrt{1-e^2}\); areal rate is \(h_o/2\). Therefore\end{sloppypar}
+
+
+\begin{equation}T_K=\frac{2\pi a^2\sqrt{1-e^2}}{\sqrt{\mu a(1-e^2)}}
+=2\pi\sqrt{\frac{a^3}{\mu}},\quad n_K=\sqrt{\frac{\mu}{a^3}}.\label{eq:kepler-period}\end{equation}
+
+\begin{sloppypar}Since \(a^3/\mu\) has dimensions s\textsuperscript{2}, divide the result by 60 only when reporting minutes.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step solution and propagated example}
+
+\begin{sloppypar}For an orbit starting at perigee, solve \(E-e\sin E=n_Kt\), then\end{sloppypar}
+
+
+\begin{equation}x_{PQW}=a(\cos E-e),\quad y_{PQW}=a\sqrt{1-e^2}\sin E,\quad
+\dot E=\frac{n_K}{1-e\cos E}.\label{eq:ch2-7}\end{equation}
+
+\begin{sloppypar}Differentiate coordinates for velocity and rotate. A controlled test uses this separate route to check the companion's universal-variable solution.\end{sloppypar}
+
+
+\begin{sloppypar}For an arbitrary Cartesian initial state define \(\alpha=2/r_0-v_0^2/\mu=1/a\), \(\chi\) in \(\sqrt{\rm km}\), \(z=\alpha\chi^2\), and\end{sloppypar}
+
+
+\begin{equation}C(z)=\frac{1-\cos\sqrt z}{z},\quad
+S(z)=\frac{\sqrt z-\sin\sqrt z}{(\sqrt z)^3}.\label{eq:ch2-8}\end{equation}
+
+\begin{sloppypar}At zero use \(C=1/2\), \(S=1/6\); series expansions avoid cancellation. Solve\end{sloppypar}
+
+
+\begin{equation}\sqrt\mu\,\Delta t=
+\frac{\mathbf r_0\cdot\mathbf v_0}{\sqrt\mu}\chi^2C
++(1-\alpha r_0)\chi^3S+r_0\chi.\label{eq:ch2-9}\end{equation}
+
+\begin{sloppypar}Each term has units km\(^{3/2}\). Newton's method starts with \(\chi_0=\sqrt\mu\,\alpha\Delta t\), differentiates the left-minus-right residual and converges to the scalar root. The derivative of the right-hand expression is\end{sloppypar}
+
+
+\begin{equation}F_\chi=\frac{\mathbf r_0\cdot\mathbf v_0}{\sqrt\mu}\chi(1-zS)
++(1-\alpha r_0)\chi^2C+r_0.\label{eq:ch2-10}\end{equation}
+
+\begin{sloppypar}Then form Lagrange coefficients (uppercase letters avoid confusion with orbital eccentricity or flattening):\end{sloppypar}
+
+
+\begin{equation}\begin{aligned}
+F&=1-\chi^2C/r_0,&G&=\Delta t-\chi^3S/\sqrt\mu,\\
+\mathbf r&=F\mathbf r_0+G\mathbf v_0,&
+\dot F&=\frac{\sqrt\mu}{rr_0}(\alpha\chi^3S-\chi),\\
+\dot G&=1-\chi^2C/r,&\mathbf v&=\dot F\mathbf r_0+\dot G\mathbf v_0.
+\end{aligned}\label{eq:ch2-11}\end{equation}
+
+\begin{sloppypar}\(F,\dot G\) are dimensionless, \(G\) has units s and \(\dot F\) s\(^{-1}\).\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 2: 6. Numerical substitution}\label{tab:book-4}\\
+\toprule\rowcolor{headerbg}Quantity & Substitution/result \\\midrule
+\endfirsthead
+\caption[]{Chapter 2: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Substitution/result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Perigee & 6928.1363(1\ensuremath{-}0.001) = 6921.2081637 km \\
+\rowcolor{rowalt}Apogee & 6928.1363(1+0.001) = 6935.0644363 km \\
+Central acceleration at initial radius & 8.32096993167 m/s\textsuperscript{2} \\
+\rowcolor{rowalt}Specific energy & -28.766786928 km\textsuperscript{2}/s\textsuperscript{2} \\
+Specific angular momentum & 52550.5035789 km\textsuperscript{2}/s \\
+\rowcolor{rowalt}Perigee / apogee speed & 7.59267780075 / 7.57750761533 km/s \\
+Keplerian mean motion & 0.00109482385840081 rad/s \\
+\rowcolor{rowalt}Keplerian period & 95.6498657899385 min = 5738.99194739631 s \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}Worked state at elapsed \(t=3600\) s, 20 October 2026 13:00 UTC, in EME2000:\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth-2.48000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.69\linewidth-5.52000pt\relax}@{}}
+\caption{Chapter 2: 6. Numerical substitution}\label{tab:book-5}\\
+\toprule\rowcolor{headerbg}Intermediate/output & Value \\\midrule
+\endfirsthead
+\caption[]{Chapter 2: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Intermediate/output & Value \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Universal anomaly chi & 328.001617949273 sqrt(km) \\
+\rowcolor{rowalt}z & 15.5287160527342 \\
+C(z) / S(z) & [0.109306087604202, 0.0761088804859008] \\
+\rowcolor{rowalt}F / G & -0.699082279520474 / -653.969815887077 s \\
+Analytical r & \AtlasTableMath{\begin{bmatrix}-4892.817125790079\\128.6399095131009\\-4910.176756093272\end{bmatrix}} km \\
+\rowcolor{rowalt}GMAT OEM r & \AtlasTableMath{\begin{bmatrix}-4892.817125790007\\128.6399095131103\\-4910.176756093281\end{bmatrix}} km \\
+Analytical v & \AtlasTableMath{\begin{bmatrix}5.31425407326754\\1.265209166102669\\-5.25464873178691\end{bmatrix}} km/s \\
+\rowcolor{rowalt}GMAT OEM v & \AtlasTableMath{\begin{bmatrix}5.314254073267627\\1.265209166102673\\-5.254648731786859\end{bmatrix}} km/s \\
+Position / velocity residual & 7.39304552922e-08 m / 1.00791620373e-07 mm/s \\
+\end{longtable}\endgroup
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}\cite{S04} is the complete archived native two-body internal report, retaining its actual elapsed epochs. \cite{S05} is the same run's native OEM, with export interpolation and UTC formatting. \cite{S03}'s universal comparison used \cite{S04}: maximum 0.001301823967403638 m position and 0.001426784253950747 mm/s velocity. The original v0.2 eccentric-anomaly implementation reported approximately 0.001301593 m; this implementation difference is not a different trajectory.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Chapter 2: 8. Comparison}\label{tab:book-6}\\
+\toprule\rowcolor{headerbg}Definition over seven days & Independent maximum & Archived comparable value \\\midrule
+\endfirsthead
+\caption[]{Chapter 2: 8. Comparison (continued)}\\
+\toprule\rowcolor{headerbg}Definition over seven days & Independent maximum & Archived comparable value \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Internal report: position & 0.00130182454011545 m & 0.001301823967403638 m \\
+\rowcolor{rowalt}Internal report: velocity & 0.00142678425395075 mm/s & 0.001426784253950747 mm/s \\
+OEM: position & 0.00375785116679522 m & No equal-definition published universal maximum asserted \\
+\rowcolor{rowalt}OEM: velocity & 0.00411814884580215 mm/s & No equal-definition published universal maximum asserted \\
+Maximum nominal-UTC versus report elapsed difference & 1.53726432472e-07 s & Diagnostic, not a physical clock error \\
+\rowcolor{rowalt}Unaligned OEM minus report state maximum & 0.00362047096962 m & Diagnostic; epochs differ slightly \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The OEM/report difference includes output interpolation and slightly different epochs, not integration error alone. A fraction of a microsecond multiplied by about 7.6 km/s matters at millimetre scale. Two separately interpolated output products need not have identical residuals even after their definitions are correctly handled.\end{sloppypar}
+
+
+\begin{sloppypar}The matched-UTC J2 nominal/refined native OEM comparison is \textbf{0.00362039786695247 m} maximum position and \textbf{0.00397296669727015 mm/s} maximum velocity difference. This is distinct from the published 0.000228136 m comparison interpolating the refined \textbf{internal report} onto nominal internal epochs.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}Conservation plus a closed solution tests central-force numerical consistency. It does not validate omitted physics. A J2 nodal period measures successive crossings of an evolving equatorial/node geometry and is not identical to \(T_K\) at the initial osculating \(a\).\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A + N}, with \textbf{R boundary condition} for archived propagation comparisons. Both report and OEM residuals are retained with their own definitions.\end{sloppypar}
+
+
+
+
+\clearpage\section{Earth's oblateness and J2 perturbations}\label{ch:3}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}What acceleration and secular changes should Earth's dominant oblateness term produce, and how closely should first-order theory match the saved GMAT J2 trajectory?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Retain only degree 2, order 0 of JGM2, exactly as configured. Analytic secular formulas additionally average over one Kepler orbit and retain terms first order in \(J_2\). They assume a fixed gravity symmetry axis and appropriate \textbf{mean} elements. GMAT instead integrates the instantaneous harmonics with its configured Earth orientation; small pole/time effects and short-period oscillations are retained numerically. The analytical and fitted quantities are therefore related, not identical.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use \(J_2,\mu,R_g\) from the actual JGM2 file, not a generic rounded Earth's J2. The retained normalized coefficient is \(\bar C_{20}=-4.8416539\times10^{-4}\). Define\end{sloppypar}
+
+
+\begin{equation}P_2(u)=\tfrac12(3u^2-1),\qquad
+\bar P_{20}=\sqrt5 P_2,\qquad
+\bar C_{20}\bar P_{20}=-J_2P_2.\label{eq:ch3-1}\end{equation}
+
+\begin{sloppypar}The factor can be checked directly. With \(u=z/r\), the sphere-average square of the unnormalized zonal polynomial is\end{sloppypar}
+
+
+\begin{equation}\frac1{4\pi}\int P_2(u)^2\,d\Omega
+=\frac12\int_{-1}^{1}\frac{9u^4-6u^2+1}{4}\,du
+=\frac15.\label{eq:ch3-2}\end{equation}
+
+\begin{sloppypar}Multiplying by \(\sqrt5\) makes the sphere-average square unity. This derives the degree-2 normalization independently of the draft's general typography.\end{sloppypar}
+
+
+\begin{sloppypar}Thus \(J_2=-\sqrt5\bar C_{20}>0\). Using \(-\bar C_{20}\) as J2 would understate it by \(\sqrt5\). Normalization preserves the coefficient--polynomial product; do not mix normalized coefficients and unnormalized Legendre functions. The copied coefficient file and original v0.2 constants independently agree on this conversion. The extracted general normalization equation in the draft MathSpec has ambiguous factorial typography; the explicit degree-2 definition above, rather than that extracted general line, controls this calculation.\end{sloppypar}
+
+
+\subsection*{4. Governing physics: potential and acceleration}
+
+\begin{sloppypar}An oblate mass distribution has more equatorial mass than a spherical central approximation. It is not represented by changing satellite mass or adding drag. Define gravitational potential energy per unit spacecraft mass, with the \textbf{negative} central-potential sign,\end{sloppypar}
+
+
+\begin{equation}U(\mathbf r)=-\frac{\mu}{r}+\Delta U,\qquad
+\Delta U=\frac{\mu J_2R_g^2}{2r^3}
+\left(3\frac{z^2}{r^2}-1\right).\label{eq:ch3-3}\end{equation}
+
+\begin{sloppypar}The z-axis here is the gravity symmetry axis, not an arbitrary unrotated inertial Z. Let \(K=\mu J_2R_g^2/2\), so \(\Delta U=K(3z^2r^{-5}-r^{-3})\). Differentiate explicitly:\end{sloppypar}
+
+
+\begin{equation}\frac{\partial\Delta U}{\partial x}
+=K[-15xz^2r^{-7}+3xr^{-5}],\label{eq:ch3-4}\end{equation}
+
+\begin{sloppypar}and similarly for y. For z, differentiating both \(z^2\) and \(r^{-5}\) gives\end{sloppypar}
+
+
+\begin{equation}\frac{\partial\Delta U}{\partial z}
+=K[9zr^{-5}-15z^3r^{-7}].\label{eq:ch3-5}\end{equation}
+
+\begin{sloppypar}Since acceleration is \(-\nabla U\),\end{sloppypar}
+
+
+\begin{equation}\ddot{\mathbf r}=-\frac{\mu}{r^3}\mathbf r+
+\frac{3J_2\mu R_g^2}{2r^5}
+\begin{bmatrix}
+x(5z^2/r^2-1)\\y(5z^2/r^2-1)\\z(5z^2/r^2-3)
+\end{bmatrix}.\label{eq:ch3-6}\end{equation}
+
+\begin{sloppypar}The J2 prefactor times x has units \(({\rm km^3/s^2})({\rm km^2})({\rm km})/{\rm km^5}={\rm km/s^2}\). At the equator its radial correction is inward; at the pole it is outward relative to the central term at the same geocentric radius. This does not compare actual surface gravity at the two different surface radii. J2 is a mass-distribution parameter, not the geometric flattening fE. In inertial propagation rotate the gravity-frame acceleration back into the integration frame. Do not add Coriolis terms to an inertial gravitational acceleration.\end{sloppypar}
+
+
+\subsection*{5. Governing physics: averaged rates and solution steps}
+
+\begin{sloppypar}Write argument of latitude \(u=\omega+f\), so \(z/r=\sin i\sin u\). Averaging in \textbf{time}, not uniformly in true anomaly,\end{sloppypar}
+
+
+\begin{equation}\langle\Delta U\rangle=\frac{n}{2\pi}\int_0^{2\pi}\Delta U\,\frac{r^2}{h_o}\,df.\label{eq:ch3-7}\end{equation}
+
+\begin{sloppypar}Insert \(1/r=(1+e\cos f)/p\). The integrals of \(\cos f\), and of \(\cos f\sin^2(\omega+f)\), vanish over a full cycle; the mean of \(\sin^2(\omega+f)\) is \(1/2\). Simplifying \(n/(h_op)\) using \(p=a(1-e^2)\) yields\end{sloppypar}
+
+
+\begin{equation}\langle\Delta U\rangle
+=\frac{\mu J_2R_g^2}{4a^3(1-e^2)^{3/2}}(1-3\cos^2i).\label{eq:ch3-8}\end{equation}
+
+\begin{sloppypar}One compact way to obtain all secular rates without guessing signs is to use Delaunay actions\end{sloppypar}
+
+
+\begin{equation}L=\sqrt{\mu a},\quad G=L\sqrt{1-e^2},\quad H=G\cos i,\label{eq:ch3-9}\end{equation}
+
+\begin{sloppypar}conjugate to \(M,\omega,\Omega\), respectively. These have units km\textsuperscript{2}/s. The averaged Hamiltonian per unit mass is\end{sloppypar}
+
+
+\begin{equation}\mathcal H=-\frac{\mu^2}{2L^2}
++\frac{J_2\mu^4R_g^2}{4L^3G^3}
+\left(1-\frac{3H^2}{G^2}\right).\label{eq:ch3-10}\end{equation}
+
+\begin{sloppypar}Canonical equations give \(\dot\Omega=\partial\mathcal H/\partial H\), \(\dot\omega=\partial\mathcal H/\partial G\), \(\dot M=\partial\mathcal H/\partial L\). Differentiating while holding the other actions fixed gives\end{sloppypar}
+
+
+\begin{equation}\boxed{\dot\Omega=-\frac32nJ_2\left(\frac{R_g}{p}\right)^2\cos i},\label{eq:secular-node}\end{equation}
+
+\begin{equation}\boxed{\dot\omega=\frac34nJ_2\left(\frac{R_g}{p}\right)^2(5\cos^2i-1)},\label{eq:ch3-12}\end{equation}
+
+\begin{equation}\boxed{\dot M=n+\frac34nJ_2\left(\frac{R_g}{p}\right)^2
+\sqrt{1-e^2}(3\cos^2i-1)}.\label{eq:ch3-13}\end{equation}
+
+\begin{sloppypar}There is no secular change in \(a,e,i\) at this averaged order because the Hamiltonian does not depend on their conjugate angles. Their \textbf{instantaneous osculating} values can nevertheless oscillate. Their approximate constancy as averaged quantities does not imply that the initial osculating values equal those means.\end{sloppypar}
+
+
+\begin{sloppypar}At small eccentricity, \(\omega\) and \(M\) individually become poorly conditioned, but their sum \(u_{\rm mean}=M+\omega\) remains useful. A first-order draconitic/nodal estimate is\end{sloppypar}
+
+
+\begin{equation}T_N\simeq\frac{2\pi}{\dot M+\dot\omega}.\label{eq:ch3-14}\end{equation}
+
+\begin{sloppypar}This is an approximation to latitude-cycle timing, not a claim that every Earth-fixed Z crossing follows a constant interval.\end{sloppypar}
+
+
+\subsubsection*{An independent first-order estimate of the mean-SMA shift}
+
+\begin{sloppypar}The fixed-axis central+J2 problem also explains why the initial SMA is not its subsequent average. Total specific energy is \(\mathcal E=-\mu/(2a_{\rm osc})+\Delta U\). At the initial state it is \(\mathcal E_0=-\mu/(2a_0)+\Delta U_0\). Consequently the average central-force osculating energy is approximately\end{sloppypar}
+
+
+\begin{equation}\langle\epsilon_{\rm osc}\rangle
+=-\frac{\mu}{2a_0}+\Delta U_0-\langle\Delta U\rangle.\label{eq:ch3-15}\end{equation}
+
+\begin{sloppypar}Linearize \(a=-\mu/(2\epsilon)\) about the initial state. Since \(da/d\epsilon=2a_0^2/\mu\),\end{sloppypar}
+
+
+\begin{equation}\boxed{\langle a_{\rm osc}\rangle\simeq
+a_0+\frac{2a_0^2}{\mu}
+[\Delta U_0-\langle\Delta U\rangle]}.\label{eq:ch3-16}\end{equation}
+
+\begin{sloppypar}Use the \textbf{unperturbed initial ellipse} to evaluate the two J2 potentials. This is independently predictive to first order: no saved mean SMA enters it. Neglected changes in the averaging path and the nonlinearity of averaging \(a(\epsilon)\) enter at higher order. For a circular polar orbit starting at its equator it reduces to \(\delta a\simeq-3J_2R_g^2/(2a_0)\); starting at the pole reverses the first-order shift. These limits are tested without running alternative missions.\end{sloppypar}
+
+
+\begin{sloppypar}This gives one informative scalar estimate, not a complete canonical mean-element transformation for all six elements. The actual GMAT symmetry pole also varies slowly. Very close downstream period agreement must not be taken as proof that omitted mean-eccentricity, inclination, pole and second-order corrections vanish.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth-2.48000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.69\linewidth-5.52000pt\relax}@{}}
+\caption{Chapter 3: 6. Numerical substitution}\label{tab:book-7}\\
+\toprule\rowcolor{headerbg}Quantity using initial osculating elements & Result \\\midrule
+\endfirsthead
+\caption[]{Chapter 3: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity using initial osculating elements & Result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Central acceleration example in MODEq & \AtlasTableMath{\begin{bmatrix}-0.0082680853123386\\-0.00093664607594605\\-0\end{bmatrix}} km/s\textsuperscript{2} \\
+\rowcolor{rowalt}J2 correction in same symmetry-axis approximation & \AtlasTableMath{\begin{bmatrix}-1.1402464281186e-05\\-1.2917226929372e-06\\-0\end{bmatrix}} km/s\textsuperscript{2} \\
+J2 / central acceleration magnitude & 0.00137909368983 \\
+\rowcolor{rowalt}First-order node rate & 0.973652342293677 deg/day \\
+First-order perigee rate & -3.41200233275256 deg/day \\
+\rowcolor{rowalt}Mean-anomaly rate & 0.00109410894251178 rad/s \\
+Approximate nodal period with initial a & 95.7726984932175 min \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The initial acceleration example is expressed in a mean-equator symmetry-axis approximation. It demonstrates force scale and sign, not a pointwise audit of GMAT's complete Earth-fixed force rotation.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}\cite{S03} gives fitted EME2000 osculating RAAN slopes of 0.9784484731676922\ensuremath{{}^{\circ}}/day over seven days and 0.9784868269172031\ensuremath{{}^{\circ}}/day over 30 days. \cite{S07}'s TA0 mean descending-node period is 95.5783355926631 min. \cite{S07} also gives a time-average osculating SMA of 6918.753022236983 km, about 9.38 km below the initial value, and short-period excursions. These are finite-month archived quantities.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 3: 8. Comparison}\label{tab:book-8}\\
+\toprule\rowcolor{headerbg}Comparison & Value / difference \\\midrule
+\endfirsthead
+\caption[]{Chapter 3: 8. Comparison (continued)}\\
+\toprule\rowcolor{headerbg}Comparison & Value / difference \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+First-order initial-element rate minus seven-day fitted rate & -0.00479613087401 deg/day; descriptive -0.490177153477\% \\
+\rowcolor{rowalt}Independent seven-day RAAN fit & 0.9784484731676945 deg/day \\
+Independent thirty-day RAAN fit & 0.9784868269172042 deg/day \\
+\rowcolor{rowalt}Initial-element nodal estimate minus saved period & 0.194362900554 min \\
+Diagnostic a from saved time-average osculating SMA & 6918.753022236983 km \\
+\rowcolor{rowalt}Same timing formula with diagnostic a & 95.5785296648181 min \\
+Diagnostic-period difference from saved nodal mean & 0.0116443293024 s \\
+\rowcolor{rowalt}Diagnostic nodal rate & 0.978281850089823 deg/day \\
+\end{longtable}\endgroup
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 3: 8. Comparison}\label{tab:book-9}\\
+\toprule\rowcolor{headerbg}Independent energy-based prediction & Value / comparison \\\midrule
+\endfirsthead
+\caption[]{Chapter 3: 8. Comparison (continued)}\\
+\toprule\rowcolor{headerbg}Independent energy-based prediction & Value / comparison \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Initial J2 potential & -0.0264745374233671 km\textsuperscript{2}/s\textsuperscript{2} \\
+\rowcolor{rowalt}Orbit-average J2 potential on initial ellipse & 0.0125230695898338 km\textsuperscript{2}/s\textsuperscript{2} \\
+First-order average-SMA shift & -9.39210685704496 km \\
+\rowcolor{rowalt}Predicted average osculating SMA & 6918.74419314295 km \\
+Prediction minus archived time-average SMA & -8.82909402844 m \\
+\rowcolor{rowalt}Timing formula at independently predicted mean SMA & 95.5783470258288 min \\
+Prediction minus archived nodal period & 0.000685989945168 s (first-order context, not an exact error bound) \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The diagnostic mean-SMA substitution uses a saved number, not an independently derived osculating-to-mean mapping. Its much better period agreement illustrates the mechanism; it is not a verified canonical mean-element transformation or a calibrated exact period law. Averaging \(a(t)\) is not generally equivalent to averaging \(n(a(t))\).\end{sloppypar}
+
+
+\begin{sloppypar}For local sensitivity,\end{sloppypar}
+
+
+\begin{equation}\frac{\delta\dot\Omega}{\dot\Omega}\simeq
+-\frac72\frac{\delta a}{a}-\tan i\,\delta i+
+\frac{4e}{1-e^2}\delta e,\label{eq:ch3-17}\end{equation}
+
+\begin{sloppypar}with \(\delta i\) in radians and fixed constants. The altitude dependence is strong enough that confusing osculating and mean SMA affects secular predictions.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}The roughly half-percent precession difference is compatible with using initial osculating rather than matched mean elements, plus differing reference poles and first-order truncation. It is not evidence that the integrator has a half-percent error. No unique causal decomposition is claimed. Near-circular perigee precession is a mathematical diagnostic; it does not provide a robust independently measurable apsidal orientation in this study.\end{sloppypar}
+
+
+\begin{sloppypar}The former E17 note's beat arithmetic can be verified directly, but the J2 mean-element issue must be explained separately. Published arithmetic is not automatically independent physical verification.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A} for differentiation and dimensions; \textbf{N} for a finite-difference potential-gradient test and independent RAAN extraction; \textbf{F} for secular predictions and the independent energy-based average-SMA estimate; \textbf{F/R} for the separate diagnostic saved-mean-SMA substitution. A rigorous osculating-to-mean transformation and higher-order secular solution are \textbf{U} here.\end{sloppypar}
+
+
+\clearpage\section{Sun-synchronous orbital design}\label{ch:4}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}What nodal precession maintains mean local node time, how close is the inherited 97.5\ensuremath{{}^{\circ}} orbit, and what local-time drift should be expected?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Use a nominal mean tropical year of 365.2422 days, a circularized mean-Sun design argument and first-order J2. These assumptions are appropriate for a hand estimate, not an exact solar ephemeris or a new orbit design.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use the adopted \(a,e,J_2,\mu,R_g\). The desired descending local mean solar time is 10:30, set by the initial RAAN calibration. Matching precession alone does not choose 10:30.\end{sloppypar}
+
+
+\subsection*{4. Governing physics}
+\begin{sloppypar}Sun-synchronism requires the orbital plane to keep a nearly constant angle to the mean Sun as Earth orbits the Sun. Thus\end{sloppypar}
+
+
+\begin{equation}\dot\Omega_{\rm req}\simeq\dot\alpha_{\rm mean\,Sun}
+=\frac{360^\circ}{365.2422\ {\rm day}}.\label{eq:ch4-1}\end{equation}
+
+\begin{sloppypar}For an Earth near-polar satellite, \(\cos i<0\) gives positive J2 precession. Solve the nodal-rate formula for inclination:\end{sloppypar}
+
+
+\begin{equation}\cos i_{\rm SSO}=
+-\frac{(2/3)\dot\Omega_{\rm req}}
+{nJ_2(R_g/p)^2}.\label{eq:sso-inclination}\end{equation}
+
+\begin{sloppypar}Convert \(\dot\Omega_{\rm req}\) to rad/s before substitution. The right side is dimensionless; if its magnitude exceeds one, that first-order combination has no real inclination solution.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step local-time solution}
+\begin{sloppypar}For a simplified rotating equator of date, descending-node longitude is approximately \(\lambda_d=\Omega+\pi-\theta_E\). Mean local time increases by four minutes for each degree east. Adding time-of-day rotation and removing the sidereal rotation's extra daily angle gives\end{sloppypar}
+
+
+\begin{equation}\frac{d\,{\rm LTDN}}{dt}\simeq
+\frac{\dot\Omega-\dot\alpha_{\rm mean\,Sun}}{15}
+\quad {\rm hours/day},\label{eq:ch4-3}\end{equation}
+
+\begin{sloppypar}when the rates are deg/day. Therefore multiply the rate difference by 240 to obtain seconds of clock drift per day. A negative result means the node becomes earlier.\end{sloppypar}
+
+
+\begin{sloppypar}Keep all three concepts separate:\end{sloppypar}
+
+
+\begin{itemize}
+\item UTC is an atomic civil time scale with leap seconds.
+\item UT1 follows Earth rotation and belongs in precise Earth-angle calculations.
+\item Local mean solar time uses a fictitious uniformly progressing mean Sun; apparent solar time uses the actual Sun hour angle.
+\end{itemize}
+
+\begin{sloppypar}The saved baseline convention evaluates \(({\rm UTC\ hours}+\lambda/15)\bmod24\). It is labelled an approximation because UT1\ensuremath{-}UTC is omitted from that clock expression. Target apparent solar time is not simply the node's 10:30 mean time.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 4: 6. Numerical substitution}\label{tab:book-10}\\
+\toprule\rowcolor{headerbg}Quantity & Result \\\midrule
+\endfirsthead
+\caption[]{Chapter 4: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Mean-Sun design rate & 0.9856473320990837 deg/day \\
+\rowcolor{rowalt}First-order SSO inclination & 97.5929382028049 deg \\
+First-order initial-element mean-time drift & -2.8787975533 s/day \\
+\rowcolor{rowalt}Fitted seven-day-rate mean-time drift estimate & -1.72772614353 s/day \\
+Fitted thirty-day-rate mean-time drift estimate & -1.71852124365 s/day \\
+\rowcolor{rowalt}Seven exact-day rate estimate & -12.0940830047 s; saved node-to-node span -11.9625133986 s \\
+Thirty exact-day rate estimate & -51.5556373095 s; saved node-to-node span -52.0026435217 s \\
+\end{longtable}\endgroup
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}\cite{S03}'s first node is 20 October 2026 12:47:47.330776 UTC, at 10.500000000148871 approximate local mean solar hours. First-to-last-node drift is \ensuremath{-}11.96251339863963 s over the seven-day run and \ensuremath{-}52.00264352171686 s over the 30-day run. These spans run between actual node events, not exactly seven or 30 solar days.\end{sloppypar}
+
+
+\begin{sloppypar}The earlier v0.3 baseline-verification file reports a first residual of \(5.1145008\times10^{-7}\) s; the later independent audit reports \(5.3593610\times10^{-7}\) s. Their difference is about \(2.45\times10^{-8}\) s, arising between numerical evaluations. It is recorded, not silently reconciled. Neither is a physical submicrosecond LTDN accuracy claim.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+\begin{sloppypar}The estimated inclination differs from the adopted one by 0.0929382028049 degrees. The first-order nodal rate is below the required rate; the fitted rate is also below it, so both predict earlier node local time. The simple fixed-day predictions above differ from the saved first-to-last-node drifts because the definitions of duration and reference equator differ and finite-interval/short-period effects remain. No residual is assigned uniquely to a single effect without a controlled decomposition.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}The correct description is \textbf{near-SSO}, initially calibrated to approximately 10:30. The first-order 97.592938\ensuremath{{}^{\circ}} estimate is not an executed inclination change. Perfect long-term mean-time maintenance has not been demonstrated. The frozen dynamics used their original Earth-orientation setup; the later improved terrestrial postprocessing did not retroactively rerun those force integrations.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A/F} for the design equations, \textbf{N} for independently refitted rates, \textbf{R} for node event statistics. Physical local-time accuracy under predicted EOP and a flight orbit is \textbf{U}.\end{sloppypar}
+
+
+
+
+\clearpage\section{Ground tracks and characteristic recurrence}\label{ch:5}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}How does a fast orbit produce slowly drifting regional ground-track patterns, and why do opportunities cluster on a roughly 15-day scale?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Start with a spherical, uniformly rotating Earth to expose the geometry. Add secular nodal precession for a same-latitude, same-branch track comb. Then distinguish this hand model from the actual terrestrial postprocessing. A nominal solar day is used in revolutions/day; do not insert a sidereal day without also accounting for orbital-plane precession.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}The relevant saved mean nodal period is 95.5783355926631 min, \cite{S07} TA0. This is an \textbf{R input}, not an independent prediction. Use the independently refitted 30-day EME2000 RAAN slope for the legacy beat estimate and the archived mean-solar rate. The example latitude is the actual Sidi Bibi target's 30.276400208635273\ensuremath{{}^{\circ}}.\end{sloppypar}
+
+
+\subsection*{4. Governing physics: inertial to ground}
+
+\begin{sloppypar}For a simplified z-axis spin \(\theta(t)=\theta_0+\omega_Et\), an active-matrix convention gives\end{sloppypar}
+
+
+\begin{equation}\mathbf r_E=A_3(-\theta)\mathbf r_I,\quad
+\mathbf v_E=A_3(-\theta)\mathbf v_I-\boldsymbol\omega_E\times\mathbf r_E.\label{eq:ch5-1}\end{equation}
+
+\begin{sloppypar}The second term follows by differentiating the time-dependent rotation. Leaving it out would use inertial rather than ground-relative velocity to orient the pushbroom slit.\end{sloppypar}
+
+
+\begin{sloppypar}On a sphere, \(\lambda=\operatorname{atan2}(y_E,x_E)\) and \(\phi_c=\operatorname{atan2}(z_E,\sqrt{x_E^2+y_E^2})\). Geocentric latitude \(\phi_c\) is not geodetic latitude.\end{sloppypar}
+
+
+\begin{sloppypar}For the actual radial-nadir convention on an ellipsoid with axes \(a_E,b_E\), put\end{sloppypar}
+
+
+\begin{equation}k=\left[\frac{x_E^2+y_E^2}{a_E^2}+\frac{z_E^2}{b_E^2}\right]^{-1/2},
+\quad \mathbf q_{\rm radial}=k\mathbf r_E.\label{eq:ch5-2}\end{equation}
+
+\begin{sloppypar}Substitution into \(q_x^2/a_E^2+q_y^2/a_E^2+q_z^2/b_E^2=1\) verifies the intercept. For this zero-height point,\end{sloppypar}
+
+
+\begin{equation}\lambda=\operatorname{atan2}(q_y,q_x),\qquad
+\tan\phi_g=\frac{a_E^2q_z}{b_E^2\sqrt{q_x^2+q_y^2}}.\label{eq:ch5-3}\end{equation}
+
+\begin{sloppypar}A radial intercept is not a normal-footpoint projection. That distinction matters when interpreting ground-track latitude and ``nadir''.\end{sloppypar}
+
+
+\begin{sloppypar}The preserved high-accuracy terrestrial model uses an EME2000-to-GCRS bias rotation, then a SPICE time-dependent J2000-to-ITRF93 six-state transformation:\end{sloppypar}
+
+
+\begin{equation}\begin{bmatrix}\mathbf r_E\\\mathbf v_E\end{bmatrix}
+=
+\begin{bmatrix}R&0\\\dot R&R\end{bmatrix}
+\begin{bmatrix}\mathbf r_G\\\mathbf v_G\end{bmatrix}.\label{eq:ch5-4}\end{equation}
+
+\begin{sloppypar}Precession/nutation, Earth rotation/UT1 and polar motion enter the orientation; SPICE ET/TDB is evaluated from TT elapsed time, not treated as exactly UTC elapsed added to ET. This is distinct from Chapter 1's special, documented GMAT MODEq derivative approximation. See the installed GMAT MathSpec, IERS conventions and \href{https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/rotation.html}{NAIF rotation guidance}.\end{sloppypar}
+
+
+\begin{sloppypar}The later terrestrial kernel's last source input was 20 October 2026 00:00 UTC. All simulated dates follow that and use \textbf{predicted} EOP. Existing model-version comparisons found up to about 103 m terrestrial position difference for identical inertial states, and event boundary changes up to about 2.872 ms on the tested set. These are differences between orientation assumptions, not measured truth errors. No orientation update is made in this book.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step track-comb calculation}
+
+\begin{enumerate}
+\item Define \(N_d=1440/T_N\), nodal revolutions per nominal solar day.
+\item Let \(\omega_{E,\rm sid}\simeq360+\dot\alpha_{\rm mean\,Sun}\) degrees/day in this hand model.
+\item The Earth rotates relative to the orbital plane at
+\end{enumerate}
+\begin{sloppypar}   \(\gamma=\omega_{E,\rm sid}-\dot\Omega\).\end{sloppypar}
+
+\begin{enumerate}[start=4]
+\item Consecutive same-branch tracks at a fixed latitude are approximately separated westward by
+\end{enumerate}
+\begin{sloppypar}   \(\Delta\lambda=\gamma/N_d\).\end{sloppypar}
+
+\begin{enumerate}[start=5]
+\item Define fractional excess over 15 revolutions/day:
+\end{enumerate}
+\begin{sloppypar}   \(\eta=N_d-15\).\end{sloppypar}
+
+\begin{enumerate}[start=6]
+\item E17's daily-comb heuristic is
+\end{enumerate}
+\begin{sloppypar}   \(d_{\rm comb}=\eta\Delta\lambda\).\end{sloppypar}
+
+\begin{enumerate}[start=7]
+\item A literal 15-orbit block instead lasts \(D_{15}=15/N_d\) days and has eastward longitude remainder
+\end{enumerate}
+\begin{sloppypar}   \(d_{15}=360-15\Delta\lambda\).    These are not exactly equal: \(d_{\rm comb}-d_{15}=\gamma-360\).\end{sloppypar}
+
+\begin{enumerate}[start=8]
+\item A fractional extra revolution accumulates over
+\end{enumerate}
+\begin{sloppypar}   \(\tau=1/\eta\) nominal days. This is a characteristic beat scale.\end{sloppypar}
+
+
+\begin{sloppypar}The circumference closes in 360\ensuremath{{}^{\circ}} of Earth-fixed longitude. Therefore the explicit distinction in step 7 is needed when \(\gamma\ne360\); the earlier note's daily comb should not be read as an exact measured daily longitude displacement.\end{sloppypar}
+
+
+\begin{sloppypar}At latitude \(\phi\), WGS84's parallel-length factor is\end{sloppypar}
+
+
+\begin{equation}\ell_\lambda=\frac{\pi}{180}
+\frac{a_E\cos\phi}{\sqrt{1-e_E^2\sin^2\phi}}
+\quad {\rm km/degree},
+\quad e_E^2=f_E(2-f_E).\label{eq:ch5-5}\end{equation}
+
+\begin{sloppypar}Then \(v_{\rm comb}\simeq d_{\rm comb}\ell_\lambda\). This is displacement \textbf{along a parallel}, not perpendicular cross-track distance.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 5: 6. Numerical substitution}\label{tab:book-11}\\
+\toprule\rowcolor{headerbg}Operation & Result \\\midrule
+\endfirsthead
+\caption[]{Chapter 5: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Operation & Result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+1440 / 95.5783355926631 & 15.066175729791 rev/day \\
+\rowcolor{rowalt}N\_d \ensuremath{-}15 & 0.0661757297910004 rev/day \\
+360 + mean-Sun rate \ensuremath{-} fitted node rate & 360.007160505182 deg/day \\
+\rowcolor{rowalt}Adjacent same-branch longitude spacing & 23.8950591684208 deg westward \\
+Legacy daily-comb shift & 1.58127297886938 deg/day eastward (heuristic) \\
+\rowcolor{rowalt}15-orbit block duration & 23.8945838981658 h \\
+Literal 15-orbit longitude remainder & 1.57411247368759 deg eastward per block \\
+\rowcolor{rowalt}Remainder / block duration & 1.5810570098 deg/day (uniform-rate block model) \\
+Parallel length at target latitude & 96.2177772837 km/degree \\
+\rowcolor{rowalt}Legacy comb longitudinal displacement & 152.146571306 km/day \\
+1 / fractional excess & 15.1112802708523 days \\
+\rowcolor{rowalt}226 saved mean nodal periods & 15.0004887805152 solar days \\
+Accumulated relative rotation minus 15 turns & 0.283372063109 deg (uniform-rate approximation) \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}As a separate geographic example, the Oued Essafa event spacecraft vector in Chapter 7 gives radial intercept \(\begin{bmatrix}5442.8939550398\\-877.21014528775\\3196.4324942018\end{bmatrix}\) km, geodetic latitude 30.271810126747 deg and longitude -9.1554115213429 deg. Its geocentric latitude is 30.104537499942 deg, showing why the definitions cannot be interchanged. The saved \cite{S09} radial-nadir coordinates are 30.271810134265458 deg and -9.155411543335305 deg; the CSV records both component residuals.\end{sloppypar}
+
+
+\begin{sloppypar}Because 226 saved mean nodal periods nearly equal 15 solar days, there is a useful near-commensurability. It is not exact closure: both the period ratio and the accumulated Earth-relative plane rotation have residuals, and local illumination/latitude geometry adds constraints.\end{sloppypar}
+
+
+\begin{sloppypar}A deliberately crude access-cluster model takes E17's additive flat half reach \(H=550\tan20^\circ+15\) km and assumes the comb sweeps a point continuously. It gives a cluster duration \(2H/v_{\rm comb}\) and an open interval \(\tau-2H/v_{\rm comb}\).\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 5: 6. Numerical substitution}\label{tab:book-12}\\
+\toprule\rowcolor{headerbg}Heuristic & Value \\\midrule
+\endfirsthead
+\caption[]{Chapter 5: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Heuristic & Value \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Additive flat half reach & 215.183628846 km \\
+\rowcolor{rowalt}Cluster sweep duration 2H/v & 2.82863592653 days \\
+Legacy open-gap estimate & 294.783464264 h \\
+\rowcolor{rowalt}Legacy estimate minus saved complete gap & -17.4364938756 h (descriptive) \\
+Consistent flat angular-edge open-gap estimate & 294.102827695 h; still heuristic \\
+\end{longtable}\endgroup
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}The Sidi Bibi timeline (\cite{S08}) contains no nadir daylight events, three ideal \ensuremath{\pm}10\ensuremath{{}^{\circ}} events and six ideal \ensuremath{\pm}20\ensuremath{{}^{\circ}} events. The latter are clustered around 31 October--2 November and 15--17 November. Its largest complete \ensuremath{\pm}20\ensuremath{{}^{\circ}} gap runs from 2 to 15 November, not from one arbitrary satellite revolution to the next.\end{sloppypar}
+
+
+\begin{sloppypar}The ROI-wide nadir maximum complete gap is near 360.01 h among targets having successive daylight events. It is not a complete gap at this Sidi Bibi point, which is unaccessed in the nadir case and has a fully censored 720 h span.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+\begin{sloppypar}E17's arithmetic is reproduced independently. Its beat-scale and near-rational calculations agree numerically with the saved note. The open-gap estimate differs materially from the exact 312.219958 h gap; see the displayed residual above. Changing the additive reach to a consistent angular-edge flat reach does not make the heuristic a rigorous access prediction.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}A near-polar spacecraft passes Earth many times per day, but its narrow daytime corridor may miss the agricultural plain on most of them. Slow day-to-day drift causes consecutive nearby passes to appear in clusters, separated by long gaps. Ideal roll widens reach and broadens clusters, without ensuring an image opportunity every three days.\end{sloppypar}
+
+
+\begin{sloppypar}The hand comb omits ascending/descending differences, finite latitude offsets, ellipsoid geometry, changing altitude, short-period J2, the discrete pass sequence, illumination, censoring and actual scheduling. The exact observed gap cannot be attributed to one curvature correction. A repeat-ground-track design would have to enforce a consistent nodal/rotation commensurability and separately test regional optical coverage; no such design is performed here.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{F/R} for recurrence and crude gaps; \textbf{A} for their arithmetic and dimensional consistency. An exact analytical derivation of the saved access sequence is \textbf{U}, and is not implied by matching an approximate 15-day scale.\end{sloppypar}
+
+
+
+\subsection{Discrete recurrence and absolute phase}\label{sec:discrete}
+
+\subsubsection*{1. Engineering question}
+
+\begin{sloppypar}Does the six-opportunity Sidi Bibi ideal \ensuremath{\pm}20\ensuremath{{}^{\circ}} daylight pattern have a physically supported discrete-orbit interpretation? Can it improve on the continuous-corridor estimate without being mistaken for an independent proof of optical-event completeness? A separate question is whether a first-order model tied to the canonical epoch can predict the absolute cluster dates without a saved event anchor.\end{sloppypar}
+
+
+\subsubsection*{2. Assumptions and verification boundaries}
+
+\begin{sloppypar}Retain every original mission, optical and geographic assumption. Models A/B use the \textbf{archived global mean nodal period}; their cluster occupancy is informed by saved observations. They are approximate, data-conditioned recurrence models. A small timing residual alone does not show that a field is inside a swath or in daylight.\end{sloppypar}
+
+
+\begin{sloppypar}New descending-node roots are extracted independently from the unchanged ITRF93 state cache, with a separately implemented scalar Hermite polynomial and bisection. Native EME2000 Z crossings provide a second equator/count check; their epochs/periods are not identical to terrestrial-equator crossings. Neither operation integrates a new orbit.\end{sloppypar}
+
+
+\begin{sloppypar}The independent absolute-phase exercise has different inputs: canonical elements/epoch, the v0.1 energy-based mean-SMA estimate, explicit mean Earth rotation, first-order nodal/latitude rates, target coordinates, angular FOV and an approximate solar formula. It receives \textbf{no saved event time, fitted phase offset, saved nodal period or fitted numerical RAAN rate}. These are simplified analytic representations of the same initial orbit, not new native mission configurations.\end{sloppypar}
+
+
+\subsubsection*{3. Inputs and saved observations}
+
+\begin{sloppypar}The target is \nolinkurl{sidi-bibi_-10750_19500}, 30.276400208635273\ensuremath{{}^{\circ}}N, \ensuremath{-}9.61006239223738\ensuremath{{}^{\circ}}E. The source period is \(T_N=5734.700135559786\) s. \cite{S08} supplies the frozen events; \cite{S15} supplies the unmodified full ITRF93 state history; \cite{S16} supplies the native UTC/EME2000 OEM.\end{sloppypar}
+
+
+\Needspace{17\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Sidi Bibi ideal roll daylight opportunities and descending-node associations}\label{tab:book-13}\\
+\toprule\rowcolor{headerbg}UTC date & Entry UTC time & Exit UTC time & Following node / relative count \\\midrule
+\endfirsthead
+\caption[]{Sidi Bibi ideal roll daylight opportunities and descending-node associations (continued)}\\
+\toprule\rowcolor{headerbg}UTC date & Entry UTC time & Exit UTC time & Following node / relative count \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+2026-10-31 & 11:30:05.277455 & 11:30:05.278913 & 166 / 0 \\
+\rowcolor{rowalt}2026-11-01 & 11:23:50.299775 & 11:23:50.301212 & 181 / 15 \\
+2026-11-02 & 11:17:35.045793 & 11:17:35.047317 & 196 / 30 \\
+\rowcolor{rowalt}2026-11-15 & 11:30:46.896619 & 11:30:46.898088 & 392 / 226 \\
+2026-11-16 & 11:24:31.938997 & 11:24:31.940424 & 407 / 241 \\
+\rowcolor{rowalt}2026-11-17 & 11:18:16.701847 & 11:18:16.703343 & 422 / 256 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The following descending-node label is assigned consistently to each northern descending target pass. It is a cycle identifier, not a claim that the target event occurs exactly at the equator. Labels run from 1 at the first descending root in the observation span. The two frames give the same integer associations for these selected events.\end{sloppypar}
+
+
+\subsubsection*{4. Governing equations: two distinct recurrence scales}
+
+\begin{sloppypar}Let \(N_d=86400/T_N\) and \(\eta=N_d-15\). The fractional beat is\end{sloppypar}
+
+
+\begin{equation}\tau_b=\frac{86400}{\eta}
+\quad{\rm seconds}.\label{eq:ch5-6}\end{equation}
+
+\begin{sloppypar}Model A supposes three opportunities in each cluster with roughly 15 nodal revolutions between them. The open interval is estimated by removing two intra-cluster intervals:\end{sloppypar}
+
+
+\begin{equation}G_A\simeq\tau_b-2(15T_N).\label{eq:discrete-a}\end{equation}
+
+\begin{sloppypar}Model B starts from the near-rational relation \(226\) revolutions \(\simeq15\) solar days. If corresponding cluster passes recur after 226 revolutions, and the first cluster occupies two 15-revolution steps, then\end{sloppypar}
+
+
+\begin{equation}N_G=226-2(15)=196,\qquad G_B\simeq196T_N.\label{eq:discrete-b}\end{equation}
+
+\begin{sloppypar}All terms have units of seconds. These formulas estimate a pass-centre/node-scale separation. Comparing them with an exit-to-entry gap must acknowledge the half-duration correction derived in Chapter 9; it is about 1.5 ms here.\end{sloppypar}
+
+
+\begin{sloppypar}The two estimates differ because their assumed cluster-return times differ:\end{sloppypar}
+
+
+\begin{equation}G_A-G_B=\tau_b-226T_N.\label{eq:ch5-9}\end{equation}
+
+\begin{sloppypar}The 15.111-day beat is not the 15.000489-day 226-orbit near return. They are different constructions, not alternative roundings of one exact repeat cycle.\end{sloppypar}
+
+
+\begin{sloppypar}To assess whether 226/15 is a sensible small-denominator candidate rather than merely rounding the reported gap, account for orbital-plane precession. With the earlier relative rotation rate \(\gamma\), use\end{sloppypar}
+
+
+\begin{equation}\nu_{\rm rel}=\frac{N_d}{\gamma/360}.\label{eq:ch5-10}\end{equation}
+
+\begin{sloppypar}Continued fractions produce small-denominator rational candidates. A denominator bound of 30 relative turns is stated from the available month-long record, not adjusted to minimise the 312.22 h residual. The 226/15 proposal was supplied in the review brief; this is a retrospective structural check, not a blind prospective discovery.\end{sloppypar}
+
+
+\Needspace{11\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Near-rational candidates and residual longitude closure}\label{tab:book-14}\\
+\toprule\rowcolor{headerbg}Rate-ratio candidate & Relative-longitude closure & Interpretation \\\midrule
+\endfirsthead
+\caption[]{Near-rational candidates and residual longitude closure (continued)}\\
+\toprule\rowcolor{headerbg}Rate-ratio candidate & Relative-longitude closure & Interpretation \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+15/1 & -1.57411247369 deg & within the stated month-scale bound \\
+\rowcolor{rowalt}226/15 & 0.283372063108 deg & within the stated month-scale bound \\
+1145/76 & -0.157252158147 deg & next convergent, outside that bound \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}Here nu\_rel = 15.0658760651142; the best rational with denominator \ensuremath{\le}30 is 226/15. The 226-orbit closure miss is about 0.283372\ensuremath{{}^{\circ}} in the uniform-rate approximation, so it must not be called exact recurrence.\end{sloppypar}
+
+
+\begin{sloppypar}The residual longitude closure is nonzero. Thus 226 is a near-return cycle, not an exact repeating ground track. Angular reach and illumination still determine which passes qualify.\end{sloppypar}
+
+
+\subsubsection*{5. Independent node counts and residual decomposition}
+
+\begin{sloppypar}For each state interval, interpolate terrestrial Z with its endpoint Z and dZ/dt values, locate positive-to-negative crossings and enumerate all roots. The independent extraction finds 452 descending nodes. Its 30 s/60 s sampling comparison and the distinct fixed-EME2000-equator check are reported below.\end{sloppypar}
+
+
+\Needspace{15\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Independent descending-node extraction checks}\label{tab:book-15}\\
+\toprule\rowcolor{headerbg}Diagnostic & Result \\\midrule
+\endfirsthead
+\caption[]{Independent descending-node extraction checks (continued)}\\
+\toprule\rowcolor{headerbg}Diagnostic & Result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+ITRF93 descending roots / EME2000 roots & 452 / 452 \\
+\rowcolor{rowalt}ITRF93 first / last root & 2026-10-20T12:47:47.331261Z / 2026-11-19T11:13:37.092399Z \\
+New mean / archived mean period & 5734.700135559819 / 5734.700135559786 s \\
+\rowcolor{rowalt}Individual period min / max / standard deviation & 5734.6966984896 / 5734.70246101264 / 0.00149685385867 s \\
+Maximum 30 s versus 60 s root difference & 7.96280801296e-07 s \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The observed adjacent event midpoints correspond to the following orbit counts:\end{sloppypar}
+
+
+\Needspace{15\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.13\linewidth-4.16000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.13\linewidth-4.16000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.24\linewidth-7.68000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.24\linewidth-7.68000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.26\linewidth-8.32000pt\relax}@{}}
+\caption{Adjacent event timing and independently counted orbital cycles}\label{tab:book-16}\\
+\toprule\rowcolor{headerbg}Event pair & Node cycles & Midpoint interval (s) & Node interval (s) & Fan-phase change (s) \\\midrule
+\endfirsthead
+\caption[]{Adjacent event timing and independently counted orbital cycles (continued)}\\
+\toprule\rowcolor{headerbg}Event pair & Node cycles & Midpoint interval (s) & Node interval (s) & Fan-phase change (s) \\\midrule
+\endhead
+\midrule\multicolumn{5}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+1-2 & 15 & 86025.02230929 & 86020.51486142 & 4.507447869 \\
+\rowcolor{rowalt}2-3 & 15 & 86024.74606185 & 86020.51272613 & 4.233335727 \\
+3-4 & 196 & 1123991.850799 & 1124001.109537 & -9.258738757 \\
+\rowcolor{rowalt}4-5 & 15 & 86025.04235704 & 86020.4705403 & 4.571816749 \\
+5-6 & 15 & 86024.76288451 & 86020.46721821 & 4.295666301 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}Corresponding passes in the two \ensuremath{\pm}20\ensuremath{{}^{\circ}} clusters are separated by \textbf{226} descending-node cycles for all three pairs. The gap endpoints' associated nodes differ by \textbf{196}, independently confirming the integer proposed by Model B. The intra-cluster differences are \textbf{15}. These are physically identified orbit counts, not just integers obtained by dividing a gap by a period.\end{sloppypar}
+
+
+\begin{sloppypar}However, actual target-to-node phase offsets vary. Define the associated nodes \(\tau_L,\tau_R\), previous event exit e and next entry s. The exact identity is\end{sloppypar}
+
+
+\begin{equation}s-e=(\tau_R-\tau_L)
++\left[(s-\tau_R)-(e-\tau_L)\right].\label{eq:ch5-11}\end{equation}
+
+\begin{sloppypar}Hence\end{sloppypar}
+
+
+\begin{equation}196\bar T_N-(s-e)=
+\left[196\bar T_N-(\tau_R-\tau_L)\right]
+-\left[(s-\tau_R)-(e-\tau_L)\right].\label{eq:ch5-12}\end{equation}
+
+\Needspace{15\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Exact decomposition of the Model B complete-gap residual}\label{tab:book-17}\\
+\toprule\rowcolor{headerbg}Term & Value \\\midrule
+\endfirsthead
+\caption[]{Exact decomposition of the Model B complete-gap residual (continued)}\\
+\toprule\rowcolor{headerbg}Term & Value \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+196-cycle node-to-node span & 1124001.109537294 s \\
+\rowcolor{rowalt}Next-entry/previous-exit relative node-phase difference & -9.260235312627628 s \\
+Sum: complete no-access interval & 1123991.849301981 s \\
+\rowcolor{rowalt}Global mean-period span minus actual node span & 0.11703242408112 s \\
+Model B minus complete gap & 9.37726773670875 s \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}This explicitly accounts for the approximately 9.38 s discrepancy. It is not meaningful to attribute all of it to integrator error, period variation or a footprint error. The dominant term here is the difference in target-event phase relative to the selected nodes.\end{sloppypar}
+
+
+\begin{sloppypar}Cluster membership can be reconstructed with a 72 h separation threshold; 36 h and 48 h also give the same \ensuremath{\pm}20\ensuremath{{}^{\circ}} cluster sizes of three and three. The three-per-cluster premise is nevertheless empirical for this target/month, not a theorem implied by 226/15.\end{sloppypar}
+
+
+\subsubsection*{6. Numerical estimates and period sensitivity}
+
+\Needspace{15\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Discrete estimates and the saved reference interval}\label{tab:discrete-models}\\
+\toprule\rowcolor{headerbg}Estimate / reference & Interval (h) & Difference from complete gap (s) & Classification \\\midrule
+\endfirsthead
+\caption[]{Discrete estimates and the saved reference interval (continued)}\\
+\toprule\rowcolor{headerbg}Estimate / reference & Interval (h) & Difference from complete gap (s) & Classification \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Continuous corridor (v0.1) & 294.7834642638 & -62771.37795217 & F/R heuristic \\
+\rowcolor{rowalt}Model A: fractional beat minus 30 periods & 314.881558704134 & 9581.762032903 & F/R discrete approximation \\
+Model B: 196 periods & 312.222562936033 & 9.377267736709 & F/R discrete approximation \\
+\rowcolor{rowalt}Saved exit-to-entry gap & 312.2199581394393 & 0 & R reference \\
+Saved midpoint-to-midpoint interval & 312.2199585551492 & 0.001496555865 & R; different definition \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The fractional beat is 15.1112802708527 days; 226 mean nodal periods are 15.0004887805152 days. Their difference is 2.6589957681 h. Model B differs from the saved midpoint interval by 9.37577118073 s; the additional comparison to the complete gap includes the approximately 1.497 ms half-duration correction.\end{sloppypar}
+
+
+\begin{sloppypar}A period perturbation obeys \(\delta G_B=196\,\delta T_N\). For Model A, with \(n_d=86400/T_N\),\end{sloppypar}
+
+
+\begin{equation}\frac{d\tau_b}{dT_N}=
+\frac{n_d^2}{(n_d-15)^2},\qquad
+\frac{dG_A}{dT_N}=
+\frac{n_d^2}{(n_d-15)^2}-30.\label{eq:ch5-13}\end{equation}
+
+\begin{sloppypar}Thus Model A's beat subtraction is substantially more sensitive to the chosen period near the 15-revolution/day commensurability. This derivative is in seconds per second; it is not a physical uncertainty estimate.\end{sloppypar}
+
+
+\Needspace{21\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Period-choice sensitivity of the 196-revolution estimate}\label{tab:book-19}\\
+\toprule\rowcolor{headerbg}Period definition & Period (s) & 196-period interval (h) & Residual against complete gap (s) \\\midrule
+\endfirsthead
+\caption[]{Period-choice sensitivity of the 196-revolution estimate (continued)}\\
+\toprule\rowcolor{headerbg}Period definition & Period (s) & 196-period interval (h) & Residual against complete gap (s) \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+archived 30day mean & 5734.7001355598 & 312.22256293603 & 9.3772677367 \\
+\rowcolor{rowalt}new ITRF93 30day mean & 5734.7001355598 & 312.22256293603 & 9.3772677432 \\
+new ITRF93 30day median & 5734.7003983031 & 312.22257724095 & 9.4287654269 \\
+\rowcolor{rowalt}archived 7day median GMAT EarthFixed & 5734.7017705985 & 312.22265195481 & 9.6977353201 \\
+new ITRF93 selected 196 node span mean & 5734.6995384556 & 312.22253042703 & 9.2602353126 \\
+\rowcolor{rowalt}new ITRF93 min individual period & 5734.6966984896 & 312.22237580666 & 8.7036019801 \\
+new ITRF93 max individual period & 5734.7024610126 & 312.22268954402 & 9.833056496 \\
+\rowcolor{rowalt}new EME2000 fixed equator mean & 5734.6992081567 & 312.22251244409 & 9.1954967326 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The span-specific mean is computed from the selected archived node span, so using it is a \textbf{conditional reconstruction}, not a new predictive parameter. The min/max-period rows deliberately exaggerate the accumulation of temporal variation; their envelope is not an uncertainty bound on the physical orbit. Different equator definitions must remain labelled.\end{sloppypar}
+
+
+\subsubsection*{7. Cross-check against ideal \ensuremath{\pm}10\ensuremath{{}^{\circ}} without retuning}
+
+\begin{sloppypar}The frozen \ensuremath{\pm}10\ensuremath{{}^{\circ}} observations are on 31 October, 1 November and 16 November. Their corresponding node labels are 166, 181 and 407. The spacing is therefore 15 then \textbf{226} cycles. The same 72 h cluster rule gives occupancy \textbf{two and one}, not three and three.\end{sloppypar}
+
+
+\begin{sloppypar}Apply the unchanged 30 km half-FOV and \ensuremath{\pm}10\ensuremath{{}^{\circ}} angular limit to the six saved \ensuremath{\pm}20\ensuremath{{}^{\circ}} fan angles. It retains those same three opportunities. This is a conditional geometry/classification check on saved angles, not an independent event search.\end{sloppypar}
+
+
+\Needspace{13\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Ideal \ensuremath{\pm}10\ensuremath{{}^{\circ}} comparison using unchanged recurrence parameters}\label{tab:book-20}\\
+\toprule\rowcolor{headerbg}Quantity & Value \\\midrule
+\endfirsthead
+\caption[]{Ideal \ensuremath{\pm}10\ensuremath{{}^{\circ}} comparison using unchanged recurrence parameters (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Value \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Same 226-cycle return interval & 360.011730732364 h \\
+\rowcolor{rowalt}Saved \ensuremath{\pm}10\ensuremath{{}^{\circ}} maximum complete gap & 360.011566051559 h \\
+226-period estimate minus saved gap & 0.5928508988582 s \\
+\rowcolor{rowalt}Incorrect universal 196-cycle assumption minus saved \ensuremath{\pm}10\ensuremath{{}^{\circ}} gap & -47.78900311553 h \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}Blindly applying the \ensuremath{\pm}20\ensuremath{{}^{\circ}} assumption of three events per cluster to \ensuremath{\pm}10\ensuremath{{}^{\circ}} would predict 196 cycles for a gap actually spanning 226. The discrete explanation transfers only if the narrower envelope's occupancy is also accounted for. No period, phase offset, roll bound or FOV is fitted to obtain the \ensuremath{\pm}10\ensuremath{{}^{\circ}} agreement.\end{sloppypar}
+
+
+\subsubsection*{8. Absolute phase: a prediction without a saved optical anchor}
+
+\begin{sloppypar}The earlier energy derivation supplies an independent first-order estimate \(a_m=6918.744193142955\) km. For comparison, an intentionally naive approximation uses the initial osculating a in the same secular formulas. Both use the canonical \(\Omega_0,i_0,u_0=\omega_0+f_0=0\) and UTC epoch.\end{sloppypar}
+
+
+\begin{sloppypar}Approximate the orbit as a secularly precessing circular geometry:\end{sloppypar}
+
+
+\begin{equation}\begin{aligned}
+u(t)&=u_0+\dot u\,t,\quad
+\Omega(t)=\Omega_0+\dot\Omega\,t,\\
+\mathbf r_E^{\rm app}(t)&=
+a_m A_3[\Omega(t)-\theta_{\rm GMST}(t)]A_1(i_0)
+\begin{bmatrix}\cos u(t)\\\sin u(t)\\0\end{bmatrix},
+\end{aligned}\label{eq:absolute-phase}\end{equation}
+
+\begin{sloppypar}where \(\dot u=\dot M+\dot\omega\) and \(\dot\Omega\) use the Chapter 3 first-order formulas. Differentiate this expression, including the rotation-rate term, for ground-relative velocity. Evaluate the same physical fan-plane zero and angular reach inequalities, with an independently approximate NOAA daylight sign.\end{sloppypar}
+
+
+\begin{sloppypar}Earth's sidereal angle comes from an explicit IAU-1982 GMST polynomial, with UT1\ensuremath{\simeq}UTC (\cite{S17}):\end{sloppypar}
+
+
+\begin{equation}\begin{aligned}
+T&=\frac{JD_{\rm UT1}-2451545.0}{36525},\\
+F&=86400\,\operatorname{frac}(JD_{\rm UT1}),\\
+\theta_{\rm GMST}
+&=\frac{2\pi}{86400}
+[-19089.45159+8640184.812866T\\
+&\hspace{23mm}+0.093104T^2-6.2\times10^{-6}T^3+F]
+\pmod{2\pi}.
+\end{aligned}\label{eq:ch5-15}\end{equation}
+
+\begin{sloppypar}The fraction F is the fraction of the noon-based Julian date, not UTC time since midnight. The independent test compares this explicit expression with ERFA's IAU-1982 reference. No initial Earth angle is fitted to an access event.\end{sloppypar}
+
+
+\begin{sloppypar}This is a moving-mean-equator/mean-sidereal approximation. It omits nutation, polar motion, exact UT1, short-period element corrections, eccentric radial motion and a rigorous full mean-state transformation. The circular radius is a geometric approximation to the adopted orbit, not an edited GMAT initial condition.\end{sloppypar}
+
+
+\Needspace{9\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Unanchored approximate daylight-date predictions at Sidi Bibi}\label{tab:book-21}\\
+\toprule\rowcolor{headerbg}Absolute-phase approximation & \ensuremath{\pm}20\ensuremath{{}^{\circ}} predicted daylight dates & \ensuremath{\pm}10\ensuremath{{}^{\circ}} predicted daylight dates \\\midrule
+\endfirsthead
+\caption[]{Unanchored approximate daylight-date predictions at Sidi Bibi (continued)}\\
+\toprule\rowcolor{headerbg}Absolute-phase approximation & \ensuremath{\pm}20\ensuremath{{}^{\circ}} predicted daylight dates & \ensuremath{\pm}10\ensuremath{{}^{\circ}} predicted daylight dates \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+initial osculating & 2026-11-09, 2026-11-10, 2026-11-11, 2026-11-12, 2026-11-13 & 2026-11-10, 2026-11-11, 2026-11-12 \\
+\rowcolor{rowalt}energy corrected & 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-15, 2026-11-16, 2026-11-17 & 2026-10-31, 2026-11-01, 2026-11-16 \\
+\end{longtable}\endgroup
+
+\Needspace{17\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Unanchored first-order pass-centre prediction at Sidi Bibi}\label{tab:absolute-phase}\\
+\toprule\rowcolor{headerbg}UTC date & Saved midpoint UTC time & Predicted centre UTC time & Prediction minus saved (s) \\\midrule
+\endfirsthead
+\caption[]{Unanchored first-order pass-centre prediction at Sidi Bibi (continued)}\\
+\toprule\rowcolor{headerbg}UTC date & Saved midpoint UTC time & Predicted centre UTC time & Prediction minus saved (s) \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+2026-10-31 & 11:30:05.278184 & 11:30:05.537556 & 0.2593721121 \\
+\rowcolor{rowalt}2026-11-01 & 11:23:50.300493 & 11:23:50.536452 & 0.235958643 \\
+2026-11-02 & 11:17:35.046555 & 11:17:35.259980 & 0.2134254121 \\
+\rowcolor{rowalt}2026-11-15 & 11:30:46.897354 & 11:30:47.075115 & 0.1777611617 \\
+2026-11-16 & 11:24:31.939711 & 11:24:32.124504 & 0.1847934201 \\
+\rowcolor{rowalt}2026-11-17 & 11:18:16.702595 & 11:18:16.898077 & 0.195482187 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The same model predicts all three \ensuremath{\pm}10\ensuremath{{}^{\circ}} saved dates with no additional daylight date in this record. For \ensuremath{\pm}20\ensuremath{{}^{\circ}}, the six centre-time residuals range from 0.1777611617 to 0.2593721121 s. This is agreement for a selected target and finite month, not a prospective universal bound.\end{sloppypar}
+
+
+\begin{sloppypar}The energy-based model recovers the selected cluster dates and the narrower-envelope occupancy without a saved event anchor. Its subsecond centre agreement in this record can include cancellation of omitted effects. It is far coarser than the approximately 1.4--1.5 ms optical point windows and does \textbf{not} predict their entry/exit boundaries. It is not an error bound, a field-geolocation validation or an all-season prediction.\end{sloppypar}
+
+
+\begin{sloppypar}As a separate conditional exercise, anchoring a prediction at a saved first-cluster midpoint and adding \(226\bar T_N\) gives:\end{sloppypar}
+
+
+\Needspace{11\baselineskip}
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Conditional recurrence from saved first-cluster midpoints}\label{tab:book-23}\\
+\toprule\rowcolor{headerbg}Saved anchor UTC & Predicted anchor +226 periods UTC & Corresponding saved UTC & Prediction residual (s) \\\midrule
+\endfirsthead
+\caption[]{Conditional recurrence from saved first-cluster midpoints (continued)}\\
+\toprule\rowcolor{headerbg}Saved anchor UTC & Predicted anchor +226 periods UTC & Corresponding saved UTC & Prediction residual (s) \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+2026-10-31 11:30:05.278184Z & 2026-11-15 11:30:47.508820Z & 2026-11-15 11:30:46.897354Z & 0.6114668269 \\
+\rowcolor{rowalt}2026-11-01 11:23:50.300493Z & 2026-11-16 11:24:32.531130Z & 2026-11-16 11:24:31.939711Z & 0.5914190756 \\
+2026-11-02 11:17:35.046555Z & 2026-11-17 11:18:17.277192Z & 2026-11-17 11:18:16.702595Z & 0.5745964176 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}Those anchored dates must not be described as independent absolute-phase predictions. Both exercises are useful, but answer different questions.\end{sloppypar}
+
+
+\subsubsection*{9. Engineering interpretation and discrepancies}
+
+\begin{sloppypar}The continuous-corridor estimate is a broad scale argument. Discrete Model A improves the long-gap scale but retains the fractional-beat interpretation. Model B is much closer because the observed cluster topology has actual 226-cycle near returns and a 196-cycle open interval. Node counts substantiate that orbital interpretation.\end{sloppypar}
+
+
+\begin{sloppypar}The small Model B residual does not by itself derive angular eligibility or prove that the archived access solver found every opportunity. Its three-pass premise is target/month dependent, and the \ensuremath{\pm}10\ensuremath{{}^{\circ}} example demonstrates why occupancy cannot be assumed universally. The absolute-phase exercise adds a separately specified, unfitted first-order prediction, but its approximation limits prevent a precision optical-validation claim.\end{sloppypar}
+
+
+\begin{sloppypar}No archived event, force model, mission initial state, mask, reported gap or negative \ensuremath{\le}72 h verdict is changed. The new investigation explains saved timing; it is not a newly optimised mission or an independent validation of the whole optical pipeline.\end{sloppypar}
+
+
+\subsubsection*{10. Verification classification}
+
+\begin{itemize}
+\item \textbf{Independent physical approximation (F):} canonical-state/epoch, explicit sidereal clock, first-order energy/rate model and target geometry, without an event anchor.
+\item \textbf{Approximate discrete recurrence (F/R):} Models A/B use the saved mean period; Model B also uses observed cluster occupancy, supported by independently extracted integer node counts.
+\item \textbf{Conditional prediction (C):} add an orbital recurrence interval to an explicitly saved event time.
+\item \textbf{Arithmetic reconstruction (A/R) and independent numerical check (N/R):} exact endpoint identities and node enumeration from shared frozen trajectory data.
+\item \textbf{Unverified (U):} exhaustive physical optical opportunity completeness, operational image acquisition and universal phase accuracy.
+\end{itemize}
+
+\begin{sloppypar}Full event/node associations, absolute-phase predictions, period-choice diagnostics and comparison rows are retained in the new supplementary CSV/JSON files.\end{sloppypar}
+
+
+
+
+\clearpage\section{Optical sensor and pushbroom geometry}\label{ch:6}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}What angular footprint corresponds to the adopted swath/slit, and how do ideal roll and Earth curvature alter geometric reach?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}The saved instrument model has a rectangular angular field, radial nadir, ground-relative along-track roll axis, fixed angular widths defined at 550 km, and a smooth zero-height WGS84 target surface. The five-band VNIR payload concept is not a validated optical design. Roll is selectable independently for each target, without a demonstrated slew, settling, attitude-error or image-quality budget.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}\(W=30\) km, \(L_a=0.010\) km, \(h_{\rm ref}=550\) km, roll limit \(0,10,20^\circ\). \cite{S06} retains 20/40 km swath sensitivities; no new access run is made for those widths. For the spherical hand comparison use \(R=a_E\), explicitly an approximation to the ellipsoid.\end{sloppypar}
+
+
+\subsection*{4. Governing physics}
+
+\begin{sloppypar}In a tangent-plane triangle, half swath \(W/2=h_{\rm ref}\tan\theta_c\). Therefore\end{sloppypar}
+
+
+\begin{equation}\Theta_c=2\theta_c=2\tan^{-1}\frac{W}{2h_{\rm ref}},
+\quad
+\Theta_a=2\theta_a=2\tan^{-1}\frac{L_a}{2h_{\rm ref}}.\label{eq:swath}\end{equation}
+
+\begin{sloppypar}Both ratios are dimensionless and must use matching units. Putting 10 metres into a denominator in kilometres would create a factor-1,000 error.\end{sloppypar}
+
+
+\begin{sloppypar}For ideal roll magnitude \(\rho_{\max}\), an outer cross-track ray has off-nadir angle \(\alpha_{\rm edge}=\rho_{\max}+\theta_c\). A consistent flat-Earth outer half reach is\end{sloppypar}
+
+
+\begin{equation}X_{\rm flat}=h_{\rm ref}\tan(\rho_{\max}+\theta_c).\label{eq:ch6-2}\end{equation}
+
+\begin{sloppypar}It is not exactly \(h_{\rm ref}\tan\rho_{\max}+W/2\), because tangent does not distribute over angle addition.\end{sloppypar}
+
+
+\begin{sloppypar}On a sphere, let the ray hit at central angle \(\psi\). In the centre--satellite--surface triangle, the sine rule gives\end{sloppypar}
+
+
+\begin{equation}\sin(\alpha+\psi)=\frac{R+h_{\rm ref}}{R}\sin\alpha,\quad
+\psi=\sin^{-1}\left(\frac{R+h_{\rm ref}}R\sin\alpha\right)-\alpha.\label{eq:ch6-3}\end{equation}
+
+\begin{sloppypar}The visible near intersection uses this branch; the surface arc is \(R\psi\). The ray exists only below the tangent condition. The spherical surface horizon central angle is \(\psi_h=\cos^{-1}[R/(R+h_{\rm ref})]\); the corresponding spacecraft off-nadir tangent angle is its complement. Confusing these two angles would misstate horizon visibility.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step solution}
+\begin{sloppypar}Convert L to kilometres; evaluate half angles; add roll before applying tangent; evaluate the spherical triangle; compare arc and planar distances in kilometres. The real access calculation instead evaluates actual target LOS angles and horizon visibility on the ellipsoid at each state, as derived next.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 6: 6. Numerical substitution}\label{tab:book-24}\\
+\toprule\rowcolor{headerbg}Quantity & Value \\\midrule
+\endfirsthead
+\caption[]{Chapter 6: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Value \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Full cross-track FOV & 3.1244498336848 deg \\
+\rowcolor{rowalt}Full along-track slit & 0.00104174144566371 deg \\
+Spherical horizon central angle & 22.9840515305 deg \\
+\rowcolor{rowalt}Full nadir spherical arc & 30.0009898136 km \\
+\end{longtable}\endgroup
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.1\linewidth-3.20000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-6.08000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.235\linewidth-7.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.235\linewidth-7.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.24\linewidth-7.68000pt\relax}@{}}
+\caption{Chapter 6: 6. Numerical substitution}\label{tab:book-25}\\
+\toprule\rowcolor{headerbg}Roll limit & Outer look & Flat half reach & Spherical half arc & Sphere minus flat \\\midrule
+\endfirsthead
+\caption[]{Chapter 6: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Roll limit & Outer look & Flat half reach & Spherical half arc & Sphere minus flat \\\midrule
+\endhead
+\midrule\multicolumn{5}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+0 deg & 1.56222491684 deg & 15 km & 15.0004949068 km & 0.000494906815446 km \\
+\rowcolor{rowalt}10 deg & 11.5622249168 deg & 112.520943341 km & 112.730619659 km & 0.209676318536 km \\
+20 deg & 21.5622249168 deg & 217.341056352 km & 218.86781173 km & 1.52675537799 km \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The nominal spherical nadir full arc is only slightly greater than 30 km, whereas curvature becomes more visible at the \ensuremath{\pm}20\ensuremath{{}^{\circ}} outer edge. These are illustrative geometric reaches, not newly computed regional coverage or a validated pointing capability. Actual saved altitudes vary, so fixed angular FOV does not imply an exactly constant 30 km instantaneous ground width.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}The archived formulas give the same 3.124449834\ensuremath{{}^{\circ}} cross-track full FOV and 0.001041741\ensuremath{{}^{\circ}} along-track full slit. The two documented nadir point windows in Massa and Oued Essafa last about 1.413 and 1.432 ms, respectively. The production model checks LOS geometry rather than buffering a line by an arbitrary ground distance.\end{sloppypar}
+
+
+\subsection*{8. Comparison and sampling distinctions}
+\begin{sloppypar}The angular values agree with the archived report to its displayed precision. The flat and spherical reaches differ because their surface geometries differ; they should not be forced to match.\end{sloppypar}
+
+
+\begin{sloppypar}\textbf{GSD} is the ground separation represented by adjacent image samples. \textbf{Optical IFOV} is an angular response/support associated with a detector element and optics. \textbf{Line acquisition rate} is the number of lines acquired per second. They are related only after optics, pointing, integration and image-motion assumptions are supplied.\end{sloppypar}
+
+
+\begin{sloppypar}For example, at an illustrative projected image speed of 7 km/s, 10 m along-track spacing would require approximately \(7/0.010=700\) lines/s to place lines at that spacing. This is a kinematic example, not a proposed or demonstrated detector setting. Off-nadir projection, distortion, oversampling, exposure smear, jitter and inter-band alignment change the relationship. The archived 10 m slit neither proves a 10 m GSD nor specifies an integration time.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}A 30 km-wide swath does not mean an individual target is inside the instantaneous slit for seconds. The cross-track dimension is large while the along-track instantaneous dimension is extremely narrow. This geometric asymmetry explains why coarse ephemeris-sample hit tests are inadequate.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A/F} for angular and spherical geometry; \textbf{R} for instrument assumptions and saved event durations. Detector, ADCS and usable imagery performance remain \textbf{U}.\end{sloppypar}
+
+
+
+
+\clearpage\section{Target visibility and access events}\label{ch:7}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}Given a saved spacecraft state and a farm coordinate, how is geometric access defined, and can a documented millisecond window be checked independently?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Use smooth WGS84 zero-height targets, radial nadir and ground-relative spacecraft velocity. Retain the archived ideal rectangular angular footprint and per-target roll limit. The local numerical check uses saved ITRF93 state knots; it does not independently establish Earth orientation or perform a new global event search.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use the Oued Essafa target at the saved 1 November daylight event, and the Massa event for a second/night check. Coordinates and source CSV row provenance are preserved in \cite{S09}. The companion's knot excerpt records its parent cache SHA-256, frame and units; it copies actual float64 values without transforming them.\end{sloppypar}
+
+
+\subsection*{4. Governing physics: target and viewing basis}
+
+\begin{sloppypar}For geodetic latitude \(\phi\), longitude \(\lambda\), zero height, and \(e_E^2=f_E(2-f_E)\), the prime-vertical radius is\end{sloppypar}
+
+
+\begin{equation}N(\phi)=\frac{a_E}{\sqrt{1-e_E^2\sin^2\phi}},\label{eq:ch7-1}\end{equation}
+
+\begin{equation}\mathbf q=
+\begin{bmatrix}N\cos\phi\cos\lambda\\N\cos\phi\sin\lambda\\
+N(1-e_E^2)\sin\phi\end{bmatrix},\quad
+\mathbf m=
+\begin{bmatrix}\cos\phi\cos\lambda\\\cos\phi\sin\lambda\\\sin\phi\end{bmatrix}.\label{eq:ch7-2}\end{equation}
+
+\begin{sloppypar}\(\mathbf m\) is a unit ellipsoid normal, also obtained by normalizing \((q_x/a_E^2,q_y/a_E^2,q_z/b_E^2)\). It is not generally \(\mathbf q/\|\mathbf q\|\).\end{sloppypar}
+
+
+\begin{sloppypar}Let \(\boldsymbol\ell=\mathbf q-\mathbf r\). A target on a convex ellipsoid is above its local horizon when\end{sloppypar}
+
+
+\begin{equation}\mathbf m\cdot(\mathbf r-\mathbf q)>0.\label{eq:ch7-3}\end{equation}
+
+\begin{sloppypar}This is a length, in km, whose sign tests visibility; it is not a Sun elevation or sensor off-nadir angle.\end{sloppypar}
+
+
+\begin{sloppypar}Define radial nadir, along-track and cross-track unit vectors:\end{sloppypar}
+
+
+\begin{equation}\mathbf n=-\frac{\mathbf r}{r},\quad
+\mathbf u=\frac{\mathbf v_E-(\mathbf v_E\cdot\mathbf n)\mathbf n}
+{\|\mathbf v_E-(\mathbf v_E\cdot\mathbf n)\mathbf n\|},\quad
+\mathbf c=\mathbf u\times\mathbf n.\label{eq:ch7-4}\end{equation}
+
+\begin{sloppypar}They are mutually orthogonal. The sign convention for c follows the cross product; reversing it would reverse signed look/roll angles. Set \(d=\boldsymbol\ell\cdot\mathbf n\), \(x=\boldsymbol\ell\cdot\mathbf c\), \(y=\boldsymbol\ell\cdot\mathbf u\). All are km.\end{sloppypar}
+
+
+\begin{sloppypar}The inverse look angles for the archived ideal-roll model are\end{sloppypar}
+
+
+\begin{equation}\alpha=\operatorname{atan2}(x,d),\quad
+\rho=\operatorname{clip}(\alpha,-\rho_{\max},+\rho_{\max}),\label{eq:inverse-look}\end{equation}
+
+\begin{equation}d_\rho=d\cos\rho+x\sin\rho,\qquad
+\beta=\operatorname{atan2}(y,d_\rho).\label{eq:ch7-6}\end{equation}
+
+\begin{sloppypar}Within the forward-looking regional domain, access requires\end{sloppypar}
+
+
+\begin{equation}|\alpha-\rho|\le\theta_c,\quad |\beta|\le\theta_a,\quad
+d_\rho>0,\quad \mathbf m\cdot(\mathbf r-\mathbf q)>0.\label{eq:ch7-7}\end{equation}
+
+\begin{sloppypar}The equivalent cross-track envelope is \(|\alpha|\le\rho_{\max}+\theta_c\). Choosing the admissible roll nearest alpha maximizes \(d_\rho\), consistent with this ideal reachability test. It does not select a common time-feasible spacecraft pointing history.\end{sloppypar}
+
+
+\begin{sloppypar}As a separate ray check, put \(\mathbf q_\lambda=\mathbf r+\lambda\hat{\boldsymbol\ell}\). Substitution in the ellipsoid equation produces\end{sloppypar}
+
+
+\begin{equation}A\lambda^2+B\lambda+C=0,\label{eq:ch7-8}\end{equation}
+
+\begin{equation}A=\sum_j\frac{\hat\ell_j^2}{a_j^2},\quad
+B=2\sum_j\frac{r_j\hat\ell_j}{a_j^2},\quad
+C=\sum_j\frac{r_j^2}{a_j^2}-1.\label{eq:ch7-9}\end{equation}
+
+\begin{sloppypar}Use the nearest nonnegative root if the discriminant is nonnegative. Here \(A,B,C\) have units km\(^{-2}\), km\(^{-1}\), and dimensionless, so every term is dimensionless.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step event solution}
+
+\begin{enumerate}
+\item Convert the selected target to q and m.
+\item Interpolate the spacecraft continuously.
+\item Locate the signed fan-plane zero \(g_f(t)=\boldsymbol\ell(t)\cdot\mathbf u(t)=0\).
+\item Bracket along-track entry/exit near it and solve \(\beta(t)=\pm\theta_a\).
+\item Clip against cross-track, forward-ray and horizon constraints.
+\item For grazing/corner events, inspect possible cross-track interior maxima instead of requiring a wide centre hit. Respect interval endpoints; an event can be clipped by the beginning/end of the OEM span.
+\end{enumerate}
+
+\begin{sloppypar}These equations generally have no closed solution when r(t), orientation and target geometry vary. A numerical root is therefore required.\end{sloppypar}
+
+
+\begin{sloppypar}The archived production method uses cubic Hermite interpolation of each position component. For \(\xi=(t-t_0)/\Delta t\), seek a cubic \(r(\xi)=a+b\xi+c\xi^2+d\xi^3\) satisfying endpoint positions and derivatives. Solving those four linear conditions gives\end{sloppypar}
+
+
+\begin{equation}\mathbf r(\xi)=
+(2\xi^3-3\xi^2+1)\mathbf r_0+
+(\xi^3-2\xi^2+\xi)\Delta t\,\mathbf v_0+
+(-2\xi^3+3\xi^2)\mathbf r_1+
+(\xi^3-\xi^2)\Delta t\,\mathbf v_1.\label{eq:ch7-10}\end{equation}
+
+\begin{sloppypar}Velocity is its derivative with respect to time. Multiplying the velocity terms by \(\Delta t\) is required for dimensional consistency.\end{sloppypar}
+
+
+\begin{sloppypar}The production code brackets fan roots at ephemeris knots, uses Brent refinement, then refines angular boundaries and handles the narrow grazing/end cases. Numerical tolerances do not prove event completeness. Independent distributed/grazing and finer-sampling checks are recorded in \cite{S10}; two new local examples are not a replacement for those broader checks.\end{sloppypar}
+
+
+\begin{sloppypar}This companion takes a different local route: degree-7 interpolation through eight saved \textbf{position} knots, differentiates that polynomial for velocity, and uses explicit bracketed bisection for the two slit boundaries. It shares the saved terrestrial frame and positions, but imports none of the production interpolation/event functions.\end{sloppypar}
+
+
+\subsection*{6. Complete numerical example}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.31\linewidth-2.48000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.69\linewidth-5.52000pt\relax}@{}}
+\caption{Chapter 7: 6. Complete numerical example}\label{tab:book-26}\\
+\toprule\rowcolor{headerbg}Quantity & Independent local result \\\midrule
+\endfirsthead
+\caption[]{Chapter 7: 6. Complete numerical example (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Independent local result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Target & \nolinkurl{oued-essafa_18500_22000}; 30.299427590079357 deg N, -9.30671038366797 deg E \\
+\rowcolor{rowalt}Epoch & 2026-11-01T11:23:49.101073Z; elapsed midpoint near 1034629.101073308 s \\
+Target q & \AtlasTableMath{\begin{bmatrix}5439.03489162733\\-891.330226284477\\3199.07625067378\end{bmatrix}} km \\
+\rowcolor{rowalt}Ellipsoid normal m & \AtlasTableMath{\begin{bmatrix}0.852035461570663\\-0.139628624543895\\0.504518998090308\end{bmatrix}} \\
+Spacecraft r & \AtlasTableMath{\begin{bmatrix}5916.80733120796\\-953.588929257508\\3474.7462235402\end{bmatrix}} km \\
+\rowcolor{rowalt}Ground-relative v & \AtlasTableMath{\begin{bmatrix}3.46223178538521\\-2.16023014872413\\-6.48384679082391\end{bmatrix}} km/s \\
+LOS q\ensuremath{-}r & \AtlasTableMath{\begin{bmatrix}-477.772439580629\\62.2587029730308\\-275.669972866423\end{bmatrix}} km \\
+\rowcolor{rowalt}Nadir n & \AtlasTableMath{\begin{bmatrix}-0.854090513828103\\0.137650461301071\\-0.501579250659802\end{bmatrix}} \\
+Along u & \AtlasTableMath{\begin{bmatrix}0.451666818864173\\-0.281929914470208\\-0.846470677616147\end{bmatrix}} \\
+\rowcolor{rowalt}Cross c & \AtlasTableMath{\begin{bmatrix}0.257927274490242\\0.949509280539386\\-0.178621519542333\end{bmatrix}} \\
+d / x / y & \AtlasTableMath{\begin{bmatrix}554.901186018318\\-14.8747374547536\\9.53832568484358e-11\end{bmatrix}} km \\
+\rowcolor{rowalt}Alpha / beta / roll & \AtlasTableMath{\begin{bmatrix}-1.53550875671263\\9.84870494302254e-12\\-0\end{bmatrix}} deg \\
+Horizon dot product & 554.85289666 km > 0 \\
+\rowcolor{rowalt}Slant range & 555.100517077 km \\
+Along half slit / cross half FOV & 0.000520870722832 deg / 1.56222491684 deg \\
+\rowcolor{rowalt}Entry / exit (elapsed) & 1034629.1003574084 / 1034629.1017892079 s \\
+Duration & 1.43179949373007 ms \\
+\rowcolor{rowalt}Ray-to-target residual & 1.02318153949e-09 m \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The fixed target vector, spacecraft state, LOS components and angles are supplied so the dot products can be checked by hand. For this nadir example the cross-track inequality is comfortably satisfied, so the two along-track boundaries define the window. The independent ray intersection returns the target to numerical precision.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}The saved Oued Essafa window is 1 November 2026 11:23:49.100357--11:23:49.101789 UTC, duration 1.431800192222 ms, cross-track look \ensuremath{-}1.535508577967\ensuremath{{}^{\circ}}, nadir roll 0\ensuremath{{}^{\circ}}. Raw source is v0.4 \nolinkurl{access_primary_250m.csv}, line 225438 including its header. \cite{S09} retains exact elapsed floats and rounded UTC strings.\end{sloppypar}
+
+
+\begin{sloppypar}The saved Massa example is 24 October 2026 22:51:42.017924--22:51:42.019337 UTC, duration 1.413144636899 ms, cross-track look \ensuremath{-}1.343283367597\ensuremath{{}^{\circ}}. It is geometric access at night.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Chapter 7: 8. Comparison}\label{tab:book-27}\\
+\toprule\rowcolor{headerbg}Event & Entry residual & Exit residual & New local duration \\\midrule
+\endfirsthead
+\caption[]{Chapter 7: 8. Comparison (continued)}\\
+\toprule\rowcolor{headerbg}Event & Entry residual & Exit residual & New local duration \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+1 & -2.91620381176e-08 s & -2.94530764222e-08 s & 1.41314434586 ms \\
+\rowcolor{rowalt}2 & 1.54599547386e-07 s & 1.53901055455e-07 s & 1.43179949373 ms \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}At 30 s sampling a roughly 1.4 ms point window can lie wholly between consecutive knots. The companion explicitly verifies that no stored 30 s knot falls inside either worked window. A boolean ``inside footprint at the knot'' would miss these events.\end{sloppypar}
+
+
+\begin{sloppypar}For a well-conditioned scalar boundary, a perturbation obeys \(\delta t\simeq-\delta g/\dot g\). A small root residual only controls the interpolated equation. It does not bound state/orientation uncertainty, and near a grazing root with small \(|\dot g|\), event time is especially sensitive.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}A nominal trajectory over the region, geometric target reachability, daylight opportunity and feasible image acquisition are four different statements. GMAT propagates and exports the native orbit. The agricultural angular-footprint, illumination and revisit computations are Python postprocessing, not native GUI outputs.\end{sloppypar}
+
+
+\begin{sloppypar}The selected examples substantiate local numerical geometry. They do not independently prove that the archived search found every event throughout the month, and do not establish a slew schedule or agricultural image quality.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A} for geometric derivations, \textbf{N/R} for local polynomial/bisection checks on saved knots, \textbf{R} for previously archived distributed/direct-SPICE validation, \textbf{U} for physical acquisition and exhaustive independent discovery in this book.\end{sloppypar}
+
+
+\clearpage\section{Solar illumination}\label{ch:8}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}Why is one geometrically reachable target dark while another is a daylight opportunity, and can their signs and approximate elevations be checked without the production Sun function?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Geometric solar elevation uses the Sun's centre, smooth local ellipsoid normal and no refraction, terrain shadow or cloud. The baseline threshold is 0\ensuremath{{}^{\circ}}, with a stored 10\ensuremath{{}^{\circ}} sensitivity. A separate low-order astronomical approximation tests sign and scale; it does not replace the archived DE405/SPICE solution.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}Use the two documented event UTCs and target coordinates from \cite{S09}, fixed Earth's geometry, and the independently implemented \href{https://gml.noaa.gov/grad/solcalc/solareqns.PDF}{NOAA solar approximation}. No new solar-elevation threshold scenario is run.\end{sloppypar}
+
+
+\subsection*{4. Governing physics and derivation}
+\begin{sloppypar}Let \(\mathbf S_E\) be the geocentric Sun position and q the target, in the same terrestrial frame. The topocentric unit Sun direction is\end{sloppypar}
+
+
+\begin{equation}\hat{\mathbf s}=\frac{\mathbf S_E-\mathbf q}{\|\mathbf S_E-\mathbf q\|}.\label{eq:ch8-1}\end{equation}
+
+\begin{sloppypar}The angle from local zenith is z, so \(\cos z=\mathbf m\cdot\hat{\mathbf s}\). Elevation is its complement:\end{sloppypar}
+
+
+\begin{equation}E_\odot=\frac\pi2-z=
+\arcsin(\mathbf m\cdot\hat{\mathbf s}).\label{eq:solar-elevation}\end{equation}
+
+\begin{sloppypar}A rotation preserves the dot product. Therefore transforming both m and the Sun/target vectors consistently into another frame must preserve elevation; rotating only one vector would be a frame error.\end{sloppypar}
+
+
+\begin{sloppypar}For an independent approximate formulation, express the Sun direction by declination \(\delta\) and local hour angle H in a local meridian frame. Expanding the same dot product gives\end{sloppypar}
+
+
+\begin{equation}\sin E_\odot=
+\sin\phi\sin\delta+\cos\phi\cos\delta\cos H.\label{eq:ch8-3}\end{equation}
+
+\begin{sloppypar}This derivation explains the geometry; approximate solar orbital series supply \(\delta\) and the equation of time.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step independent approximation}
+\begin{sloppypar}NOAA's fractional-year method uses UTC hour as a consistent time input for this gross check. For 2026, a non-leap year,\end{sloppypar}
+
+
+\begin{equation}\gamma=\frac{2\pi}{365}\left({\rm DOY}-1+\frac{{\rm hour}-12}{24}\right).\label{eq:ch8-4}\end{equation}
+
+\begin{sloppypar}The equation of time in minutes and declination in radians are\end{sloppypar}
+
+
+\begin{equation}\begin{aligned}
+Q_t=229.18(&0.000075+0.001868\cos\gamma-0.032077\sin\gamma\\
+&-0.014615\cos2\gamma-0.040849\sin2\gamma),\\
+\delta={}&0.006918-0.399912\cos\gamma+0.070257\sin\gamma\\
+&-0.006758\cos2\gamma+0.000907\sin2\gamma
+-0.002697\cos3\gamma+0.00148\sin3\gamma.
+\end{aligned}\label{eq:ch8-5}\end{equation}
+
+\begin{sloppypar}These coefficients are a published approximation, not derived from spacecraft orbital dynamics. Compute true-solar minutes as UTC minutes + \(Q_t+4\lambda_{\deg}\), then \(H_{\deg}={\rm true\ solar\ minutes}/4-180\). Insert H and declination in the elevation formula. No 90.833\ensuremath{{}^{\circ}} sunrise/refraction correction is used; that would be a different threshold definition.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Chapter 8: 6. Numerical substitution}\label{tab:book-28}\\
+\toprule\rowcolor{headerbg}Quantity & Massa, 24 October night & Oued Essafa, 1 November day \\\midrule
+\endfirsthead
+\caption[]{Chapter 8: 6. Numerical substitution (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Massa, 24 October night & Oued Essafa, 1 November day \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Fractional year, rad & 5.1031956985309 & 5.2326861949523 \\
+\rowcolor{rowalt}Equation of time, min & 15.949444702011 & 16.378922312068 \\
+Approximate declination, deg & -11.640458281998 & -14.181097275696 \\
+\rowcolor{rowalt}Approximate hour angle, deg & 157.26813623181 & -14.257392001484 \\
+UTC-based mean local time, h & 22.218718337087 & 10.776525161367 \\
+\rowcolor{rowalt}Approximate apparent solar time, h & 22.484542415454 & 11.049507199901 \\
+Independent approximate elevation, deg & -62.08227820385 & 43.448758721942 \\
+\rowcolor{rowalt}Archived geometric minimum sampled elevation, deg & -62.321854553107 & 43.129587879141 \\
+Approximation minus saved elevation, deg & 0.23957634925717 & 0.3191708428014 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The UTC-based mean local time and approximate apparent solar time differ by the equation of time. The spacecraft's 10:30 node calibration is an equatorial node convention, not a requirement that every regional optical point event occurs at 10:30 apparent time.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}The archived minimum sampled elevations are \ensuremath{-}62.32185455310723\ensuremath{{}^{\circ}} at Massa and +43.12958787914077\ensuremath{{}^{\circ}} at Oued Essafa. The production daylight flag uses the minimum of entry/midpoint/exit elevations, with the saved Sun spline. It is not a general proof of the continuous minimum between those samples; the worked events are only about a millisecond long and far from the 0\ensuremath{{}^{\circ}} threshold.\end{sloppypar}
+
+
+\begin{sloppypar}The archived \ensuremath{\ge}10\ensuremath{{}^{\circ}} filter is separate. These two examples are unambiguously below both daylight gates at Massa and above both at Oued Essafa. Their tiny entry/midpoint/exit variation does not explain the approximation's tenths-of-a-degree difference.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+\begin{sloppypar}The independent NOAA values differ by the degrees shown above, with the correct signs. The companion additionally evaluates an independently interpolated \textbf{saved} Sun vector in its local example; that is an N/R consistency check, not an independent solar ephemeris. Approximate astronomical coefficients, geocentric versus topocentric effects and simplified time treatment limit the gross formula; no unique residual attribution is claimed.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}Sun elevation above zero is only geometric opportunity. It does not determine cloud/haze, canopy illumination, terrain shadow, MTF, SNR, smear, radiometry, multispectral registration or water-management utility.\end{sloppypar}
+
+
+\begin{sloppypar}The archived TA90 case is consistent with this distinction: its reachable regional branch is at night, while the day branch misses the roll envelope. Its initial-TA change at fixed osculating inputs also changes subsequent mean elements and nodal timing; it is not a pure phase change at fixed mean orbit. This book reads that evidence without rerunning or broadening the sensitivity study.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A} for the dot-product derivation; \textbf{F/N} for independent approximate signs/scale; \textbf{R} for high-accuracy solar values and historical frame-invariance checks. Optical image quality and operational suitability remain \textbf{U}.\end{sloppypar}
+
+
+
+
+\clearpage\section{Revisit and censoring}\label{ch:9}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}What does the 312.219958 h worst-case number measure, can its arithmetic be reconstructed, and how does it establish a requirement shortfall?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}Use only qualified saved opportunities in a finite observation span \([0,T]\). Access windows are intervals, not acquired images. Merge overlapping/touching windows before computing the complement; otherwise overlapping opportunities could create negative ``gaps''. Daylight and geometric histories are separate.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}For the actual Sidi Bibi worst case use the exact UTC endpoints specified in the brief, \cite{S08}, and the underlying elapsed float values. \(T=2592000\) s = 720 h.\end{sloppypar}
+
+
+\begin{sloppypar}The 250 m target is \nolinkurl{sidi-bibi_-10750_19500}, latitude 30.276400208635273\ensuremath{{}^{\circ}}N, longitude \ensuremath{-}9.61006239223738\ensuremath{{}^{\circ}}E. The 500 m grid's ID \nolinkurl{sidi-bibi_-11000_19500} has the same documented representative location and endpoints. Different cell-resolution IDs are not a change in the physical reference location. The historical REF at 30.4\ensuremath{{}^{\circ}}N, \ensuremath{-}9.6\ensuremath{{}^{\circ}}E is outside the agricultural ROI and excluded from these aggregates.\end{sloppypar}
+
+
+\subsection*{4. Governing definitions}
+\begin{sloppypar}Let merged qualifying windows be \([s_k,e_k]\), ordered in time. Their complement inside the study has the following lengths:\end{sloppypar}
+
+
+\begin{equation}G_k=s_{k+1}-e_k\quad(k=1,\ldots,K-1),\label{eq:complete-gap}\end{equation}
+
+\begin{equation}L_{\rm lead}=s_1-0,\qquad L_{\rm trail}=T-e_K.\label{eq:ch9-2}\end{equation}
+
+\begin{sloppypar}A complete gap has two observed endpoints: previous exit and next entry. The leading interval is left-censored because the prior opportunity is unknown; the trailing one is right-censored because the next opportunity is unknown. These observed spans are lower bounds on the corresponding unknown full gaps.\end{sloppypar}
+
+
+\begin{sloppypar}For zero qualifying windows, the \textbf{single fully censored} span is T. Complete-gap statistics are undefined, not zero and not a measured complete T-hour recurrence. Some archived tables repeat T in both leading/trailing fields for this case; those fields must not be added to claim 2T. The companion instead labels one fully censored span explicitly.\end{sloppypar}
+
+
+\begin{sloppypar}If event midpoints are \(m_k=(s_k+e_k)/2\) and durations \(D_k=e_k-s_k\), then\end{sloppypar}
+
+
+\begin{equation}m_{k+1}-m_k=G_k+\frac{D_k+D_{k+1}}{2}.\label{eq:ch9-3}\end{equation}
+
+\begin{sloppypar}Midpoint revisit therefore exceeds the no-access gap by the half-duration sum. Millisecond events make the numerical difference small, but the definitions remain different.\end{sloppypar}
+
+
+\begin{sloppypar}A finite-span maximum-gap test can use\end{sloppypar}
+
+
+\begin{equation}G_{\rm obs,max}=\max(\{G_k\},L_{\rm lead},L_{\rm trail}),\label{eq:ch9-4}\end{equation}
+
+\begin{sloppypar}or T for no access. Any observed no-access interval \textbf{greater than} 72 h falsifies a \ensuremath{\le}72 h opportunity guarantee over that observed interval. Absence of such an interval in a short finite sample would not establish all-time/all-season compliance, especially beyond censored boundaries.\end{sloppypar}
+
+
+\subsection*{5. Step-by-step arithmetic}
+\begin{sloppypar}The previous daylight window ends at 2026-11-02 11:17:35.047317 UTC. The next begins at 2026-11-15 11:30:46.896619 UTC.\end{sloppypar}
+
+
+\begin{enumerate}
+\item Calendar difference: 13 days.
+\item Time-of-day difference: 13 minutes and 11.849302 seconds.
+\item Convert days and minutes to seconds:
+\end{enumerate}
+
+\begin{equation}13(86400)+13(60)+11.849302
+=1123991.849302\ {\rm s}.\label{eq:ch9-5}\end{equation}
+
+\begin{enumerate}[start=4]
+\item Divide by 3600:
+\end{enumerate}
+
+\begin{equation}G=\frac{1123991.849302}{3600}
+=312.219958139444\ {\rm h}.\label{eq:ch9-6}\end{equation}
+
+\begin{sloppypar}There is no leap second in the archived time model over this interval, so this calendar subtraction is consistent with its elapsed SI seconds. That condition would need revisiting for an interval spanning an actual leap second.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution and target-specific history}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Chapter 9: 6. Numerical substitution and target-specific history}\label{tab:book-29}\\
+\toprule\rowcolor{headerbg}Quantity & Result \\\midrule
+\endfirsthead
+\caption[]{Chapter 9: 6. Numerical substitution and target-specific history (continued)}\\
+\toprule\rowcolor{headerbg}Quantity & Result \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Calendar subtraction & 1123991.849302 s = 312.2199581394444 h \\
+\rowcolor{rowalt}Saved elapsed-float result & 312.21995813943926 h \\
+UTC-string minus elapsed-float difference & 1.86264514923e-08 s \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The elapsed-float reference preserves more digits than the microsecond UTC strings. Their tiny difference is rounding, not a second physical gap.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}The raw fine-grid agricultural access CSV's lines 232405 and 232411 supply the \ensuremath{\pm}20\ensuremath{{}^{\circ}} previous exit and next entry. \cite{S08} includes these events and their hashes. The maximum rounds to 312.22 h across all 14,494 agricultural representatives, associated with the same pass pair. The exact values have small spatial variation; equality at two decimal places is not evidence of a reference-point aggregation leak.\end{sloppypar}
+
+
+\begin{sloppypar}The historical REF's similar rounded gap is a separate value. It is not present in the denominator or agricultural worst-case loop.\end{sloppypar}
+
+
+\subsection*{8. Comparison: target-specific versus ROI-wide}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.12\linewidth-4.80000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.11\linewidth-4.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-9.20000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.18\linewidth-7.20000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.21\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.15\linewidth-6.00000pt\relax}@{}}
+\caption{Chapter 9: 8. Comparison: target-specific versus ROI-wide}\label{tab:book-30}\\
+\toprule\rowcolor{headerbg}Case & Sidi Bibi daylight events & Sidi Bibi complete maximum & ROI complete maximum & ROI observed maximum incl. censoring & ROI no-daylight targets \\\midrule
+\endfirsthead
+\caption[]{Chapter 9: 8. Comparison: target-specific versus ROI-wide (continued)}\\
+\toprule\rowcolor{headerbg}Case & Sidi Bibi daylight events & Sidi Bibi complete maximum & ROI complete maximum & ROI observed maximum incl. censoring & ROI no-daylight targets \\\midrule
+\endhead
+\midrule\multicolumn{6}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Nadir & 0 & undefined; fully censored 720 h & 360.011563687 h & 720 h & 88 \\
+\rowcolor{rowalt}Ideal 10 deg & 3 & 360.011566052 h & 360.011566052 h & 360.011566052 h & 0 \\
+Ideal 20 deg & 6 & 312.219958139 h & 312.219958139 h & 312.219958139 h & 0 \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The nadir complete-gap number in the ROI column belongs to sufficiently accessed agricultural targets, not the Sidi Bibi point with zero nadir daylight opportunities. This distinction prevents an undefined point recurrence from being replaced by a population maximum.\end{sloppypar}
+
+
+\begin{sloppypar}The independent saved-event gap calculation reproduces the fine-grid maximum and sampled 72 h failures. It reads every saved relevant event but does not discover opportunities anew. Arithmetic verification of two timestamps alone would not prove that no missed event lies between them.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}The worst ideal \ensuremath{\pm}20\ensuremath{{}^{\circ}} complete daylight gap exceeds the requirement by 240.219958139 h and is 4.33638830749 times 72 h. That observed interval is sufficient to reject the sampled baseline requirement. Censored no-access targets strengthen the shortfall evidence but must not be called complete recurrences. A median near a day or a favourable mean area fraction cannot override a maximum-gap failure.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A} for endpoint subtraction; \textbf{N/R} for independently merging and aggregating the saved events; \textbf{R} for archived global event discovery. Exhaustive physical access completeness and future service guarantees remain \textbf{U}.\end{sloppypar}
+
+
+\clearpage\section{Agricultural coverage}\label{ch:10}
+
+\subsection*{1. Engineering question}
+\begin{sloppypar}How do weighted geographic representatives and saved opportunity times produce rolling 24/48/72 h agricultural coverage, and can the 33.44\% result be reconstructed independently?\end{sloppypar}
+
+
+\subsection*{2. Assumptions}
+\begin{sloppypar}The provisional primary agricultural mask is fixed. Each cell/commune agricultural intersection is represented by a point guaranteed inside that intersection, with its actual area as weight. This is a quadrature of point opportunity, not proof that every metre of a cell or farm is imaged.\end{sloppypar}
+
+
+\begin{sloppypar}The definition uses \textbf{event midpoints in a closed rolling time window} and hourly window starts. Continuous interval overlap would be a slightly different statistic near window edges and is not silently substituted. Every target may have its own ideal roll; simultaneous execution is not enforced.\end{sloppypar}
+
+
+\subsection*{3. Inputs and constants}
+\begin{sloppypar}\cite{S06}'s fine grid contains 14,494 agricultural targets with latitude, longitude, commune and weight\_km2. Coordinates are geographic WGS84. Areas were produced in the preserved WGS84 ellipsoidal Lambert azimuthal equal-area projection centred on 30.1\ensuremath{{}^{\circ}}N, \ensuremath{-}9.5\ensuremath{{}^{\circ}}E. The 250 m cell pitch is an area quadrature, not sensor GSD or a 250 m land-cover source resolution. The earlier classification working grid was 10 m.\end{sloppypar}
+
+
+\begin{sloppypar}Use the complete archived access CSV through a lossless gzip copy, not a synthetic replacement or production cache lookup. The historical zero-weight REF is explicitly excluded before indexing events against the agricultural target set.\end{sloppypar}
+
+
+\subsection*{4. Governing physics and mathematical estimator}
+\begin{sloppypar}For agricultural region \(D\), define \(I_H(\mathbf q,t)=1\) if location q has at least one qualifying event in \([t,t+H]\), otherwise zero. The ideal spatial fraction is\end{sloppypar}
+
+
+\begin{equation}C_H(t)=\frac{1}{|D|}\int_D I_H(\mathbf q,t)\,dA.\label{eq:ch10-1}\end{equation}
+
+\begin{sloppypar}The archived estimator partitions the mask into pieces \(D_j\), with \(A_j=|D_j|\) and representative \(\mathbf q_j\), and approximates the integral by\end{sloppypar}
+
+
+\begin{equation}\widehat C_H(t)=
+\frac{\sum_j A_j\,\mathbf 1\{\exists k:m_{j,k}\in[t,t+H]\}}
+{\sum_j A_j}.\label{eq:weighted-coverage}\end{equation}
+
+\begin{sloppypar}The area units cancel. Equal point counts would only equal area weighting if all \(A_j\) were equal, which clipped agricultural pieces are not. The estimator treats each represented piece as observed or unobserved according to its point, so exact area weights alone do not eliminate spatial sampling error.\end{sloppypar}
+
+
+\begin{sloppypar}For fully contained hourly-start windows \(t_\ell=3600\ell\),\end{sloppypar}
+
+
+\begin{equation}N_H=\left\lfloor\frac{T-H}{3600}\right\rfloor+1,\qquad
+\overline C_H=\frac1{N_H}\sum_{\ell=0}^{N_H-1}\widehat C_H(t_\ell).\label{eq:ch10-3}\end{equation}
+
+\begin{sloppypar}At 30 days, \(N_{24}=697\), \(N_{48}=673\), \(N_{72}=649\). The arithmetic mean gives every window start equal weight, not every day or every event equal weight.\end{sloppypar}
+
+
+\subsection*{5. Transparent worked example}
+\begin{sloppypar}This example is \textbf{constructed for teaching}, not a new AtlasSAT result. Observe 72 h, with 24 h closed windows starting hourly from 0 to 48 h:\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-5.76000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.34\linewidth-5.44000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.3\linewidth-4.80000pt\relax}@{}}
+\caption{Chapter 10: 5. Transparent worked example}\label{tab:book-31}\\
+\toprule\rowcolor{headerbg}Target & Represented area & Event midpoints \\\midrule
+\endfirsthead
+\caption[]{Chapter 10: 5. Transparent worked example (continued)}\\
+\toprule\rowcolor{headerbg}Target & Represented area & Event midpoints \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+A & 2 km\textsuperscript{2} & 24 h, 25 h \\
+\rowcolor{rowalt}B & 1 km\textsuperscript{2} & 48 h \\
+C & 1 km\textsuperscript{2} & none \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}At start 0 h, A's endpoint event at 24 h counts, so coverage is \(2/4=0.5\). At 24 h, A and B qualify, giving \(3/4=0.75\). At 26 h, only B qualifies, giving \(1/4=0.25\).\end{sloppypar}
+
+
+\begin{sloppypar}A appears in the windows starting at hours 0--25 (26 windows); B appears at 24--48 (25 windows). Multiple A events do not count A twice in any one window. Therefore\end{sloppypar}
+
+
+\begin{equation}\overline C_{24}=
+\frac{(26)(2/4)+(25)(1/4)}{49}
+=\frac{19.25}{49}=0.392857142857.\label{eq:ch10-4}\end{equation}
+
+\begin{sloppypar}This is not the fraction of all targets with an event at any time, not the maximum gap, and not acquired image area. Target C never appears even though the mean coverage is positive. The tests compare the independent union algorithm with explicit boolean enumeration of all 49 toy windows.\end{sloppypar}
+
+
+\begin{sloppypar}For real data, the companion uses a different aggregation method from production. An event midpoint m qualifies for hourly-start index \(\ell\) when\end{sloppypar}
+
+
+\begin{equation}\left\lceil\frac{m-H}{3600}\right\rceil
+\le\ell\le
+\left\lfloor\frac{m}{3600}\right\rfloor.\label{eq:ch10-5}\end{equation}
+
+\begin{sloppypar}Clip the indices to \(0,\ldots,N_H-1\), merge overlapping index intervals \textbf{within each target}, add that target's normalized area at interval entry and subtract it after interval exit, then cumulatively sum. This event-to-window-start union uses no original production search/summarization function.\end{sloppypar}
+
+
+\subsection*{6. Numerical substitution on the actual study}
+
+\begin{sloppypar}The 250 m weights sum to \textbf{396.4721649722957 km\textsuperscript{2}}; the saved mask union is 396.4721664871048 km\textsuperscript{2}. Union minus quadrature is 1.51480907107 m\textsuperscript{2}.\end{sloppypar}
+
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.35\linewidth-8.40000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.23\linewidth-5.52000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.19\linewidth-4.56000pt\relax}@{}}
+\caption{Chapter 10: 6. Numerical substitution on the actual study}\label{tab:book-32}\\
+\toprule\rowcolor{headerbg}Roll / daylight & Mean 24 h & Mean 48 h & Mean 72 h \\\midrule
+\endfirsthead
+\caption[]{Chapter 10: 6. Numerical substitution on the actual study (continued)}\\
+\toprule\rowcolor{headerbg}Roll / daylight & Mean 24 h & Mean 48 h & Mean 72 h \\\midrule
+\endhead
+\midrule\multicolumn{4}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+0 deg & 3.56329975933\% & 7.38074274072\% & 11.4805235697\% \\
+\rowcolor{rowalt}10 deg & 7.42294155592\% & 14.8198963811\% & 22.7639295292\% \\
+20 deg & 20.6599713056\% & 28.52897474\% & 33.43605547\% \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}The grid's summed area and the geometric mask union differ by only the tiny amount reported above, consistent with the source grid routine's omission of pieces below 1 m\textsuperscript{2} and numerical geometry arithmetic. The saved weights, not a rounded 396.47 value, are the actual coverage denominator. No GIS geometry was regenerated here.\end{sloppypar}
+
+
+\subsection*{7. Reference simulation result}
+\begin{sloppypar}\cite{S06} \nolinkurl{summary_primary_250m.json} provides the area-weighted hourly-start summaries. The nominal 30 km daylight mean rolling 72 h fractions round to 11.48\% nadir, 22.76\% ideal \ensuremath{\pm}10\ensuremath{{}^{\circ}}, and 33.44\% ideal \ensuremath{\pm}20\ensuremath{{}^{\circ}}. The minimum is zero in all three. The archived geometric and \ensuremath{\ge}10\ensuremath{{}^{\circ}} modes remain distinct and are also checked against their own saved means.\end{sloppypar}
+
+
+\subsection*{8. Comparison}
+
+\begin{sloppypar}The largest absolute mean-fraction residual across the 27 comparisons is \textbf{2.69229083472e-15} (fraction), far below the declared 1e\ensuremath{-}12 arithmetic comparison tolerance. Maximum/minimum fractions and window counts also pass. Tiny negative values at nominal zero can occur at floating-point cancellation level in the independent difference-array summation; they are retained in the JSON residuals rather than hidden as physical negative coverage.\end{sloppypar}
+
+
+\begin{sloppypar}All 27 means (three roll cases \ensuremath{\times} three existing illumination modes \ensuremath{\times} three window lengths) were checked, together with each min/max and window count. This is an independent computation of the aggregation of the exact saved events, not an independent recovery of the event set. It cannot expose an access opportunity absent from the input CSV.\end{sloppypar}
+
+
+\begin{sloppypar}A simple closed-form swath/area ratio cannot reproduce this aggregate: target weights, irregular geometry, discrete pass times, Sun conditions and moving window endpoints all enter. The formula defines the estimator; the actual finite summation is necessary.\end{sloppypar}
+
+
+\subsection*{9. Engineering interpretation}
+\begin{sloppypar}The 33.44\% mean is compatible with severe service failure: opportunities cluster, and some 72 h windows cover none of the target area. A requirement on maximum individual no-access gap is not a requirement on a mean area fraction.\end{sloppypar}
+
+
+\begin{sloppypar}Archived 500\ensuremath{\to}250 m mean convergence, about 0.00460 percentage point at worst over the tested combinations, supports area-average quadrature consistency. It does not validate every field boundary or land-cover class. The mask remains provisional, with no local crop truth. The greenhouse source omission affects 22.04\% of the outer boundary and 6.861\% of the primary mask; those percentages are source-footprint omissions, not estimates of missing greenhouse acreage. No classification or denominator is repaired in this companion.\end{sloppypar}
+
+
+\subsection*{10. Verification status}
+\begin{sloppypar}\textbf{A} for estimator derivation and the toy calculation; \textbf{N/R} for all-target archived-event reaggregation; \textbf{R} for prior spatial convergence and mask provenance; \textbf{U} for real acquired imagery, field-level classification and physically achievable scheduling.\end{sloppypar}
+
+
+
+
+\clearpage\section*{Major analytical/numerical comparisons}\addcontentsline{toc}{section}{Major analytical/numerical comparisons}
+Differences are prediction minus reference in the unit stated in the first column. First-order/conditional rows have distinct evidence levels; small residuals do not validate optical-event completeness. The complete 84-row dataset remains in the supplementary CSV.
+\begingroup\fontsize{8.7}{11}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.22\linewidth-8.80000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.145\linewidth-5.80000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.145\linewidth-5.80000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.15\linewidth-6.00000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.27\linewidth-10.80000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.07\linewidth-2.80000pt\relax}@{}}
+\caption{Major analytical/numerical comparisons; rounded display, full precision in supplementary CSV}\label{tab:major-comparisons}\\
+\toprule\rowcolor{headerbg}Quantity (unit) & Prediction & Reference & Difference & Interpretation & Level \\\midrule
+\endfirsthead
+\caption[]{Major analytical/numerical comparisons; rounded display, full precision in supplementary CSV (continued)}\\
+\toprule\rowcolor{headerbg}Quantity (unit) & Prediction & Reference & Difference & Interpretation & Level \\\midrule
+\endhead
+\midrule\multicolumn{6}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Kepler period (min) & 95.649866 & 95.649866 & 0 & Same physical definition and constants & A \\
+\rowcolor{rowalt}First-order secular RAAN precession (deg/day) & 0.97365234 & 0.97844847 & -0.0047961309 & Secular approximation versus finite-interval EME2000 osculating fit & F \\
+First-order SSO inclination (deg) & 97.592938 & 97.592938 & 0 & Algebraic design estimate; not an executed orbit change & A \\
+\rowcolor{rowalt}Two-body maximum position discrepancy (m) & 0.0013018245 & 0.001301824 & 5.7271181e-10 & Internal report at actual elapsed epochs; conditional on saved initial state & N \\
+Native nominal-refined maximum position difference (m) & 0.0036203979 & 0.0036203979 & 0 & Same exact UTC and EME2000; separate from internal-report comparison & N \\
+\rowcolor{rowalt}First-order energy-based average osculating SMA (km) & 6918.7442 & 6918.753 & -0.008829094 & Independent first-order energy/averaging estimate; no archived mean fitted into prediction & F \\
+Nodal timing with independently estimated mean SMA (min) & 95.578347 & 95.578336 & 1.1433166e-05 & First-order diagnostic using predicted SMA; other mean-element and frame corrections omitted; close agreement may include cancellation & F \\
+\rowcolor{rowalt}NOAA approximate Sun elevation (deg) & -62.082278 & -62.321855 & 0.23957635 & Gross sign/scale check only; degree difference is useful, percent is not an accuracy metric & F \\
+NOAA approximate Sun elevation (deg) & 43.448759 & 43.129588 & 0.31917084 & Gross sign/scale check only; degree difference is useful, percent is not an accuracy metric & F \\
+\rowcolor{rowalt}Sidi Bibi UTC gap arithmetic (h) & 312.21996 & 312.21996 & 5.1727511e-12 & Rounded microsecond UTC strings versus elapsed floats; no event-completeness claim & A \\
+Mean rolling 72 h opportunity fraction (fraction) & 0.33436055 & 0.33436055 & 2.220446e-16 & Independent union of integer hourly-start ranges; same archived events and weights & N \\
+\rowcolor{rowalt}Model A discrete beat estimate (h) & 314.88156 & 312.21996 & 2.6616006 & Saved mean period and observed three-per-cluster premise; not independent optical discovery & F \\
+Model B 196-period estimate vs complete gap (h) & 312.22256 & 312.21996 & 0.0026047966 & Integer physically checked; target-node phases and half event durations remain & F \\
+\rowcolor{rowalt}Model B vs midpoint interval (h) & 312.22256 & 312.21996 & 0.0026043809 & Pass-centre estimate compared to matching centre definition; still approximate & F \\
+New ITRF93 global mean nodal period (s) & 5734.7001 & 5734.7001 & 3.2741809e-11 & Independent scalar root implementation, same frozen terrestrial states & N \\
+\rowcolor{rowalt}Selected gap descending-node cycle count (count) & 196 & 196 & 0 & Independent node enumeration confirms Model B integer; does not prove optical eligibility & N \\
+\ensuremath{\pm}10 degree same-method 226-period estimate (h) & 360.01173 & 360.01157 & 0.00016468081 & Observed occupancy is two plus one, not three plus three; no retuned period or phase & F \\
+\rowcolor{rowalt}Unanchored first-order pass centre 2026-10-31 (s) & 948605.54 & 948605.28 & 0.25937211 & Canonical-state and explicit sidereal model; no saved event anchor; no entry/exit accuracy claim & F \\
+Unanchored first-order pass centre 2026-11-15 (s) & 2244647.1 & 2244646.9 & 0.17776116 & Canonical-state and explicit sidereal model; no saved event anchor; no entry/exit accuracy claim & F \\
+\rowcolor{rowalt}Anchored 226-period recurrence 2026-11-15 (s) & 2244647.5 & 2244646.9 & 0.61146683 & Explicitly anchored to corresponding saved first-cluster midpoint; not independent absolute phase & C \\
+\end{longtable}\endgroup
+\clearpage\section*{Mathematical limitations register}\addcontentsline{toc}{section}{Mathematical limitations register}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.08\linewidth-1.28000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.44\linewidth-7.04000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.48\linewidth-7.68000pt\relax}@{}}
+\caption{Mathematical limitations register}\label{tab:book-34}\\
+\toprule\rowcolor{headerbg}ID & What is established & What remains outside the mathematics/evidence \\\midrule
+\endfirsthead
+\caption[]{Mathematical limitations register (continued)}\\
+\toprule\rowcolor{headerbg}ID & What is established & What remains outside the mathematics/evidence \\\midrule
+\endhead
+\midrule\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+M01 & Canonical input reconstruction and frame convention agree & Flight injection/estimated orbit truth \\
+\rowcolor{rowalt}M02 & Point-mass equations and closed solution are independently implemented & Accuracy of a point-mass model for the real mission \\
+M03 & J2 gradient and first-order secular signs/scales are checked & Exact higher-order rates and a rigorous osculating-to-mean transformation \\
+\rowcolor{rowalt}M04 & Saved mean-SMA substitution explains period sensitivity & Time-average osculating SMA is not a canonical mean element \\
+M05 & Initial mean node time is numerically calibrated & Long-term exact Sun synchronism or physical subsecond clock accuracy \\
+\rowcolor{rowalt}M06 & Simplified beat arithmetic is reproduced & Exact repeating-ground-track design or exact optical gap prediction \\
+M07 & Fixed FOV/slit follows adopted geometry & Validated IFOV, GSD, line rate, SNR, MTF or multispectral alignment \\
+\rowcolor{rowalt}M08 & Ideal per-target roll reach is calculated & Qualified slew, settling, pointing or an executable observation schedule \\
+M09 & Two local event examples use a distinct interpolant/root implementation & An exhaustive new independent discovery of every event \\
+\rowcolor{rowalt}M10 & Approximate solar signs and scales agree & Precision solar/orientation truth or real optical image quality \\
+M11 & Exact/censored gaps and saved events are independently aggregated & Missing events in the shared input or all-season service compliance \\
+\rowcolor{rowalt}M12 & Weighted representative-point fractions reproduce saved means & Every point in a cell/farm being observed, acquired or delivered \\
+M13 & Existing orientation differences and predictions are identified & An error bound relative to measured future EOP \\
+\rowcolor{rowalt}M14 & Frozen mask weights are used without modification & Locally validated current crop inventory or greenhouse completeness \\
+M15 & Original complete v0.2 archive members support this comparison & Repair of the inherited current-release integrity discrepancy \\
+\rowcolor{rowalt}M16 & Controlled tests and numerical residuals support stated scopes & Independent human acceptance, flight qualification or operational mission validation \\
+M17 & Node enumeration supports 15/196/226 cycle counts and exact gap decomposition & Independent optical completeness or exact repeating-ground-track closure \\
+\rowcolor{rowalt}M18 & Unfitted energy-corrected first-order model recovers selected cluster dates & Millisecond entry/exit accuracy, other targets/seasons or a complete mean-state transformation \\
+M19 & Anchored 226-period recurrence has a small residual & Independent absolute phase; the saved initial event is an explicit condition \\
+\end{longtable}\endgroup
+
+\begin{sloppypar}There is no statistical uncertainty interval invented from model agreement. Numerical convergence bounds a numerical procedure under its assumptions; it does not quantify omitted drag, attitude errors, clouds, terrain, geolocation truth or classification error.\end{sloppypar}
+
+
+\clearpage\section*{Glossary}\addcontentsline{toc}{section}{Glossary}
+
+\begingroup\fontsize{9.2}{11.6}\selectfont
+\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{1.14}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{\dimexpr 0.36\linewidth-2.88000pt\relax}>{\raggedright\arraybackslash}p{\dimexpr 0.64\linewidth-5.12000pt\relax}@{}}
+\caption{Glossary}\label{tab:book-35}\\
+\toprule\rowcolor{headerbg}Term & Meaning in this book \\\midrule
+\endfirsthead
+\caption[]{Glossary (continued)}\\
+\toprule\rowcolor{headerbg}Term & Meaning in this book \\\midrule
+\endhead
+\midrule\multicolumn{2}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule\endlastfoot
+Semimajor axis \(a\) & Half the major diameter of the osculating Kepler ellipse; measured from Earth centre \\
+\rowcolor{rowalt}Eccentricity \(e\) & Dimensionless shape parameter; zero is circular \\
+Inclination \(i\) & Angle between orbit angular momentum and the specified reference pole \\
+\rowcolor{rowalt}RAAN \(\Omega\) & Reference-plane angle from reference X to ascending node \\
+AOP \(\omega\) & In-plane angle from ascending node to perigee \\
+\rowcolor{rowalt}True anomaly \(f\) & Geometric in-plane angle from perigee to spacecraft \\
+Eccentric anomaly \(E\) & Auxiliary ellipse parameter used in Kepler's time equation \\
+\rowcolor{rowalt}Mean anomaly \(M\) & Time-like Kepler phase \(M=M_0+nt\) in the point-mass problem \\
+Argument of latitude \(u\) & \(\omega+f\); useful when separate perigee angles are ill-conditioned \\
+\rowcolor{rowalt}Osculating elements & Instantaneous tangent Kepler ellipse defined by r, v and \(\mu\) \\
+Mean elements & Parameters after a specifically defined averaging/transformation; not simply initial osculating values \\
+\rowcolor{rowalt}Specific energy & Mechanical energy per unit satellite mass \\
+Specific angular momentum & Angular momentum per unit satellite mass, \(\mathbf r\times\mathbf v\) \\
+\rowcolor{rowalt}Semilatus rectum \(p\) & \(a(1-e^2)\), appearing in the polar conic equation \\
+Keplerian period & Two-body full revolution time for a given a and \(\mu\) \\
+\rowcolor{rowalt}Nodal/draconitic period & Time between successive same-branch equator/node crossings \\
+Anomalistic period & Time between successive perigee passages; not necessarily nodal period under perturbations \\
+\rowcolor{rowalt}Secular & Averaged accumulating change, distinct from periodic oscillations \\
+J2 & Dominant zonal degree-2 gravity coefficient in an unnormalized Legendre convention \\
+\rowcolor{rowalt}Degree/order 2/0 & Central field plus zonal degree-2 oblateness; no longitude-varying tesseral terms \\
+Normalized coefficient & Coefficient rescaled together with its associated basis function so their product is unchanged \\
+\rowcolor{rowalt}MODEq & Mean equator/equinox of date; GMAT's initial-element axes here \\
+EME2000/MJ2000Eq & Mean equatorial J2000 inertial output convention \\
+\rowcolor{rowalt}GCRS/ICRF bias & Small orientation distinction between mean-J2000 equator/equinox and modern celestial axes \\
+ITRF93 & Earth-fixed frame named in the SPICE terrestrial transformation \\
+\rowcolor{rowalt}UTC & Coordinated Universal Time, civil atomic scale with leap seconds \\
+TAI & Continuous atomic time scale \\
+\rowcolor{rowalt}TT & Terrestrial Time; TAI +32.184 s \\
+TDB/ET & Barycentric dynamical ephemeris time used by SPICE \\
+\rowcolor{rowalt}UT1 & Earth-rotation time, related to UTC through observed/predicted UT1\ensuremath{-}UTC \\
+EOP & Earth orientation parameters including UT1 and polar motion \\
+\rowcolor{rowalt}LTDN/LMST & Descending-node/local mean solar time; not Moroccan civil time or actual Sun hour angle \\
+Apparent solar time & Time based on the actual Sun's hour angle \\
+\rowcolor{rowalt}Equation of time & Apparent-minus-mean solar clock correction in the stated convention \\
+Geodetic latitude & Angle of the ellipsoid normal above the equatorial plane \\
+\rowcolor{rowalt}Geocentric latitude & Angle of the position radius above the equatorial plane \\
+Radial nadir & Direction toward Earth centre, distinct from the local ellipsoid normal \\
+\rowcolor{rowalt}LOS & Line of sight, \(\mathbf q-\mathbf r\) \\
+FOV & Angular field of view of the adopted geometric sensor model \\
+\rowcolor{rowalt}IFOV & Instantaneous optical angular response/support of a detector element \\
+GSD & Ground spacing represented by image samples \\
+\rowcolor{rowalt}Pushbroom & Imaging concept with a cross-track detector line swept by relative motion \\
+Slit residence & Geometric time that a point remains in the modeled narrow along-track support \\
+\rowcolor{rowalt}Geometric access & Horizon and sensor-angular conditions hold \\
+Daylight opportunity & Geometric access plus the selected geometric Sun-elevation gate \\
+\rowcolor{rowalt}Acquisition schedule & Time-consistent spacecraft/payload commands; not produced by independent point reach tests \\
+Complete no-access gap & Previous observed exit to next observed entry \\
+\rowcolor{rowalt}Censoring & Part of the full recurrence is outside the observation span \\
+Revisit midpoint interval & Difference between centres of successive windows; includes half their durations \\
+\rowcolor{rowalt}Quadrature & Approximation of a geographic integral by area-weighted representative samples \\
+Rolling coverage & Weighted area with a qualifying midpoint in a moving, fully contained time window \\
+\rowcolor{rowalt}ROI & Region of interest; here a provisional agricultural research mask \\
+OEM & CCSDS Orbit Ephemeris Message; states/time tags, not agricultural optical-access results \\
+\rowcolor{rowalt}Numerical verification & Checking consistency of equations, discretization and implementations \\
+Physical validation & Comparing a model with relevant measured reality; not established by these calculations \\
+\rowcolor{rowalt}Fractional beat & Timescale from excess nodal frequency above an integer; distinct from a near-rational return \\
+Near-rational return & Approximate orbital/rotation commensurability with nonzero residual longitude closure \\
+\rowcolor{rowalt}Unanchored phase prediction & Dates predicted from initial state/epoch and physical approximations without a saved event anchor \\
+Conditional recurrence & Timing extrapolation explicitly anchored to a saved observation \\
+\end{longtable}\endgroup
+
+\clearpage\section*{Engineering verdict and review boundary}\addcontentsline{toc}{section}{Engineering verdict and review boundary}
+
+\begin{sloppypar}The mathematics supports the existing \textbf{negative daylight maximum-gap finding} and explains why many orbital revolutions do not provide frequent regional optical service. Analytical force/timing estimates, geometric examples and exact saved-event arithmetic are useful engineering checks. They do not turn a preliminary J2, ideal-roll, provisional-ROI model into a validated imaging mission.\end{sloppypar}
+
+
+\begin{sloppypar}The comparison exposes rather than conceals its limits: native-report versus OEM errors differ; initial osculating elements do not directly parameterize a secular mean model; the daily comb is a heuristic; timestamp subtraction does not validate event discovery; and area means do not establish maximum-gap compliance.\end{sloppypar}
+
+
+\begin{sloppypar}This v0.2 is prepared for critical independent engineering review. ``Independent'' describes the implemented calculation route, not an assertion of review by another organization or an independent human sign-off. Codex assisted the calculations and documentation under the author's mission framing and review. No claim of personally handwritten implementation, field validation or flight qualification is made.\end{sloppypar}
+
+
+\begin{sloppypar}Document 2A-1 RevD3.4, its one-page companion, GUI-first v0.1, frozen numerical releases, maps and previously approved figures remain unchanged. Any later incorporation of these derivations into 2A-1 requires a separate reviewed revision.\end{sloppypar}
+
+\clearpage
+\begingroup\small
+\begin{thebibliography}{S17}
+\addcontentsline{toc}{section}{References and source register}
+\bibitem[S01]{S01} Canonical native GUI-first mission, \nolinkurl{reference/gui/mission/AtlasSAT_Nominal_30days_GUI.script}. Exact adopted initial elements, epoch, force, integration and export settings.
+\bibitem[S02]{S02} Installed GMAT R2026a JGM2 coefficient file, time kernel, CoordinateSystem help and MathSpec excerpts, bundled under \nolinkurl{reference/}. MathSpec pp.~23 and 29 define precession/MODEq; original hashes in the source manifest.
+\bibitem[S03]{S03} Preserved independent orbital audit, \nolinkurl{reference/published/E01_orbit_audit.json}. Native report/OEM metrics, nodal rates, local-time conventions and analytical references.
+\bibitem[S04]{S04} Original v0.2 ZIP native two-body state report, \nolinkurl{reference/AtlasSAT_TwoBody_7days_states.txt}; actual elapsed epochs retained.
+\bibitem[S05]{S05} Original seven-day and nominal thirty-day GMAT UTC/EME2000 OEMs, bundled under \nolinkurl{reference/}. State units km and km/s.
+\bibitem[S06]{S06} Frozen v0.4 configuration, 250 m targets/area weights, summary and area evidence under \nolinkurl{reference/v04/} and \nolinkurl{reference/published/E02_area.json}.
+\bibitem[S07]{S07} Frozen final-review phase physics and gap provenance, \nolinkurl{reference/published/E09_phase_physics.json} and \nolinkurl{reference/final_review/evidence/gap_provenance.json}.
+\bibitem[S08]{S08} Sidi Bibi event timeline and exact gap provenance, \nolinkurl{reference/published/E16_timeline_provenance.json} and related CSVs. Original events unchanged.
+\bibitem[S09]{S09} Selected Massa/Oued Essafa event provenance and terrestrial state/Sun knots, \nolinkurl{reference/published/E11_orbit_event_provenance.json} and \nolinkurl{reference/event_state_sun_knots.json}.
+\bibitem[S10]{S10} Archived distributed/grazing, endpoint and orientation evidence under \nolinkurl{reference/v04/results/} and \nolinkurl{reference/published/}. Read as archived evidence, not newly executed.
+\bibitem[S11]{S11} GUI-first v0.1 native and agricultural transfer validation, \nolinkurl{reference/gui/VALIDATION_RESULTS.md} and \nolinkurl{reference/gui/validation/}.
+\bibitem[S12]{S12} Document 2A-1 RevD3.4 and E17 analytical note/arithmetic; complete v0.1 book and comparison baseline under \nolinkurl{reference/v01/}.
+\bibitem[S13]{S13} Original engineering walkthrough and code reviews under \nolinkurl{reference/reviews/}; technical guidance, not new runtime validation.
+\bibitem[S14]{S14} Original full v0.4 access CSV in lossless gzip transport, \nolinkurl{reference/access_primary_250m.csv.gz}. Agricultural calculations exclude 18 historical REF records.
+\bibitem[S15]{S15} Frozen ITRF93 state/Sun cache, \nolinkurl{reference/AtlasSAT_J2_30days_ITRF93.npz}; independent scalar node extraction in \nolinkurl{discrete_revisit.py}. Shared predicted Earth orientation.
+\bibitem[S16]{S16} Native nominal GMAT OEM, \nolinkurl{reference/AtlasSAT_J2_30days.oem}, used for the EME2000-equator count check.
+\bibitem[S17]{S17} ERFA/SOFA-derived IAU-1982 GMST reference, \url{https://raw.githubusercontent.com/liberfa/erfa/master/src/gmst82.c}, consulted 27 October 2026. The new companion evaluates the explicit polynomial; ERFA is a separate test reference.
+\end{thebibliography}
+\endgroup
+\section*{Primary mathematical references}
+The exact external reference list and acquisition limits remain in \nolinkurl{SOURCE_TRACEABILITY.md}. Principal references include MIT OpenCourseWare 16.346 Lecture 30 (averaged J2 framework), NOAA \emph{General Solar Position Calculations} (gross independent illumination check), NAIF \emph{Rotation} and \emph{Time Required Reading}, IERS conventions/time guidance, NGA WGS84 context and the ERFA IAU-1976 precession reference. Adopted gravity constants come from the actual installed JGM2 file.
+\par\href{https://ocw.mit.edu/courses/16-346-astrodynamics-fall-2008/resources/lec_30/}{MIT J2 lecture};
+\href{https://gml.noaa.gov/grad/solcalc/solareqns.PDF}{NOAA solar approximation};
+\href{https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/rotation.html}{NAIF rotations};
+\href{https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/time.html}{NAIF time}.
+\section*{Supplementary numerical record}
+The full \href{../evidence/ANALYTICAL_COMPARISON.csv}{84-row comparison CSV}, executable companions, saved source data, input fingerprints, node/event associations, validation and preservation records accompany this PDF. The condensed table does not replace that complete dataset.
+\end{document}

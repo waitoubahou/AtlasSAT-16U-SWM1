@@ -1,0 +1,145 @@
+{
+  "source": "master:analysis/analytical/analytical_companion.py",
+  "source_sha256": "e35d05ced4501e09d2e5c2138d49add1bde949cdb010c68a7afe75cd2541a7ca",
+  "functions": [
+    {
+      "function": "norm",
+      "original_function_sha256": "89aacd137f781a5b6575101b05bd8147505c8ea293e0aed64eab29a880038cb3",
+      "legacy_cpython312_ast_sha256": "f63a7f0379ea4a1416fbb1ba8c870197b4bad6eb44c5f3ba2155c3eb3e2c65df",
+      "portable_ast_sha256": "d37cfef008ef04b0a33f69cf5622ed8c01c4ac44bc0c3cec2ec83ebbddde9563"
+    },
+    {
+      "function": "unit",
+      "original_function_sha256": "15f169a7883daa794f4ba67719a9eeb443395861e21ec79d251ba7939bdde8a7",
+      "legacy_cpython312_ast_sha256": "5d02575668d4bf886ffb58f7157fe64ed14f5305ebb9c67d61a2c8dcafc30515",
+      "portable_ast_sha256": "31c16b26c0c4f8148dbb0e877af8a9c878ca69f06ce5258b75f8f32c0da7e63a"
+    },
+    {
+      "function": "rotate_x",
+      "original_function_sha256": "584af8f748547ebbe169fc527245ca113ba65e0ff8780c7c41b283038349aae3",
+      "legacy_cpython312_ast_sha256": "2c0bf7de8c85afb49bb52cd03ddec41b68c8f071917a1723978a19ffdbe4b43d",
+      "portable_ast_sha256": "270e2f45e4be3896b95e48742db944fa4db9c2d49831178e0f4d38441aac28d7"
+    },
+    {
+      "function": "rotate_y",
+      "original_function_sha256": "50de269f46194fccac2595c1e7827401a1f9420558242f18dfd5d57dbdba9eba",
+      "legacy_cpython312_ast_sha256": "196f33b9a330b8e5430cf2f5cd7dbbef3f6d82b2d4adc1deaf6fe6229da78bb7",
+      "portable_ast_sha256": "e2b85cc1d8ac34e011970bcc6eec99788fedea645bd2f8a7e192ac48627bf055"
+    },
+    {
+      "function": "rotate_z",
+      "original_function_sha256": "41d8402bcac71ea8e7e06f662a3e9b6ed9462ec79bdf45dcf82f35bdd665d93f",
+      "legacy_cpython312_ast_sha256": "d6b8d7d2de1d5451d83584449bc6bfcf1d89e51be106793b1f758e696373a32f",
+      "portable_ast_sha256": "d4d4ca73720730c4adf247f635671f241366f43bd9ef346abe66d9809ecaca4a"
+    },
+    {
+      "function": "initial_cartesian",
+      "original_function_sha256": "5f04d7b468dd103db6a81ef464cbe8b03cacc270e25a7cd0913e8c8650e16a27",
+      "legacy_cpython312_ast_sha256": "cf9e89f3fde9081032f690d5eea2ffcbe46906d8a2a2f2b6aadef5b1e40d7445",
+      "portable_ast_sha256": "bbcb3c6fd5919954b305bdcff2d421c6d90a970d8c3c0ca4e8d0e4ed0844606a"
+    },
+    {
+      "function": "precession_j2000_to_mod",
+      "original_function_sha256": "4640c4d43cf46bb70de88790f3c5a4da180cd3886b87f4cfd1aa1f45d5b1fe5b",
+      "legacy_cpython312_ast_sha256": "ac67015c245455b8efd46a78d7f725e94387bad0ba98f93c10d078ed185bc5a0",
+      "portable_ast_sha256": "2d2ec7aa7379c087563b452d6098d57c6bf9664cd52e39a2c83e80bd32ef915a"
+    },
+    {
+      "function": "stumpff",
+      "original_function_sha256": "e9b223373b7d0db0f10cd6853012a16383dd616576e1345f945dfca6e37a7fdc",
+      "legacy_cpython312_ast_sha256": "184ef7e744f3cc6cd3b76f5bf516cf4cd28947c9e83a91e45c9c3c6f73ab42ff",
+      "portable_ast_sha256": "d8c4c767b9b627518007ac49c5655aa95ee36bc2da333f0a1cdee0320aa24735"
+    },
+    {
+      "function": "universal_two_body",
+      "original_function_sha256": "91a80fff6e0d75d40342ba22d40f038b5ab2a3f591b77070879e2820d12a9eaa",
+      "legacy_cpython312_ast_sha256": "4376fffc9fd7df5cba10ab819ce90f650c43c5471d29b6fa72ba75d3f5dcdd06",
+      "portable_ast_sha256": "40425401e276b4ac1b0c0d5f1ae827bb5653bf064f069362a61d23fbe4dadd30"
+    },
+    {
+      "function": "j2_acceleration",
+      "original_function_sha256": "30971fc70c3b82fdd7f6b571527bce9a33d9486dec35b8e713d37728b71788ef",
+      "legacy_cpython312_ast_sha256": "3cd4eef7e36b40fac0e93182372c246c6f025553c76526150b3c4c0ab82b458a",
+      "portable_ast_sha256": "06c0f4590da177c083a90653f1721cd521686a2451d3209677d4e19d7ad0160d"
+    },
+    {
+      "function": "j2_potential",
+      "original_function_sha256": "887a244d13d9b2d34e26333cc57ef5570dbd75b7fcb98a33466f5c8de8800261",
+      "legacy_cpython312_ast_sha256": "e9d99ccd2950998dded2bf77e880ca8308e5b692d88839974be38b5317766350",
+      "portable_ast_sha256": "b034dd48bab6a93bcd83a4370dbefb3286310a485ae64c60606fe91ecba78a1d"
+    },
+    {
+      "function": "energy_mean_sma_estimate",
+      "original_function_sha256": "83b66fab7939b6bbc1835ebe09b8d04758736c7547117037b6b50ee6d3edcfba",
+      "legacy_cpython312_ast_sha256": "97412a93b3e4dcfdde4a1f94e0c833eeffaf62e63bdf966d5ba94fe5b07dc053",
+      "portable_ast_sha256": "24b8f86ef6c719220cb87ecd8d611922a5be565dbd88783b48a067d400228159"
+    },
+    {
+      "function": "secular_rates",
+      "original_function_sha256": "1e59bf6409d1259771365e46da036503fe9ae25fc9f334f9b3cb00e0b9672118",
+      "legacy_cpython312_ast_sha256": "6e9784b476cac160147fd29e5d7e1d22f77b802b5a3c13012107eb9853ef7629",
+      "portable_ast_sha256": "76c50502b95658e746c5829e3cdbc977597a418ca6a2b1717af8295df67cf1e2"
+    },
+    {
+      "function": "spherical_reach",
+      "original_function_sha256": "b2f1a60c818959d5b9fdcfea365b2ab159458aedd34e6ee0e3123c5c313115bd",
+      "legacy_cpython312_ast_sha256": "e723ff8484fe70ddfab88351531e8f54a7a3b95719b958b17c09effdb113395f",
+      "portable_ast_sha256": "b9a6811e8f59cbd9d303ae67e90e49edeeb4b7a415a11ca5ac2703ed916b36ed"
+    },
+    {
+      "function": "surface_point",
+      "original_function_sha256": "96f19d788a6f37706de42be0463429fff3644aef6e399444a11eb3a379b27d57",
+      "legacy_cpython312_ast_sha256": "25d92644fd75760748d04cac7060006ffc3e73c56de9a4cee92d332d607ebd4c",
+      "portable_ast_sha256": "d2ce06830031504e0d98dc217611f9abe78841bcbfd51a5b91756cf8ec6af549"
+    },
+    {
+      "function": "local_look",
+      "original_function_sha256": "d3cbb0c866d4f6ea48d516bb4bc7be5fceaa82a0a240b7d44c6cb8193e7d8e78",
+      "legacy_cpython312_ast_sha256": "1421a9a08bb9c340d63469fcb31259f1606ade4e98363b0a07f528a559538e5b",
+      "portable_ast_sha256": "a8dfc4dd98b86f3714e71c729e43ae36475c721daf849ba6faccc9f76bfe5c44"
+    },
+    {
+      "function": "ellipsoid_ray",
+      "original_function_sha256": "d828a998c1b3f19b816c896321d79325694350d1011bb065ecf1b3d8fff277c1",
+      "legacy_cpython312_ast_sha256": "fbaef57471d7a874c26ba54556a84707e5f698284299f254cf01081e243c4fec",
+      "portable_ast_sha256": "eda58c27009c81fee9790c77c64790158cf4a6f3a4240be9ba6ed8b54c895aaa"
+    },
+    {
+      "function": "bisection",
+      "original_function_sha256": "e89e937e95d94e02e571651742e9b62a7d66d41f174842785eeb7c0e6ea2feb5",
+      "legacy_cpython312_ast_sha256": "0c2d9be84b248d4c5dc560562ad91c9ba99c6afe519b67eb28f23a82d4445013",
+      "portable_ast_sha256": "8a6522ea3e032e0eaa41f3f0a57b43674592714f8d38504a28395cb194539b3a"
+    },
+    {
+      "function": "radial_groundtrack",
+      "original_function_sha256": "c7d7c11020d81577bcdc2041b10162b51b8a64b4b025582c5f77745eae4a0dd9",
+      "legacy_cpython312_ast_sha256": "493437bbc689e4fc8e840b8e313bcd28dedb2a545d564fffac14a26708f10a65",
+      "portable_ast_sha256": "03c2792408b4e8b1cdbeea9294f286b287f3d2fa5724cd5b2f03ef601bb41519"
+    },
+    {
+      "function": "noaa_solar_approx",
+      "original_function_sha256": "7f57603ebc7c0f626e99348be05ee5972f4494be415e37293d535012cbe7eb76",
+      "legacy_cpython312_ast_sha256": "6722bdd07727c5d19371d525048a19d86183b5779c063d98f1157af0ab596943",
+      "portable_ast_sha256": "8994b61f2182b2bbbc59d9372f9fa70266a707021eb747d5c24eda2900a3eaa4"
+    },
+    {
+      "function": "merged_intervals",
+      "original_function_sha256": "6ac45188df0a1b49adc62664326a0c1588f6d5f221baf4929515e53bbe7a8d34",
+      "legacy_cpython312_ast_sha256": "0a3d9b07d17ea1873352c8de1c225c0a6ea20da54f07ef752f2e13986be474be",
+      "portable_ast_sha256": "ac68470eecccd9480cf018e0dc632a865b35cdd5ba6c5d3fb7a78d1865a37ede"
+    },
+    {
+      "function": "exact_gaps",
+      "original_function_sha256": "8257bf0f0014565cf0c1c8e677aa812f3f1dc6c43043c43c8d1c84bf4119acfa",
+      "legacy_cpython312_ast_sha256": "c97719bbfe4c64a2cdc03314e0c8fd7091e2fee6050deb51eca0ad30b3376794",
+      "portable_ast_sha256": "05fcabcfc2972034d854c74763b2b253fda1da9e028fc3206316e8f9f1ca1f0d"
+    },
+    {
+      "function": "coverage_from_saved_events",
+      "original_function_sha256": "5758f292f50fc335f188cafd6461126201387ec39f4974344aa57f1ab7310540",
+      "legacy_cpython312_ast_sha256": "cb5785cade81e25a3c0890c4384073a7095e509634b26753cfcc7e4eb7861e90",
+      "portable_ast_sha256": "2ff3aeb6323aab3e9b4bf5b301ef28de1422b08221d524e540d9f1270556cef2"
+    }
+  ],
+  "structural_digest_schema": "node-type + sorted nonempty semantic fields; exact UTF-8 function source SHA-256 is unchanged and primary"
+}

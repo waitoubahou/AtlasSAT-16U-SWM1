@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests": 39,
+  "baseline_unit_tests": 24,
+  "public_tests": 15,
+  "python": "3.12",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "elapsed_s": 1.218,
+  "scope": "Public suite only; full private analytical/ROI suites not rerun",
+  "python313": "Not executed: local 3.13 interpreter unavailable. Portable AST check does not use ast.dump; exact source-body SHA checks retained."
+}

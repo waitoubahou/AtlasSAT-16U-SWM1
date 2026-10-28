@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "source": "master:analysis/gui_first/analysis/analyze.py",
+      "destination": "studies/2A-orbital-analysis/src/analyze.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/frames.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/frames.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/geometry.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/geometry.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/metrics.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/metrics.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/oem.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/oem.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/optical_access.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/optical_access.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/pipeline.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/pipeline.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/provenance.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/provenance.py",
+      "byte_identical": false,
+      "documented_path_only_change": true,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/analysis/atlas_analysis/__init__.py",
+      "destination": "studies/2A-orbital-analysis/src/atlas_analysis/__init__.py",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:analysis/gui_first/tests/test_analysis.py",
+      "destination": "studies/2A-orbital-analysis/tests/test_baseline_units.py",
+      "byte_identical": false,
+      "documented_path_only_change": true,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script",
+      "destination": "studies/2A-orbital-analysis/simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:figures/03_rolling_coverage.png",
+      "destination": "studies/2A-orbital-analysis/figures/03_rolling_coverage.png",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    },
+    {
+      "source": "master:figures/04_gap_evidence.png",
+      "destination": "studies/2A-orbital-analysis/figures/04_gap_evidence.png",
+      "byte_identical": true,
+      "documented_path_only_change": false,
+      "scientific_source_invariant": true
+    }
+  ]
+}

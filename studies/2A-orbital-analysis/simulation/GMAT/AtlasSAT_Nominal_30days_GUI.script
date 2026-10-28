@@ -1,0 +1,111 @@
+% =============================================================================
+% AtlasSAT-16U | GUI-first experiment v0.1 | NOMINAL 30-DAY J2 MISSION
+% Canonical, human-maintained GMAT mission. Open/inspect/edit/run/save in GMAT GUI.
+% This mission requires NO Python. Optical access/revisit is separate postprocessing.
+% Inherited v0.3 physical inputs are preserved; this is not a new orbit design.
+% All output filenames below belong ONLY to this experiment. Never use frozen paths.
+% =============================================================================
+
+% --- 1. Initial-element reference axes (not the OEM output frame) ---------------
+Create CoordinateSystem EarthMeanOfDate;
+GMAT EarthMeanOfDate.Origin = Earth;
+GMAT EarthMeanOfDate.Axes = MODEq;
+
+% --- 2. Spacecraft: Resources > Spacecraft > AtlasSAT16U > Orbit -----------------
+% Assumed epoch, not launch telemetry. Change SMA, INC, epoch/elements here or GUI.
+% SMA is measured from Earth's centre. With the baseline gravity radius,
+% 6928.1363 km corresponds to approximately 550 km nominal altitude.
+% The inherited RAAN sets the initial descending local MEAN solar time near 10:30.
+% Changing epoch/inclination/altitude does NOT automatically recalibrate LTDN.
+Create Spacecraft AtlasSAT16U;
+GMAT AtlasSAT16U.DateFormat = UTCGregorian;
+GMAT AtlasSAT16U.Epoch = '20 Oct 2026 12:00:00.000';
+GMAT AtlasSAT16U.CoordinateSystem = EarthMeanOfDate;
+GMAT AtlasSAT16U.DisplayStateType = Keplerian;
+GMAT AtlasSAT16U.SMA = 6928.1363;
+GMAT AtlasSAT16U.ECC = 0.001;
+GMAT AtlasSAT16U.INC = 97.5;
+GMAT AtlasSAT16U.RAAN = 6.463170753756;
+GMAT AtlasSAT16U.AOP = 0;
+GMAT AtlasSAT16U.TA = 0;
+
+% Conceptual mechanical properties; Cd/Cr/areas are inactive with drag/SRP off.
+GMAT AtlasSAT16U.DryMass = 24;
+GMAT AtlasSAT16U.Cd = 2.2;
+GMAT AtlasSAT16U.Cr = 1.5;
+GMAT AtlasSAT16U.DragArea = 0.05;
+GMAT AtlasSAT16U.SRPArea = 0.05;
+
+% --- 3. Earth force model: inspect via Propagator force-model panel --------------
+% JGM2 degree/order 2/0, RSSStep; no drag, SRP, tides, relativity or third bodies.
+Create ForceModel AtlasEarth;
+GMAT AtlasEarth.CentralBody = Earth;
+GMAT AtlasEarth.PrimaryBodies = {Earth};
+GMAT AtlasEarth.Drag = None;
+GMAT AtlasEarth.SRP = Off;
+GMAT AtlasEarth.RelativisticCorrection = Off;
+GMAT AtlasEarth.ErrorControl = RSSStep;
+GMAT AtlasEarth.GravityField.Earth.Degree = 2;
+GMAT AtlasEarth.GravityField.Earth.Order = 0;
+GMAT AtlasEarth.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT AtlasEarth.GravityField.Earth.TideModel = 'None';
+
+% --- 4. Numerical propagation: Resources > Propagators > AtlasProp ---------------
+% Max integrator step and OEM cadence are distinct settings even though both 30 s.
+Create Propagator AtlasProp;
+GMAT AtlasProp.FM = AtlasEarth;
+GMAT AtlasProp.Type = PrinceDormand78;
+GMAT AtlasProp.InitialStepSize = 30;
+GMAT AtlasProp.Accuracy = 1e-11;
+GMAT AtlasProp.MinStep = 0.001;
+GMAT AtlasProp.MaxStep = 30;
+GMAT AtlasProp.MaxStepAttempts = 50;
+GMAT AtlasProp.StopIfAccuracyIsViolated = true;
+
+% --- 5. Native state report: Resources > Output > AtlasStates --------------------
+% Epoch is A1ModJulian; EarthMJ2000Eq Cartesian km / km/s matches native EME2000 OEM.
+% EarthFixed report columns use GMAT's installed orientation, NOT Python ITRF93.
+% Before a different manual experiment, select new output filenames in GUI.
+Create ReportFile AtlasStates;
+GMAT AtlasStates.Filename = 'AtlasSAT_GUI_Nominal_30days_states.txt';
+GMAT AtlasStates.Precision = 16;
+GMAT AtlasStates.WriteHeaders = true;
+GMAT AtlasStates.WriteReport = true;
+GMAT AtlasStates.Add = {AtlasSAT16U.ElapsedSecs, AtlasSAT16U.A1ModJulian, AtlasSAT16U.EarthMJ2000Eq.X, AtlasSAT16U.EarthMJ2000Eq.Y, AtlasSAT16U.EarthMJ2000Eq.Z, AtlasSAT16U.EarthMJ2000Eq.VX, AtlasSAT16U.EarthMJ2000Eq.VY, AtlasSAT16U.EarthMJ2000Eq.VZ, AtlasSAT16U.EarthFixed.X, AtlasSAT16U.EarthFixed.Y, AtlasSAT16U.EarthFixed.Z, AtlasSAT16U.EarthFixed.VX, AtlasSAT16U.EarthFixed.VY, AtlasSAT16U.EarthFixed.VZ, AtlasSAT16U.Earth.Latitude, AtlasSAT16U.Earth.Longitude, AtlasSAT16U.Earth.Altitude};
+
+% --- 6. Native CCSDS OEM: Resources > Output > AtlasOEM ---------------------------
+% One UTC/EME2000 segment, 30 s output, degree-7 GMAT Lagrange interpolation.
+% CCSDS OEM Cartesian state units are km and km/s; analysis requires this contract.
+Create EphemerisFile AtlasOEM;
+GMAT AtlasOEM.Spacecraft = AtlasSAT16U;
+GMAT AtlasOEM.Filename = 'AtlasSAT_GUI_Nominal_30days.oem';
+GMAT AtlasOEM.FileFormat = CCSDS-OEM;
+GMAT AtlasOEM.CoordinateSystem = EarthMJ2000Eq;
+GMAT AtlasOEM.EpochFormat = UTCGregorian;
+GMAT AtlasOEM.StepSize = 30;
+GMAT AtlasOEM.Interpolator = Lagrange;
+GMAT AtlasOEM.InterpolationOrder = 7;
+
+% --- 7. Native GUI viewers: illustrations, not optical coverage ------------------
+% Installed R2026a may convert OrbitView to OpenFramesInterface; see the user guide.
+% View sampling affects rendering only; it does not change integration or exports.
+Create OrbitView AtlasOrbit;
+GMAT AtlasOrbit.Add = {AtlasSAT16U, Earth};
+GMAT AtlasOrbit.CoordinateSystem = EarthMJ2000Eq;
+GMAT AtlasOrbit.DataCollectFrequency = 1;
+GMAT AtlasOrbit.UpdatePlotFrequency = 1000;
+GMAT AtlasOrbit.MaxPlotPoints = 100000;
+GMAT AtlasOrbit.ShowPlot = true;
+
+Create GroundTrackPlot AtlasGroundTrack;
+GMAT AtlasGroundTrack.Add = {AtlasSAT16U};
+GMAT AtlasGroundTrack.CentralBody = Earth;
+GMAT AtlasGroundTrack.DataCollectFrequency = 1;
+GMAT AtlasGroundTrack.UpdatePlotFrequency = 1000;
+GMAT AtlasGroundTrack.ShowPlot = true;
+
+% --- 8. Mission tab > Propagate: editable stopping condition ----------------------
+% 30 days = 2592000 elapsed SI seconds. No coverage/tasking commands are claimed.
+BeginMissionSequence;
+Propagate 'Nominal 30-day Earth J2 propagation' AtlasProp(AtlasSAT16U) {AtlasSAT16U.ElapsedSecs = 2592000};
+

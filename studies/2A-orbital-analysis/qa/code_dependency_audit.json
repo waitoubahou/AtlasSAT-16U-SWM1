@@ -1,0 +1,204 @@
+{
+  "scope": "Static import inventory; optional real-OEM dependencies are separate from public examples",
+  "files": [
+    {
+      "file": "tools/build_publications.py",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "shutil",
+        "subprocess"
+      ]
+    },
+    {
+      "file": "tools/verify_candidate.py",
+      "imports": [
+        "argparse",
+        "ast",
+        "hashlib",
+        "json",
+        "pathlib",
+        "pypdf",
+        "re",
+        "urllib.parse"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/analytical_checks.py",
+      "imports": [
+        "atlas_analytical.formulae",
+        "json",
+        "math",
+        "numpy",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/controlled_geometry.py",
+      "imports": [
+        "atlas_analysis.geometry",
+        "atlas_analysis.oem",
+        "atlas_analysis.optical_access",
+        "datetime",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/replay_saved_gap.py",
+      "imports": [
+        "atlas_analysis.metrics",
+        "json",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/analyze.py",
+      "imports": [
+        "atlas_analysis.pipeline"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/tests/ast_identity.py",
+      "imports": [
+        "ast",
+        "hashlib",
+        "json"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/tests/test_baseline_units.py",
+      "imports": [
+        "atlas_analysis.geometry",
+        "atlas_analysis.metrics",
+        "atlas_analysis.oem",
+        "atlas_analysis.optical_access",
+        "atlas_analysis.provenance",
+        "copy",
+        "datetime",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/tests/test_public_examples.py",
+      "imports": [
+        "analytical_checks",
+        "ast",
+        "ast_identity",
+        "atlas_analysis.geometry",
+        "atlas_analysis.metrics",
+        "atlas_analysis.provenance",
+        "atlas_analytical",
+        "controlled_geometry",
+        "hashlib",
+        "json",
+        "math",
+        "numpy",
+        "pathlib",
+        "replay_saved_gap",
+        "sys",
+        "unittest"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/frames.py",
+      "imports": [
+        ".provenance",
+        "erfa",
+        "numpy",
+        "pathlib",
+        "spiceypy"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/geometry.py",
+      "imports": [
+        "csv",
+        "numpy",
+        "scipy.interpolate"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/metrics.py",
+      "imports": [
+        "numpy"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/oem.py",
+      "imports": [
+        "dataclasses",
+        "datetime",
+        "numpy",
+        "pathlib"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/optical_access.py",
+      "imports": [
+        ".geometry",
+        "datetime",
+        "numpy",
+        "scipy.interpolate",
+        "scipy.optimize"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/pipeline.py",
+      "imports": [
+        ".frames",
+        ".geometry",
+        ".metrics",
+        ".oem",
+        ".optical_access",
+        ".provenance",
+        "argparse",
+        "csv",
+        "erfa",
+        "json",
+        "numpy",
+        "pathlib",
+        "scipy",
+        "spiceypy",
+        "time"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/provenance.py",
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "platform",
+        "uuid"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/__init__.py",
+      "imports": []
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analytical/formulae.py",
+      "imports": [
+        "datetime",
+        "math",
+        "numpy"
+      ]
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analytical/__init__.py",
+      "imports": []
+    }
+  ]
+}

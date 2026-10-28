@@ -1,0 +1,14 @@
+# Local software and generated results are not public release inputs.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+**/working/
+**/analysis_runs/
+**/build/
+*.log
+*.aux
+*.xdv
+*.synctex.gz
+.DS_Store
+Thumbs.db

@@ -1,0 +1,47 @@
+{
+  "description": "Six saved daylight point-access windows, Sidi Bibi worst-gap target. Target geometry/area weights are NOT included.",
+  "source": "Accepted E16 timeline record; nominal 30 km, ideal independent \u00b120 deg roll, geometric Sun elevation >=0 deg",
+  "source_sha256": "5b9f63eb43a87e115f77083a7d3274efe94702de250da9806d4862af665fb6bf",
+  "epoch_utc": "2026-10-20T12:00:00+00:00",
+  "duration_s": 2592000,
+  "scope": "Single saved target only. Not full-ROI reproduction, event discovery or scheduling.",
+  "intervals": [
+    {
+      "entry_s": "948605.2774549042",
+      "exit_s": "948605.2789127973",
+      "entry_utc": "2026-10-31T11:30:05.277455Z",
+      "exit_utc": "2026-10-31T11:30:05.278913Z"
+    },
+    {
+      "entry_s": "1034630.2997747285",
+      "exit_s": "1034630.301211559",
+      "entry_utc": "2026-11-01T11:23:50.299775Z",
+      "exit_utc": "2026-11-01T11:23:50.301212Z"
+    },
+    {
+      "entry_s": "1120655.0457925862",
+      "exit_s": "1120655.0473174104",
+      "entry_utc": "2026-11-02T11:17:35.045793Z",
+      "exit_utc": "2026-11-02T11:17:35.047317Z"
+    },
+    {
+      "entry_s": "2244646.8966193916",
+      "exit_s": "2244646.89808768",
+      "entry_utc": "2026-11-15T11:30:46.896619Z",
+      "exit_utc": "2026-11-15T11:30:46.898088Z"
+    },
+    {
+      "entry_s": "2330671.938997172",
+      "exit_s": "2330671.9404239873",
+      "entry_utc": "2026-11-16T11:24:31.938997Z",
+      "exit_utc": "2026-11-16T11:24:31.940424Z"
+    },
+    {
+      "entry_s": "2416696.7018474457",
+      "exit_s": "2416696.703342739",
+      "entry_utc": "2026-11-17T11:18:16.701847Z",
+      "exit_utc": "2026-11-17T11:18:16.703343Z"
+    }
+  ],
+  "reported_maximum_complete_gap_h": 312.21995813943926
+}

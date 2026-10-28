@@ -1,0 +1,15 @@
+{
+  "kind": "Artificial linear terrestrial path; not a mission simulation",
+  "latitude_deg": 30.1,
+  "longitude_deg": -9.5,
+  "height_km": 550,
+  "speed_km_s": 7.5,
+  "times_s": [
+    0,
+    30
+  ],
+  "crossing_s": 15,
+  "synthetic_sun_distance_km": 100000000,
+  "toy_circular_radius_km": 7000,
+  "toy_mu_km3_s2": 398600.4415
+}

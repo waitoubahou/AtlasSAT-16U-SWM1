@@ -1,0 +1,35 @@
+{
+  "numpy": {
+    "version": "2.5.4",
+    "requires_python": ">=3.12",
+    "licence_expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0",
+    "licence_summary": [],
+    "scope": "External installed dependency, not redistributed"
+  },
+  "scipy": {
+    "version": "1.18.1",
+    "requires_python": ">=3.12",
+    "licence_expression": null,
+    "licence_summary": [
+      "Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers.",
+      " All rights reserved."
+    ],
+    "scope": "External installed dependency, not redistributed"
+  },
+  "spiceypy": {
+    "version": "8.3.0",
+    "requires_python": ">=3.10",
+    "licence_expression": "MIT",
+    "licence_summary": [],
+    "scope": "External installed dependency, not redistributed"
+  },
+  "pyerfa": {
+    "version": "2.0.1.5",
+    "requires_python": ">=3.9",
+    "licence_expression": null,
+    "licence_summary": [
+      "BSD 3-Clause License"
+    ],
+    "scope": "External installed dependency, not redistributed"
+  }
+}

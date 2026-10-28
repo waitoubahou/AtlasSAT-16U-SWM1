@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "studies/2A-orbital-analysis/src/analyze.py",
+      "sha256": "b3f9210f9012a3085dd88b80073dbcf6da9834c2339b6a027997141cc72e62ac",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/frames.py",
+      "sha256": "9777b85ab0aa0ee0905edbd88f459821cd8530ab98d8b8a5d56d3f778c764569",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/geometry.py",
+      "sha256": "de272ca2ac536335c2ddd91b6a5c7973addd4287e68a59aa309abdc4ac288eda",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/metrics.py",
+      "sha256": "8f8adf018631ffa7a1a6cca81de4e02b6a0dda24524b09c8dac1c1cbbbc042a5",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/oem.py",
+      "sha256": "fe7085fc2a0acd6a5e6b0e7b22b33b40e8eea8ea7e9e1634996ec8ffeb11fbd7",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/optical_access.py",
+      "sha256": "f867561ef7288d7a2e1f0cdd92b8383b7afde72328bb6f1974b7b4c6bad2fe1e",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/pipeline.py",
+      "sha256": "155f44e2a9a886ed55c4c493f7aa18c4e236419391931917d6cfd30773403df1",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/provenance.py",
+      "sha256": "2a3ba5f7e934418e897336f6ab536e66ac49ab6c1d0d76da4f913d46265ac47c",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analysis/__init__.py",
+      "sha256": "c658f628c6c6867ab0959213fca88d4fe8f613ac5381c7f1afe8586dd786efcc",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analytical/formulae.py",
+      "sha256": "50ae907a8cf8d6d4d16d29bacced6e0c696c9054d48eb2cc0b5149a1eed17f05",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/src/atlas_analytical/__init__.py",
+      "sha256": "34a6f8d3d0a56e50786e36b01a65a8bb1ae912d2c8978fd8c5cefabf59819ae6",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script",
+      "sha256": "1280cbb6e781b55d06a3192883d132dc407469d87230926756e0cbf28d237372",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/analytical_checks.py",
+      "sha256": "37c93a852559ab03faff3263b1388ba352577e6c231288136618b4b7de2ffe18",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/controlled_geometry.py",
+      "sha256": "bf0fc0c1828b3f0c034c344152548c3c62df36dc16be4be70d2b9c617b73ac9a",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/examples/replay_saved_gap.py",
+      "sha256": "4976c3d7cb18671f3d9a656d507875360a84566f29f87e98d5425dd9fc59d41c",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/config/optical_geometry.json",
+      "sha256": "6ba36378381fcff8d603a2dbac83023ec5a2d6cae5a9652076bf09de1e1cab2b",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/data/published_results.json",
+      "sha256": "f6362a37b15f5bebf50a99a7b0ad436845c4f6e43e43b54937994a9907641bcf",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/data/examples/controlled_inputs.json",
+      "sha256": "d65980d5bb826331e1d74ef4ff75b3358257f12abe5c508fbeb636b653f69da0",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/data/examples/CONTROLLED_NOT_GMAT.oem",
+      "sha256": "3a542c41e64c829cd7491ce59e1a4e15fb61e1612d719dc056584c48b7331837",
+      "unchanged_from_rc01": true
+    },
+    {
+      "file": "studies/2A-orbital-analysis/data/examples/saved_daylight_intervals.json",
+      "sha256": "2863af077067db469b6f5e084f2bfb7d0679318c45b84338076dd52712bb6aef",
+      "unchanged_from_rc01": true
+    }
+  ]
+}

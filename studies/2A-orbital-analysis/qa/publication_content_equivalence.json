@@ -1,0 +1,991 @@
+{
+  "passed": true,
+  "method": "Every original glyph matched by character/x/top/font-size rounded to 0.01 pt; no original omission. Full pages rendered with Poppler at 72 dpi and compared RGB pixels.",
+  "documents": [
+    {
+      "accepted_file": "AtlasSAT_2A-1_Orbital_Analysis_RevD3_5.pdf",
+      "public_file": "AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "accepted_sha256": "841d449c1ef2973a54c57afadf2d183ac86d09ae226fa25b7a0a3e600941f15d",
+      "public_sha256": "39d6cfd09983e9cc1c28b123a8a85067295360cbecf72e3f346a617e56531781",
+      "pages": [
+        {
+          "page": 1,
+          "accepted_glyphs": 1769,
+          "public_glyphs": 1769,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 2,
+          "accepted_glyphs": 2791,
+          "public_glyphs": 2791,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 3,
+          "accepted_glyphs": 2890,
+          "public_glyphs": 2890,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 4,
+          "accepted_glyphs": 2860,
+          "public_glyphs": 2860,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 5,
+          "accepted_glyphs": 3266,
+          "public_glyphs": 3266,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 6,
+          "accepted_glyphs": 982,
+          "public_glyphs": 982,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 7,
+          "accepted_glyphs": 1775,
+          "public_glyphs": 1775,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 8,
+          "accepted_glyphs": 3317,
+          "public_glyphs": 3317,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 9,
+          "accepted_glyphs": 781,
+          "public_glyphs": 1141,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 10,
+          "accepted_glyphs": 629,
+          "public_glyphs": 629,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 11,
+          "accepted_glyphs": 2618,
+          "public_glyphs": 2618,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 12,
+          "accepted_glyphs": 2362,
+          "public_glyphs": 2362,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 13,
+          "accepted_glyphs": 415,
+          "public_glyphs": 415,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 14,
+          "accepted_glyphs": 1931,
+          "public_glyphs": 1931,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 15,
+          "accepted_glyphs": 3010,
+          "public_glyphs": 3010,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 16,
+          "accepted_glyphs": 3891,
+          "public_glyphs": 3891,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 17,
+          "accepted_glyphs": 697,
+          "public_glyphs": 697,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 18,
+          "accepted_glyphs": 1092,
+          "public_glyphs": 1092,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 19,
+          "accepted_glyphs": 2507,
+          "public_glyphs": 2507,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 20,
+          "accepted_glyphs": 1869,
+          "public_glyphs": 1869,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 21,
+          "accepted_glyphs": 3809,
+          "public_glyphs": 3882,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        }
+      ],
+      "glyph_omissions": [],
+      "page_count": 21,
+      "all_original_glyphs_and_positions_retained": true
+    },
+    {
+      "accepted_file": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1.pdf",
+      "public_file": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "accepted_sha256": "ad8f9aa30ec4745450db275dc94020370b238a71517e0b46e5b106bcd96fc81e",
+      "public_sha256": "6c2500de9e960373ad28aae6a85dbae60d073c58372a31aa4883ebeb4484c83c",
+      "pages": [
+        {
+          "page": 1,
+          "accepted_glyphs": 1486,
+          "public_glyphs": 1486,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 2,
+          "accepted_glyphs": 632,
+          "public_glyphs": 632,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 3,
+          "accepted_glyphs": 2832,
+          "public_glyphs": 2926,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 4,
+          "accepted_glyphs": 2362,
+          "public_glyphs": 2362,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 5,
+          "accepted_glyphs": 1664,
+          "public_glyphs": 1664,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 6,
+          "accepted_glyphs": 1666,
+          "public_glyphs": 1666,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 7,
+          "accepted_glyphs": 472,
+          "public_glyphs": 472,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 8,
+          "accepted_glyphs": 1676,
+          "public_glyphs": 1676,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 9,
+          "accepted_glyphs": 1684,
+          "public_glyphs": 1684,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 10,
+          "accepted_glyphs": 2368,
+          "public_glyphs": 2368,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 11,
+          "accepted_glyphs": 247,
+          "public_glyphs": 247,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 12,
+          "accepted_glyphs": 2187,
+          "public_glyphs": 2187,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 13,
+          "accepted_glyphs": 1892,
+          "public_glyphs": 1892,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 14,
+          "accepted_glyphs": 2213,
+          "public_glyphs": 2213,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 15,
+          "accepted_glyphs": 2487,
+          "public_glyphs": 2487,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 16,
+          "accepted_glyphs": 137,
+          "public_glyphs": 137,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 17,
+          "accepted_glyphs": 1924,
+          "public_glyphs": 1924,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 18,
+          "accepted_glyphs": 2145,
+          "public_glyphs": 2145,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 19,
+          "accepted_glyphs": 2464,
+          "public_glyphs": 2464,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 20,
+          "accepted_glyphs": 1950,
+          "public_glyphs": 1950,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 21,
+          "accepted_glyphs": 2871,
+          "public_glyphs": 2871,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 22,
+          "accepted_glyphs": 2766,
+          "public_glyphs": 2766,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 23,
+          "accepted_glyphs": 2117,
+          "public_glyphs": 2117,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 24,
+          "accepted_glyphs": 2201,
+          "public_glyphs": 2201,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 25,
+          "accepted_glyphs": 2611,
+          "public_glyphs": 2611,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 26,
+          "accepted_glyphs": 2354,
+          "public_glyphs": 2354,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 27,
+          "accepted_glyphs": 3032,
+          "public_glyphs": 3032,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 28,
+          "accepted_glyphs": 584,
+          "public_glyphs": 584,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 29,
+          "accepted_glyphs": 2029,
+          "public_glyphs": 2029,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 30,
+          "accepted_glyphs": 2510,
+          "public_glyphs": 2510,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 31,
+          "accepted_glyphs": 1994,
+          "public_glyphs": 1994,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 32,
+          "accepted_glyphs": 2302,
+          "public_glyphs": 2302,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 33,
+          "accepted_glyphs": 1846,
+          "public_glyphs": 1846,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 34,
+          "accepted_glyphs": 1398,
+          "public_glyphs": 1398,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 35,
+          "accepted_glyphs": 2137,
+          "public_glyphs": 2137,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 36,
+          "accepted_glyphs": 2670,
+          "public_glyphs": 2670,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 37,
+          "accepted_glyphs": 2316,
+          "public_glyphs": 2316,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 38,
+          "accepted_glyphs": 2004,
+          "public_glyphs": 2004,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 39,
+          "accepted_glyphs": 1052,
+          "public_glyphs": 1052,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 40,
+          "accepted_glyphs": 2333,
+          "public_glyphs": 2333,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 41,
+          "accepted_glyphs": 2438,
+          "public_glyphs": 2438,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 42,
+          "accepted_glyphs": 1629,
+          "public_glyphs": 1629,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 43,
+          "accepted_glyphs": 2570,
+          "public_glyphs": 2570,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 44,
+          "accepted_glyphs": 1012,
+          "public_glyphs": 1012,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 45,
+          "accepted_glyphs": 2582,
+          "public_glyphs": 2582,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 46,
+          "accepted_glyphs": 2734,
+          "public_glyphs": 2734,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 47,
+          "accepted_glyphs": 1648,
+          "public_glyphs": 1648,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 48,
+          "accepted_glyphs": 1315,
+          "public_glyphs": 1315,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        },
+        {
+          "page": 49,
+          "accepted_glyphs": 3268,
+          "public_glyphs": 3362,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        }
+      ],
+      "glyph_omissions": [],
+      "page_count": 49,
+      "all_original_glyphs_and_positions_retained": true
+    },
+    {
+      "accepted_file": "AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4.pdf",
+      "public_file": "AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "accepted_sha256": "72bacc92c926ed00828dc6e712f2492f6bd78e1d1c3fdc29327b900cad8ce858",
+      "public_sha256": "43dc05eb49081c7c610d3c09b6d4681b65617e8229c42b0b046782a166a10bff",
+      "pages": [
+        {
+          "page": 1,
+          "accepted_glyphs": 3712,
+          "public_glyphs": 4116,
+          "original_glyphs_missing_at_0_01pt": 0,
+          "media_box_equal": true
+        }
+      ],
+      "glyph_omissions": [],
+      "page_count": 1,
+      "all_original_glyphs_and_positions_retained": true
+    }
+  ],
+  "pixel_comparison": [
+    {
+      "document": "report",
+      "page": 1,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 2,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 3,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 4,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 5,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 6,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 7,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 8,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 9,
+      "pixel_identical": false,
+      "difference_bbox": [
+        56,
+        770,
+        518,
+        796
+      ]
+    },
+    {
+      "document": "report",
+      "page": 10,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 11,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 12,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 13,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 14,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 15,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 16,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 17,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 18,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 19,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 20,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "report",
+      "page": 21,
+      "pixel_identical": false,
+      "difference_bbox": [
+        57,
+        826,
+        306,
+        833
+      ]
+    },
+    {
+      "document": "book",
+      "page": 1,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 2,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 3,
+      "pixel_identical": false,
+      "difference_bbox": [
+        57,
+        826,
+        363,
+        833
+      ]
+    },
+    {
+      "document": "book",
+      "page": 4,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 5,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 6,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 7,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 8,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 9,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 10,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 11,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 12,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 13,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 14,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 15,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 16,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 17,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 18,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 19,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 20,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 21,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 22,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 23,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 24,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 25,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 26,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 27,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 28,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 29,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 30,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 31,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 32,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 33,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 34,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 35,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 36,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 37,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 38,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 39,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 40,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 41,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 42,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 43,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 44,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 45,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 46,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 47,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 48,
+      "pixel_identical": true,
+      "difference_bbox": null
+    },
+    {
+      "document": "book",
+      "page": 49,
+      "pixel_identical": false,
+      "difference_bbox": [
+        57,
+        826,
+        366,
+        833
+      ]
+    },
+    {
+      "document": "one",
+      "page": 1,
+      "pixel_identical": false,
+      "difference_bbox": [
+        21,
+        763,
+        456,
+        821
+      ]
+    }
+  ],
+  "unchanged_pages": 66,
+  "total_pages": 71
+}

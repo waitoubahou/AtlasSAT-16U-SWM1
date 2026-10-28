@@ -1,0 +1,56 @@
+[
+  {
+    "title": "OSM copyright",
+    "url": "https://www.openstreetmap.org/copyright",
+    "checked_on": "2026-10-28",
+    "scope": "Rendered static figures; contributor/ODbL credit and printed URL"
+  },
+  {
+    "title": "OSMF attribution guidance",
+    "url": "https://osmfoundation.org/wiki/Licence/Attribution_Guidelines",
+    "checked_on": "2026-10-28",
+    "scope": "Static image/document notice placement"
+  },
+  {
+    "title": "ESA WorldCover data access",
+    "url": "https://esa-worldcover.org/en/data-access",
+    "checked_on": "2026-10-28",
+    "scope": "Exact acknowledgement and CC BY dataset"
+  },
+  {
+    "title": "ESA WorldCereal maps",
+    "url": "https://esa-worldcereal.org/en/products/global-maps",
+    "checked_on": "2026-10-28",
+    "scope": "2021 global map products; original dataset metadata CC BY"
+  },
+  {
+    "title": "WorldCereal primary record",
+    "url": "https://doi.org/10.5281/zenodo.7875105",
+    "checked_on": "2026-10-28",
+    "scope": "Dataset identity, author and year"
+  },
+  {
+    "title": "Global-PCG-10 primary record",
+    "url": "https://doi.org/10.6084/m9.figshare.27731148.v2",
+    "checked_on": "2026-10-28",
+    "scope": "Saved original Figshare metadata records CC BY 4.0"
+  },
+  {
+    "title": "Natural Earth terms",
+    "url": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "checked_on": "2026-10-28",
+    "scope": "Public-domain continental/political context"
+  },
+  {
+    "title": "Copernicus Sentinel notice",
+    "url": "https://cds.climate.copernicus.eu/licences/ec-sentinel",
+    "checked_on": "2026-10-28",
+    "scope": "Modified-data acknowledgement"
+  },
+  {
+    "title": "Copernicus DEM collection",
+    "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+    "checked_on": "2026-10-28",
+    "scope": "Exact existing DEM licence controls original credit/liability notice"
+  }
+]

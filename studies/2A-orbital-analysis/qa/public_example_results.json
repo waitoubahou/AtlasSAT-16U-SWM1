@@ -1,0 +1,132 @@
+{
+  "controlled": {
+    "scope": "Controlled unit demonstration only; synthetic linear path and synthetic Sun vectors",
+    "parser_rows": 2,
+    "parser_duration_s": 30.0,
+    "windows": {
+      "synthetic_day": [
+        {
+          "scenario": "S30_R00",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 0,
+          "entry_s": 14.999275799382396,
+          "exit_s": 15.000724200617626,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.4484012352298237,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.0,
+          "min_solar_elevation_deg": 90.0,
+          "daylight": true,
+          "daylight_10deg": true
+        },
+        {
+          "scenario": "S30_R10",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 10,
+          "entry_s": 14.999275796784909,
+          "exit_s": 15.000724203215112,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.448406430203164,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.1534562139384223,
+          "min_solar_elevation_deg": 90.0,
+          "daylight": true,
+          "daylight_10deg": true
+        },
+        {
+          "scenario": "S30_R20",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 20,
+          "entry_s": 14.999275796784909,
+          "exit_s": 15.000724203215112,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.448406430203164,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.1534562139384223,
+          "min_solar_elevation_deg": 90.0,
+          "daylight": true,
+          "daylight_10deg": true
+        }
+      ],
+      "synthetic_night": [
+        {
+          "scenario": "S30_R00",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 0,
+          "entry_s": 14.999275799382396,
+          "exit_s": 15.000724200617626,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.4484012352298237,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.0,
+          "min_solar_elevation_deg": -90.0,
+          "daylight": false,
+          "daylight_10deg": false
+        },
+        {
+          "scenario": "S30_R10",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 10,
+          "entry_s": 14.999275796784909,
+          "exit_s": 15.000724203215112,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.448406430203164,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.1534562139384223,
+          "min_solar_elevation_deg": -90.0,
+          "daylight": false,
+          "daylight_10deg": false
+        },
+        {
+          "scenario": "S30_R20",
+          "target_id": "CONTROLLED_POINT",
+          "swath_km": 30,
+          "roll_limit_deg": 20,
+          "entry_s": 14.999275796784909,
+          "exit_s": 15.000724203215112,
+          "mid_s": 15.00000000000001,
+          "entry_utc": "2026-10-20T12:00:14.999276Z",
+          "exit_utc": "2026-10-20T12:00:15.000724Z",
+          "duration_ms": 1.448406430203164,
+          "cross_track_angle_deg": -0.1534562139384223,
+          "required_roll_deg": -0.1534562139384223,
+          "min_solar_elevation_deg": -90.0,
+          "daylight": false,
+          "daylight_10deg": false
+        }
+      ]
+    }
+  },
+  "analytical": {
+    "scope": "Controlled circular-solution check; no propagation, mission-design or saved-GMAT comparison",
+    "max_position_residual_km": 8.57760100287258e-12,
+    "max_velocity_residual_km_s": 1.8482500008895835e-15
+  },
+  "saved_gap": {
+    "scope": "Single saved target; independently reaggregated intervals, not independently discovered events",
+    "window_count": 6,
+    "reported_maximum_complete_gap_h": 312.21995813943926,
+    "gap_residual_h": 0.0,
+    "access_count": 6,
+    "maximum_complete_gap_h": 312.21995813943926,
+    "left_censored_h": 263.5014659596956,
+    "right_censored_h": 48.69536018257249,
+    "no_access_span_h": 0.0,
+    "observed_72h_failure": true
+  }
+}

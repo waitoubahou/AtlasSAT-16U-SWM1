@@ -1,0 +1,20 @@
+[
+  {
+    "file": "studies/2A-orbital-analysis/src/atlas_analysis/provenance.py",
+    "scope": "Fingerprint source directory changed from analysis to src; no numerical function changed"
+  },
+  {
+    "file": "studies/2A-orbital-analysis/tests/test_baseline_units.py",
+    "scope": "Import/config paths only"
+  },
+  {
+    "file": "studies/2A-orbital-analysis/src/atlas_analytical/formulae.py",
+    "scope": "23 complete pure functions extracted unchanged; file/private-data orchestration omitted",
+    "original": "master:analysis/analytical/analytical_companion.py",
+    "source_sha256": "e35d05ced4501e09d2e5c2138d49add1bde949cdb010c68a7afe75cd2541a7ca"
+  },
+  {
+    "file": "studies/2A-orbital-analysis/tests/ast_identity.py",
+    "scope": "RC v0.2: portable structural serialization replaces ast.dump formatting; source-body SHA-256 retained; no scientific-source change"
+  }
+]

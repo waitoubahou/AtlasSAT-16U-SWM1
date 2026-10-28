@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this work, cite this repository edition and the relevant accepted scientific document versions separately. No DOI has been assigned."
+title: "AtlasSAT-16U-SWM1: Souss Water Management 1 — spacecraft engineering demonstrator"
+type: software
+authors:
+  - family-names: "Ait Oubahou"
+    given-names: "Wassim"
+version: "1.0.0"
+abstract: >-
+  Public examples and engineering publications for the AtlasSAT orbital-analysis study.
+  The archived agricultural baseline does not meet the 72-hour daylight
+  revisit target. Included examples demonstrate controlled numerical
+  methods and selected saved-event aggregation, not complete mission
+  reproduction or operational validation.
+keywords:
+  - spacecraft mission analysis
+  - GMAT
+  - optical access
+  - numerical verification
+  - Earth observation

@@ -1,0 +1,667 @@
+{
+  "passed": true,
+  "files_checked": 107,
+  "local_links_checked": 107,
+  "pdf_links_checked": 15,
+  "links": [
+    {
+      "file": "ATTRIBUTION.md",
+      "target": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "ATTRIBUTION.md",
+      "target": "studies/2A-orbital-analysis/figures/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "target": "studies/2A-orbital-analysis/figures/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "target": "studies/2A-orbital-analysis/documents/THIRD_PARTY_NOTICES.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "DEPENDENCY_AND_PRIVACY_AUDIT.md",
+      "target": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "DEPENDENCY_AND_PRIVACY_AUDIT.md",
+      "target": "PDF_PUBLICATION_DIFF.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "DEPENDENCY_AND_PRIVACY_AUDIT.md",
+      "target": "REPRODUCIBILITY_SCOPE.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "PDF_PUBLICATION_DIFF.md",
+      "target": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "PDF_PUBLICATION_DIFF.md",
+      "target": "studies/2A-orbital-analysis/documents/BUILD_PUBLICATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "PDF_PUBLICATION_DIFF.md",
+      "target": "studies/2A-orbital-analysis/qa/publication_content_equivalence.json",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "QA_REPORT.md",
+      "target": "PDF_PUBLICATION_DIFF.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "QA_REPORT.md",
+      "target": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "QA_REPORT.md",
+      "target": "DEPENDENCY_AND_PRIVACY_AUDIT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "QA_REPORT.md",
+      "target": "studies/2A-orbital-analysis/qa",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.tex",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "PDF_PUBLICATION_DIFF.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/figures/04_gap_evidence.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/figures/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/figures/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "REPRODUCIBILITY_SCOPE.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/docs/REPRODUCING_PUBLIC_EXAMPLES.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/BUILD_PUBLICATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "REPOSITORY_TREE.txt",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "QA_REPORT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "PUBLIC_FILE_SELECTION.csv",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "CARTOGRAPHIC_ATTRIBUTION_AUDIT.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/figures/11_Technical_Atlas_Compact_RevD3_2.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "README.md",
+      "target": "studies/2A-orbital-analysis/figures/10_Orbital_Globe_Compact_RevD3_4.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "REPRODUCIBILITY_SCOPE.md",
+      "target": "studies/2A-orbital-analysis/docs/REPRODUCING_PUBLIC_EXAMPLES.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "REPRODUCIBILITY_SCOPE.md",
+      "target": "studies/2A-orbital-analysis/docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md",
+      "target": "AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md",
+      "target": "AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md",
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md",
+      "target": "../../../PDF_PUBLICATION_DIFF.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md",
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "./AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "08_Technical_Orbital_Globe.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "07_Technical_Atlas_main_600dpi.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "07_Technical_Atlas_legend_600dpi.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "07_Technical_Atlas_locator_600dpi.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "02_access_and_tracks.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "09_Three_Orbital_Passages.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "04_gap_evidence.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "03_rolling_coverage.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "05_swath_sensitivity.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "06_convergence_and_phase.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "13_Daylight_Timeline.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.tex",
+      "target": "../figures/12_Figure4_Concept_RevD3_2.tikz",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "../evidence/calculations.json",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "../evidence/ANALYTICAL_COMPARISON.csv",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "../evidence/ASSUMPTIONS_AND_LIMITATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.tex",
+      "target": "../evidence/ANALYTICAL_COMPARISON.csv",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.tex",
+      "target": "./AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.tex",
+      "target": "10_Orbital_Globe_Compact_RevD3_4.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.tex",
+      "target": "11_Technical_Atlas_Compact_RevD3_2.png",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.tex",
+      "target": "13_Daylight_Timeline_Compact.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../src/atlas_analysis/pipeline.py",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../src/atlas_analytical/formulae.py",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../evidence/calculations.json",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../evidence/ANALYTICAL_COMPARISON.csv",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../evidence/ASSUMPTIONS_AND_LIMITATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "QUANTITATIVE_TRACEABILITY.csv",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "ANALYTICAL_CROSS_REFERENCES.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "evidence/source_manifest_RevD3_5.json",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "../figures/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "target": "AtlasSAT_2A_PROJECT_CONTRIBUTION_NOTE_v0.1.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/THIRD_PARTY_NOTICES.md",
+      "target": "../third_party/Copernicus_DEM_GLO30_Licence.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/figures/README.md",
+      "target": "../third_party/Copernicus_DEM_GLO30_Licence.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "documents/BUILD_PUBLICATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "docs/REPRODUCING_PUBLIC_EXAMPLES.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "documents/PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "evidence/SCIENTIFIC_LIMITATIONS.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/README.md",
+      "target": "docs/GMAT_GUI.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/README.md",
+      "target": "2A-orbital-analysis/README.md",
+      "exists": true,
+      "kind": "source"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 5,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 12,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 12,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 19,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 19,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 21,
+      "target": "AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 21,
+      "target": "./AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "page": 21,
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 3,
+      "target": "../evidence/calculations.json",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 3,
+      "target": "../evidence/ANALYTICAL_COMPARISON.csv",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 3,
+      "target": "../evidence/ASSUMPTIONS_AND_LIMITATIONS.md",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 3,
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 49,
+      "target": "../evidence/ANALYTICAL_COMPARISON.csv",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf",
+      "page": 49,
+      "target": "PUBLIC_EVIDENCE_AVAILABILITY.md",
+      "exists": true,
+      "kind": "pdf"
+    },
+    {
+      "file": "studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf",
+      "page": 1,
+      "target": "./AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf",
+      "exists": true,
+      "kind": "pdf"
+    }
+  ],
+  "findings": [],
+  "scope": "Bounded static privacy/link/integrity heuristics; no security or legal certification"
+}

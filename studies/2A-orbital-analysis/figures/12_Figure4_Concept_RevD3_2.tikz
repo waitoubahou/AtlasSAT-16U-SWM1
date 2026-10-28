@@ -1,0 +1,15 @@
+\begin{tikzpicture}[>=Latex,scale=0.9]
+\fill[atlasblue!8] (-5,-0.2) rectangle (5,0.15);
+\draw[atlasgray,thick] (-5,0.15)--(5,0.15);
+\node[below,font=\footnotesize] at (3.3,0.05) {Local ground plane (schematic)};
+\node[draw,rounded corners,fill=atlasblue!15,minimum width=1.05cm,minimum height=0.36cm,font=\footnotesize] (sat) at (0,3.45) {AtlasSAT};
+\draw[atlasblue,thick,->] (sat.south)--(0,0.26);
+\draw[atlasbluelight,dashed] (sat.south)--(-1.75,0.23);
+\draw[atlasbluelight,dashed] (sat.south)--(1.75,0.23);
+\draw[atlasbluelight,thick,decorate,decoration={brace,amplitude=4pt}] (-1.75,0.34)--(1.75,0.34);
+\node[font=\footnotesize,fill=white] at (0,0.6) {30 km nominal cross-track};
+\draw[->,very thick,atlasgreen!60!black] (0.25,2.7)--(1.55,2.7);
+\node[font=\footnotesize,above] at (2.05,2.72) {Along-track motion};
+\node[font=\footnotesize,fill=white] at (-1.0,2.0) {$\theta_{\rm cross}$};
+\node[font=\footnotesize,align=center] at (3.5,2.2) {Ideal roll extends\\single-target reach};
+\end{tikzpicture}

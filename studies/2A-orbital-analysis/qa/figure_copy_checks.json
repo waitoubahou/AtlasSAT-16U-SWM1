@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "assets": 16,
+  "files": [
+    {
+      "file": "02_access_and_tracks.png",
+      "sha256": "6fedc3abc4adacf33feb864922be254b85784a8fb804cd87125048d54708b9fb",
+      "source": "master:figures/02_access_and_tracks.png",
+      "byte_identical": true
+    },
+    {
+      "file": "03_rolling_coverage.png",
+      "sha256": "be4e00df41fbc1d8a80c6dc008b0f0e73659e55e4d04dbb68fcb0df22ed303d1",
+      "source": "master:figures/03_rolling_coverage.png",
+      "byte_identical": true
+    },
+    {
+      "file": "04_gap_evidence.png",
+      "sha256": "c86d5c3000cbed7d84a77eb9320d04d15f24caf4b68630c1ededb8998403d008",
+      "source": "master:figures/04_gap_evidence.png",
+      "byte_identical": true
+    },
+    {
+      "file": "05_swath_sensitivity.png",
+      "sha256": "42adf869f46e0213bde12fea70a16512bd1c9e88a3872e475473398a3fd65ef2",
+      "source": "master:figures/05_swath_sensitivity.png",
+      "byte_identical": true
+    },
+    {
+      "file": "06_convergence_and_phase.png",
+      "sha256": "bd9f827f39abf44ee5c6380d3a8dc0e3583ebc3602f8f5fe35a623c1267287c7",
+      "source": "master:figures/06_convergence_and_phase.png",
+      "byte_identical": true
+    },
+    {
+      "file": "07_Technical_Atlas_legend_600dpi.png",
+      "sha256": "29e410f6780dfd6ba7140e7a507183fe186d7ccb6d2d5f4854ebc5cee11769ce",
+      "source": "master:figures/07_Technical_Atlas_legend_600dpi.png",
+      "byte_identical": true
+    },
+    {
+      "file": "07_Technical_Atlas_locator_600dpi.png",
+      "sha256": "d770d37d03a07b17ae3a02fdc264003abd7c1ab75d744d16f67720b9906e46a1",
+      "source": "master:figures/07_Technical_Atlas_locator_600dpi.png",
+      "byte_identical": true
+    },
+    {
+      "file": "07_Technical_Atlas_main_600dpi.png",
+      "sha256": "76db12dadd9ca0bd6a1aab00e47e75d449bdc4774368b39ec900d15318fcc971",
+      "source": "master:figures/07_Technical_Atlas_main_600dpi.png",
+      "byte_identical": true
+    },
+    {
+      "file": "08_Technical_Orbital_Globe.pdf",
+      "sha256": "cd08ef962bef9256ce4da2ac9a495df52571a0e449fe5831584dd15c0d94efa5",
+      "source": "master:figures/08_Technical_Orbital_Globe.pdf",
+      "byte_identical": true
+    },
+    {
+      "file": "09_Three_Orbital_Passages.png",
+      "sha256": "1b4d4a892bda3c89f933002881e7bb9f68331e8f27aa03d6cfe9a0676462aa5e",
+      "source": "master:figures/09_Three_Orbital_Passages.png",
+      "byte_identical": true
+    },
+    {
+      "file": "10_Orbital_Globe_Compact_RevD3_4.pdf",
+      "sha256": "fe9ca54395e2f76b855903fa5c02c21571cf80c2a9ae48800d99906f204283aa",
+      "source": "master:figures/10_Orbital_Globe_Compact_RevD3_4.pdf",
+      "byte_identical": true
+    },
+    {
+      "file": "10_Orbital_Globe_Compact_RevD3_4.png",
+      "sha256": "d52b1da1abe18dddaa0380a24d9c7965e0e32bd54a7eecf1024e93545c15c80a",
+      "source": "historical:AtlasSAT_2A_Documentation_RevD3_4/figures/10_Orbital_Globe_Compact_RevD3_4.png",
+      "byte_identical": true
+    },
+    {
+      "file": "11_Technical_Atlas_Compact_RevD3_2.png",
+      "sha256": "cd6d41ef16b9cb406365184cccc80e68b55ee9eeccb8cd7073cdd255223f4b9b",
+      "source": "master:figures/11_Technical_Atlas_Compact_RevD3_2.png",
+      "byte_identical": true
+    },
+    {
+      "file": "12_Figure4_Concept_RevD3_2.tikz",
+      "sha256": "f0566f5345e2f55c77a61c9683ea5174abf5df7b9d59fa6ea37c4136ae293b4d",
+      "source": "master:figures/12_Figure4_Concept_RevD3_2.tikz",
+      "byte_identical": true
+    },
+    {
+      "file": "13_Daylight_Timeline.pdf",
+      "sha256": "898b993a51e445e536ce0bad72db5b8e6d2fc5d0d5a1d0c8507c3e2d13a55655",
+      "source": "master:figures/13_Daylight_Timeline.pdf",
+      "byte_identical": true
+    },
+    {
+      "file": "13_Daylight_Timeline_Compact.pdf",
+      "sha256": "951fd64e3a80bb16462e58b86892424018de4aa21a855a918bd14499fe5f46a1",
+      "source": "master:figures/13_Daylight_Timeline_Compact.pdf",
+      "byte_identical": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "python": "3.12.14",
+  "venv": true,
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "numpy_local": true,
+  "scipy_local": true,
+  "analysis_local": true,
+  "formulae_local": true,
+  "passed": true,
+  "extra_package_search_path_used": false,
+  "dependency_installation": "Offline seeded documented NumPy/SciPy; fresh network pip install not tested",
+  "posix_execution_tested": false,
+  "python313_execution_tested": false
+}

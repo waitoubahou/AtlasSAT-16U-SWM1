@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "all_payloads_exactly_equal_to_rc01": true,
+  "examples": {
+    "controlled": true,
+    "analytical": true,
+    "saved_gap": true
+  },
+  "scope": "Three public demonstrations only; not a propagation or full-study rerun"
+}

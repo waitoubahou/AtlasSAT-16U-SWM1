@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "checked_on": "2026-10-28",
+  "sets": [
+    {
+      "protected_set": "outputs",
+      "files": 3615,
+      "all_original_bytes_unchanged": true,
+      "added_or_removed_inside_protected_directory": false
+    },
+    {
+      "protected_set": "AtlasSAT_2A_MASTER_RELEASE_v1.0",
+      "files": 650,
+      "all_original_bytes_unchanged": true,
+      "added_or_removed_inside_protected_directory": false
+    },
+    {
+      "protected_set": "AtlasSAT-16U-SWM1",
+      "files": 67,
+      "all_original_bytes_unchanged": true,
+      "added_or_removed_inside_protected_directory": false
+    },
+    {
+      "protected_set": "workspace_root_files",
+      "files": 8,
+      "all_original_bytes_unchanged": true,
+      "added_or_removed_inside_protected_directory": "Only original root-file set compared; new staging artifacts are separate"
+    }
+  ],
+  "total_original_files": 4340,
+  "method": "Complete path/size/SHA-256 inventory compared with intake; no original file written"
+}

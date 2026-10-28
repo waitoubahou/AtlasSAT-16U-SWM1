@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "script_byte_identical_to_accepted_master": true,
+  "only_two_output_filename_properties_changed": true,
+  "outputs_within_fresh_working_directory": true,
+  "existing_destination_refusal": true,
+  "GMAT_opened": false,
+  "GMAT_executed": false
+}

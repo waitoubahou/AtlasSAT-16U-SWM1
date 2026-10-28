@@ -1,0 +1,301 @@
+{
+  "scientific_status": "Archived results, not recomputed by public examples",
+  "criterion_h": 72,
+  "verdict": "NOT MET",
+  "source_release": "AtlasSAT 2A v0.4; accepted Master Release v1.0",
+  "source_summary_sha256": "7cf904fb25d5a80524c7371f86dc5764f5b61d180743451f2eb550198c3ef9d9",
+  "gap_source_sha256": "3dd0d07fc5e0fa091b010b5e3015ee09683a3c93aa330846623b976a2f78f894",
+  "maximum_complete_daylight_gap_h": 312.21995813943926,
+  "scope": "Primary agricultural research mask, 250 m quadrature; 30 km nadir swath; ideal independent roll sensitivities",
+  "modes": [
+    {
+      "scenario": "S30_R00",
+      "mode": "geometric",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.03574760241328842,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.07404481094223486,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.11517447865359953,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 50,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    },
+    {
+      "scenario": "S30_R00",
+      "mode": "daylight",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.035632997593281056,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.07380742740718245,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.11480523569730462,
+          "median": 0.0,
+          "max": 0.9950061769780497,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 88,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    },
+    {
+      "scenario": "S30_R10",
+      "mode": "geometric",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.19326635010933746,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.34280333733463236,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.5034000709186548,
+          "median": 0.457217858720748,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 0,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    },
+    {
+      "scenario": "S30_R10",
+      "mode": "daylight",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.07422941555917195,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.14819896381091016,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.2276392952923609,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 0,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    },
+    {
+      "scenario": "S30_R20",
+      "mode": "geometric",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.4086117695555436,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.5658282368205249,
+          "median": 0.9999999999999938,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.6992332871806053,
+          "median": 0.9999999999999938,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 0,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    },
+    {
+      "scenario": "S30_R20",
+      "mode": "daylight",
+      "grid_points": 14494,
+      "rolling_hourly_coverage": {
+        "24": {
+          "min": 0.0,
+          "mean": 0.2065997130559528,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 697
+        },
+        "48": {
+          "min": 0.0,
+          "mean": 0.28528974739970103,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 673
+        },
+        "72": {
+          "min": 0.0,
+          "mean": 0.33436055469953563,
+          "median": 0.0,
+          "max": 0.9999999999999938,
+          "p05": 0.0,
+          "windows": 649
+        }
+      },
+      "initial_coverage_fraction": {
+        "24": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "48": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        },
+        "72": {
+          "area_weighted": 0.0,
+          "point_fraction": 0.0
+        }
+      },
+      "grid_targets_with_no_access": 0,
+      "grid_targets_with_observed_gap_over_72h": 14494
+    }
+  ],
+  "limitations": [
+    "Provisional agricultural geometry; not locally field-validated",
+    "Southern greenhouse-source omission affects 22.04% of outer boundary and 6.861% of primary mask",
+    "Predicted Earth orientation",
+    "Ideal independent per-target roll; no feasible schedule or qualified ADCS/payload capability",
+    "No cloud, atmospheric image quality or physical/operational validation"
+  ]
+}
