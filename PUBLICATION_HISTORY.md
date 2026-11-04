@@ -1,6 +1,6 @@
 # Publication history
 
-The first public edition is [v1.0.0](https://github.com/waitoubahou/AtlasSAT-16U-SWM1/releases/tag/v1.0.0), at commit `7129fbc6dcd938879af780bb71556d260583e55d`. The current tree retains the three accepted PDFs, public figures, evidence and numerical examples.
+The first public edition is [v1.0.0](https://github.com/waitoubahou/AtlasSAT-16U-SWM1/releases/tag/v1.0.0), at commit `7129fbc6dcd938879af780bb71556d260583e55d`. The tagged tree retains the original PDFs. The [publication index](studies/2A-orbital-analysis/documents/ACCEPTED_DOCUMENTS.md) lists editorial revision 1, which updates provenance and links and retains the accepted scientific results and pagination.
 
 The current tree distributes the publications as PDFs. It excludes the three publication TeX sources and the associated build instructions and driver. Earlier TeX files remain publicly accessible through the original tag and other historical public revisions. The current tree cannot rebuild the publications from TeX.
 

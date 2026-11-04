@@ -23,9 +23,9 @@ Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airb
 
 | Document | Revision | PDF |
 |---|---|---|
-| 2A · Portfolio summary | RevD3.4 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Public_RC_v0_2.pdf) |
-| 2A-1 · Orbital verification, coverage and revisit | RevD3.5 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Public_RC_v0_2.pdf) |
-| 2A-2 · Analytical derivations and independent verification | v0.2.1 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Public_RC_v0_2.pdf) |
+| 2A · Portfolio summary | RevD3.4 · editorial revision 1 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Editorial_Rev1.pdf) |
+| 2A-1 · Orbital verification, coverage and revisit | RevD3.5 · editorial revision 1 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Editorial_Rev1.pdf) |
+| 2A-2 · Analytical derivations and independent verification | v0.2.1 · editorial revision 1 | [Read](studies/2A-orbital-analysis/documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Editorial_Rev1.pdf) |
 
 ## Code and reproducibility
 
