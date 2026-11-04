@@ -4,7 +4,7 @@ These notices apply to upstream content used in figures. They do not adopt or ch
 
 ## OpenStreetMap
 
-© OpenStreetMap contributors. Data are available under ODbL 1.0: https://www.openstreetmap.org/copyright. The approved coastline, roads, rivers, localities and community commune context are rendered source data, not an official surveyed perimeter. No OSM geometry was edited in RC v0.2.
+© OpenStreetMap contributors. Data are available under ODbL 1.0: https://www.openstreetmap.org/copyright. The approved coastline, roads, rivers, localities and community commune context are rendered source data, not an official surveyed perimeter.
 
 ## Copernicus Sentinel-2
 
@@ -22,11 +22,11 @@ The existing original [Copernicus DEM notice](../third_party/Copernicus_DEM_GLO3
 
 © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium.
 
-Zanaga et al. (2022), ESA WorldCover 10 m 2021 v200: https://doi.org/10.5281/zenodo.7254221. CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Source classifications were transformed/combined in the archived provisional research mask; RC v0.2 does not alter that mask or regenerate a figure.
+Zanaga et al. (2022), ESA WorldCover 10 m 2021 v200: https://doi.org/10.5281/zenodo.7254221. CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Source classifications were transformed/combined in the archived provisional research mask.
 
 ## ESA WorldCereal
 
-Van Tricht et al. (2023), ESA WorldCereal 10 m 2021 v100: https://doi.org/10.5281/zenodo.7875105. CC BY 4.0. Archived annual temporary-crop support is not certification of current crop use. This review concerns global map products, not unrelated contributor-specific reference-data licences.
+Van Tricht et al. (2023), ESA WorldCereal 10 m 2021 v100: https://doi.org/10.5281/zenodo.7875105. CC BY 4.0. Archived annual temporary-crop support is not certification of current crop use. The credit applies to the global map product.
 
 ## Global-PCG-10
 

@@ -1,23 +1,17 @@
 # Reproducibility scope
 
-| Level | Included and runnable? | Claim |
-|---|---|---|
-| Controlled geometry/OEM demonstration | Yes, Python + NumPy/SciPy | Reproduce synthetic parser/short-window/day-night behaviour |
-| Independent analytical formula checks | Yes | Reproduce controlled circular-solution checks with unchanged formula bodies |
-| Saved single-target gap aggregation | Yes | Recover the gap from six included archived intervals; no independent event discovery |
-| Display archived aggregate results/figures | Yes | Inspect saved facts; underlying ROI computation is not reproduced |
-| Native GMAT model | Script inspectable; external GMAT required for a future run | No new propagation performed in this candidate preparation |
-| Real OEM → transformed states → agricultural ROI coverage | No, essential geographic/kernel/reference data withheld | Full scientific reproduction is not claimed |
-| Analytical publication | Yes, complete 49-page PDF/TeX | Read and rebuild the publication; this is not the full executable companion |
-| Full analytical companion/original 45-test suite | No, complete private reference bundle excluded | Public formula subset is not the full companion |
-| Mission physical/operational validation | No | No flight, payload/ADCS, scheduling or usable imagery validation |
+| Workflow | Public evidence and requirements |
+|---|---|
+| Controlled OEM and optical geometry | Python, NumPy and SciPy reproduce parser checks and short-window and illumination behaviour with synthetic inputs |
+| Independent analytical formulas | Controlled closed-form comparisons exercise the included analytical subset |
+| Single-target gap aggregation | Six saved daylight windows reproduce the complete gap arithmetic for one Sidi Bibi target |
+| Aggregate agricultural results and figures | Saved numerical records and visualisations are available for inspection |
+| Native GMAT propagation | The mission script is inspectable and runnable with external GMAT R2026a and its model data |
+| Full OEM and agricultural coverage analysis | Requires the omitted target geometries, kernels and reference products |
+| Publications | The three accepted PDFs and their public evidence links are supplied. A complete LaTeX build is outside the current distribution. |
+| Complete analytical companion | Requires the internal reference inputs and companion workflow. The public formulas and tests cover a subset. |
+| Physical and operational validation | Outside the available evidence |
 
-Run [public examples](studies/2A-orbital-analysis/docs/REPRODUCING_PUBLIC_EXAMPLES.md) with the explicit virtual-environment commands. Public files alone plus documented external software suffice for the first three rows. The saved intervals are processed numerical evidence, not new GMAT ephemerides.
+The [public examples](studies/2A-orbital-analysis/docs/REPRODUCING_PUBLIC_EXAMPLES.md) run with the documented Python environment. The controlled OEM is labelled NOT_GMAT and is an artificial parser fixture. Its geometry and illumination vectors are synthetic. The saved-event calculation repeats the aggregation of one target's intervals. Independent event discovery and a search across the agricultural mask require the complete study inputs.
 
-The negative ≤72-hour daylight verdict is an accepted archived result. A public reaggregation of one target's supplied windows is not a fresh search for the worst target across the agricultural mask.
-
-The public controlled OEM is labelled NOT_GMAT and must never be used as an orbital baseline. Synthetic paths and solar vectors exist to test algorithms, not to portray actual AtlasSAT passes.
-
-See [internal input requirements](studies/2A-orbital-analysis/docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md) for what complete reproduction needs. There is no automatic private-data fallback, remote dataset fetch, GMAT execution or hidden result-cache reuse in the demonstrated public workflow.
-
-Publication rebuilding is now independently supported; it does not reproduce the scientific data pipeline. All three publication derivatives are included.
+See [complete-study input requirements](studies/2A-orbital-analysis/docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md) and the [public evidence index](studies/2A-orbital-analysis/documents/PUBLIC_EVIDENCE_AVAILABILITY.md).

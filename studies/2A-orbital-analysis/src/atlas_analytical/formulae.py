@@ -1,5 +1,6 @@
-"""Pure analytical subset from accepted Document 2A-2 code; function bodies unchanged.
-No private-reference reads, propagation, production imports or archived-result oracle.
+"""Analytical checks for Study 2A orbital, optical and revisit calculations.
+
+The formulas operate on explicit inputs and cover selected derivations in Document 2A-2.
 """
 import math
 from datetime import datetime, timezone, timedelta
@@ -181,4 +182,3 @@ def coverage_from_saved_events(targets,events,hours,duration=30*DAY):
         for lo,hi in merged_intervals(spans):
             delta[int(lo)]+=float(target["weight_km2"])/total;delta[int(hi)]-=float(target["weight_km2"])/total
     return np.cumsum(delta[:-1])
-

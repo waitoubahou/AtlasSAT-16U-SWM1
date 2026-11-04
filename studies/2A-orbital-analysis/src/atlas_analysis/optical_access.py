@@ -1,6 +1,7 @@
-"""Continuous pushbroom rectangular angular-footprint access, adapted from frozen v0.4.
-No sampled hit test: solve fan-plane crossings, then along/cross angular boundaries.
-Ideal roll is independent per target; these windows are not a feasible pointing schedule.
+"""Find continuous access windows for a rectangular pushbroom angular footprint.
+
+Solve fan-plane crossings, then refine along-track and cross-track boundaries.
+Independent ideal roll at each target describes reachability without scheduling.
 """
 from datetime import timedelta
 import numpy as np
