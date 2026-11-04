@@ -1,4 +1,4 @@
-# Focused cartographic attribution audit — RC v0.2
+# Cartographic provenance and attribution
 
 Review date: 28 October 2026. Scope: the accepted static publication figures, not a new geographic dataset release. All approved image/vector/TikZ bytes are preserved. No raw OSM, DEM, Sentinel, WorldCover, WorldCereal or greenhouse database is redistributed.
 
@@ -6,7 +6,7 @@ Review date: 28 October 2026. Scope: the accepted static publication figures, no
 
 The accepted publications already identify OSM (ODbL), ESA/PCG (CC BY), Natural Earth (public domain), Copernicus DEM and modified Sentinel data. The passage figure already prints the modified Sentinel 2026 notice. Existing notices were kept. The public copies add only the missing printed OSM copyright URL, exact WorldCover acknowledgement, unambiguous dataset/CC BY credit links and the DEM liability sentence. These appear in the publication source notes and distribution notices; the approved figures themselves are unchanged.
 
-| Source | Concrete basis / required credit | RC v0.2 decision |
+| Source | Concrete basis / required credit | Published credit and scope |
 |---|---|---|
 | OpenStreetMap | [Copyright/ODbL](https://www.openstreetmap.org/copyright), [OSMF static attribution guidance](https://osmfoundation.org/wiki/Licence/Attribution_Guidelines): contributor credit and visible copyright URL | Existing OSM/ODbL credit retained; full printed URL added to the one-pager/report map notices and README. Static rendered-work scope; no geometry/database release or new OSM edits |
 | Copernicus Sentinel-2 | [Sentinel legal notice](https://cds.climate.copernicus.eu/licences/ec-sentinel): modified-data acknowledgement with year | Existing modified Sentinel 2026 credit in passage image retained; one-pager distribution credit added. October imagery is contextual, not event-time weather or AtlasSAT imagery |
@@ -16,7 +16,7 @@ The accepted publications already identify OSM (ODbL), ESA/PCG (CC BY), Natural 
 | Global-PCG-10, Figshare v2 | Original Figshare record identifies CC BY 4.0; [Niu et al. dataset](https://doi.org/10.6084/m9.figshare.27731148.v2), [paper](https://doi.org/10.5194/essd-17-5065-2025) | Author/dataset/version/CC BY links retained in distribution notices and linked in publication credits. Southern missing-source coverage caveat unchanged |
 | Natural Earth | [Provider public-domain terms](https://www.naturalearthdata.com/about/terms-of-use/) | Existing Natural Earth public-domain credit retained; approved outline convention and locator unchanged |
 
-These provider terms/primary records were checked, including the retained original DEM licence and saved dataset metadata. No project licence is introduced or changed. The audit identifies no specific unresolved redistribution issue for the **rendered figures and publications in this candidate**. It does not certify redistributability of the complete private combined geographic database or extend any provider endorsement.
+These provider terms/primary records were checked, including the retained original DEM licence and saved dataset metadata. No project licence is introduced or changed. The audit identifies no specific unresolved redistribution issue for the **rendered figures and publications**. It does not certify redistributability of the complete private combined geographic database or extend any provider endorsement.
 
 ## Per-asset decisions
 
@@ -39,4 +39,4 @@ These provider terms/primary records were checked, including the retained origin
 | 13_Daylight_Timeline.pdf | Project-generated saved access timeline | Included unchanged |
 | 13_Daylight_Timeline_Compact.pdf | Compact project timeline | Included unchanged |
 
-The primary mask and seven-commune boundary remain provisional; no official institutional agricultural perimeter or new field validation is claimed. The greenhouse omission and Earth-orientation limitations remain visible. Source notices are in [the figure directory](studies/2A-orbital-analysis/figures/README.md) and [the documents directory](studies/2A-orbital-analysis/documents/THIRD_PARTY_NOTICES.md). Original asset hashes are recorded in QA and the file-selection ledger.
+The primary mask and seven-commune boundary remain provisional; no official institutional agricultural perimeter or new field validation is claimed. The greenhouse omission and Earth-orientation limitations remain visible. Source notices are in [the figure directory](studies/2A-orbital-analysis/figures/README.md) and [the documents directory](studies/2A-orbital-analysis/documents/THIRD_PARTY_NOTICES.md). Asset hashes are recorded in the [public figure manifest](studies/2A-orbital-analysis/documents/evidence/source_manifest_RevD3_5.json) and the historical records indexed in [publication history](PUBLICATION_HISTORY.md).

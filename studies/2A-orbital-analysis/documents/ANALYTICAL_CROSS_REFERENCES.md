@@ -1,6 +1,6 @@
 # Analytical cross-references — Document 2A-1 RevD3.5
 
-All references below use the **actual compiled numbering of Document 2A-2 v0.2.1**, 49 pages, 27 October 2026. Its unchanged PDF, Markdown, complete 84-row CSV and selected records are bundled under analytical_companion. No scientific calculation was run for this integration.
+All references below use the **actual compiled numbering of Document 2A-2 v0.2.1**, 49 pages, 27 October 2026. The [publication index](ACCEPTED_DOCUMENTS.md) lists the PDF. The [84-row comparison record](../evidence/ANALYTICAL_COMPARISON.csv) and selected analytical values are supplied in the evidence directory.
 
 The five subject references are A–E; G identifies the general citation and T the compact comparison. Main-report subsection 3.2 combines A/B in one concise note. All references are to a separate companion, not equation numbers of the main report.
 
@@ -86,8 +86,8 @@ The five subject references are A–E; G identifies the general citation and T t
 
 ## Source and unit checks
 
-ANALYTICAL_INTEGRATION_TRACEABILITY.csv lists every newly displayed numerical value, exact saved value, source field/row, unit and scope. Percent conversion is display-only; no opportunity or geographic quantity is recomputed. Stored Model B residual is read directly, not newly inferred from rounded hours.
+The internal `ANALYTICAL_INTEGRATION_TRACEABILITY.csv` records the integrated values. The public [field-level traceability table](QUANTITATIVE_TRACEABILITY.csv) identifies saved values, units and original source fields. Percent conversion is display-only; no opportunity or geographic quantity is recomputed. Stored Model B residual is read directly, not newly inferred from rounded hours.
 
 No difference requiring a change to the frozen baseline was found. The first-order/fitted and Keplerian/nodal definition differences are retained and explained.
 
-analytical_companion/SOURCE_MANIFEST.json describes the complete original analytical release. This report bundle contains selected, byte-identical companion records; evidence/E18_analytical_source_manifest.json identifies this subset. Complete analytical-code reproduction uses the frozen 2A-2 release, not this authoring-only package.
+The paths `analytical_companion/SOURCE_MANIFEST.json` and `evidence/E18_analytical_source_manifest.json` identify records in the internal archive. See the [public evidence index](PUBLIC_EVIDENCE_AVAILABILITY.md) for the supplied subset and [complete-study input requirements](../docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md) for the original analytical workflow.

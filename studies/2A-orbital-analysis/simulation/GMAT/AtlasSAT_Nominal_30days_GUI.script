@@ -1,9 +1,8 @@
 % =============================================================================
-% AtlasSAT-16U | GUI-first experiment v0.1 | NOMINAL 30-DAY J2 MISSION
-% Canonical, human-maintained GMAT mission. Open/inspect/edit/run/save in GMAT GUI.
-% This mission requires NO Python. Optical access/revisit is separate postprocessing.
-% Inherited v0.3 physical inputs are preserved; this is not a new orbit design.
-% All output filenames below belong ONLY to this experiment. Never use frozen paths.
+% AtlasSAT-16U | Nominal 30-day J2 propagation | GMAT R2026a
+% The mission propagates the Study 2A reference orbit and exports native states.
+% Optical access and revisit are calculated separately from the exported OEM.
+% Use a dedicated output directory to keep reports and ephemerides from separate runs.
 % =============================================================================
 
 % --- 1. Initial-element reference axes (not the OEM output frame) ---------------
@@ -12,10 +11,10 @@ GMAT EarthMeanOfDate.Origin = Earth;
 GMAT EarthMeanOfDate.Axes = MODEq;
 
 % --- 2. Spacecraft: Resources > Spacecraft > AtlasSAT16U > Orbit -----------------
-% Assumed epoch, not launch telemetry. Change SMA, INC, epoch/elements here or GUI.
+% The epoch and osculating elements define the study's initial state.
 % SMA is measured from Earth's centre. With the baseline gravity radius,
 % 6928.1363 km corresponds to approximately 550 km nominal altitude.
-% The inherited RAAN sets the initial descending local MEAN solar time near 10:30.
+% The specified RAAN sets the initial descending local mean solar time near 10:30.
 % Changing epoch/inclination/altitude does NOT automatically recalibrate LTDN.
 Create Spacecraft AtlasSAT16U;
 GMAT AtlasSAT16U.DateFormat = UTCGregorian;
@@ -65,7 +64,7 @@ GMAT AtlasProp.StopIfAccuracyIsViolated = true;
 % --- 5. Native state report: Resources > Output > AtlasStates --------------------
 % Epoch is A1ModJulian; EarthMJ2000Eq Cartesian km / km/s matches native EME2000 OEM.
 % EarthFixed report columns use GMAT's installed orientation, NOT Python ITRF93.
-% Before a different manual experiment, select new output filenames in GUI.
+% Select unique output filenames for each run to avoid overwriting earlier reports.
 Create ReportFile AtlasStates;
 GMAT AtlasStates.Filename = 'AtlasSAT_GUI_Nominal_30days_states.txt';
 GMAT AtlasStates.Precision = 16;
@@ -105,7 +104,6 @@ GMAT AtlasGroundTrack.UpdatePlotFrequency = 1000;
 GMAT AtlasGroundTrack.ShowPlot = true;
 
 % --- 8. Mission tab > Propagate: editable stopping condition ----------------------
-% 30 days = 2592000 elapsed SI seconds. No coverage/tasking commands are claimed.
+% The stop condition is 2592000 elapsed SI seconds (30 days).
 BeginMissionSequence;
 Propagate 'Nominal 30-day Earth J2 propagation' AtlasProp(AtlasSAT16U) {AtlasSAT16U.ElapsedSecs = 2592000};
-

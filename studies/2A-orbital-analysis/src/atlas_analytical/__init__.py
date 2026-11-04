@@ -1,1 +1,1 @@
-"""Independent analytical formula subset; see extraction audit."""
+"""Orbital, optical and revisit formulas for Study 2A analytical checks."""
