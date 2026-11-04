@@ -40,4 +40,4 @@ The full parser/frame/access modules are included for engineering inspection, se
     .\.venv\Scripts\python.exe -m pip install -r studies/2A-orbital-analysis/requirements-optional-oem.txt
     .\.venv\Scripts\python.exe -B studies/2A-orbital-analysis/src/analyze.py --help
 
-A real execution requires an explicit OEM, geographic targets and a reviewed complete analysis configuration with kernel/geographic hash pins. None is silently substituted from the private workspace. config/optical_geometry.json is only a controlled-example configuration, not a complete OEM workflow configuration. See [complete-study input requirements](INTERNAL_REPRODUCTION_REQUIREMENTS.md).
+A real execution requires an explicit OEM, geographic targets and a reviewed complete analysis configuration with kernel/geographic hash pins. The analysis requires explicitly supplied inputs; missing datasets or reference products are not replaced automatically. config/optical_geometry.json is only a controlled-example configuration, not a complete OEM workflow configuration. See [complete-study input requirements](INTERNAL_REPRODUCTION_REQUIREMENTS.md).
