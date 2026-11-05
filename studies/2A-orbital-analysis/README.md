@@ -1,32 +1,81 @@
-# Study 2A · Orbital analysis
+# Study 2A · Orbital Analysis
 
-Study 2A evaluates optical access and daylight revisit for the conceptual AtlasSAT-16U-SWM1 mission over agricultural targets in Chtouka-Massa. The study compares nadir access with ideal independent roll sensitivities and verifies selected numerical results against analytical models.
+Study 2A assesses whether a single AtlasSAT spacecraft can meet the daylight revisit objective over agricultural targets in Chtouka-Massa, Morocco.
 
-## Model and methods
+## Reference Configuration
 
-| Element | Study configuration |
+| Element | Model input |
 |---|---|
-| Orbit | Approximately 550 km, 97.5° inclination and 10:30 target local mean descending-node time |
-| Propagation | GMAT R2026a, nominal 30 days, Earth JGM2 degree 2/order 0 |
-| Payload concept | Five-band VNIR pushbroom, nominal 30 km nadir swath, 5–10 m target nadir GSD |
-| Optical geometry | Provisional 10 m along-track ground sample. Ground sampling distance, optical IFOV and line acquisition rate are distinct. |
-| Pointing | Nadir reference and ideal independent ±10° and ±20° roll sensitivities |
-| Targets | Provisional seven-commune boundary and agricultural research mask |
+| Reference orbit | Approximately 550 km near-Sun-synchronous orbit at 97.5° inclination with a 10:30 target local mean time of descending node |
+| Propagation | GMAT R2026a, 30 days, J2 gravity using Earth JGM2 degree 2 and order 0 |
+| Payload concept | Five-band VNIR pushbroom imager |
+| Optical geometry | Nominal 30 km nadir swath, 5–10 m target nadir ground sampling distance and 10 m provisional along-track ground sample |
+| Pointing cases | Nadir reference and ideal independent ±10° and ±20° roll sensitivities |
+| Target set | Provisional agricultural research mask within a seven-commune study boundary |
 
-The [native GMAT mission](simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script) exports UTC EME2000 ephemerides in CCSDS OEM format. The [Python pipeline](src/atlas_analysis/pipeline.py) reads an explicit OEM and transforms the states to ITRF93. The optical solver interpolates terrestrial states and refines crossings of the along-track and cross-track angular boundaries. For daylight, it applies the solar-centre elevation threshold to the minimum of the values at entry, midpoint and exit. Coverage is area-weighted over rolling windows. A complete no-access gap runs from the end of one opportunity to the start of the next. Record-edge censoring and targets with no access are reported separately.
+## Analysis Workflow
 
-## Findings and limits
+1. Propagate the [reference orbit in GMAT](simulation/GMAT/AtlasSAT_Nominal_30days_GUI.script) and export UTC EME2000 states in CCSDS OEM format.
+2. Transform the exported states to the terrestrial ITRF93 frame in the [Python pipeline](src/atlas_analysis/pipeline.py).
+3. Interpolate the terrestrial states and refine crossings of the pushbroom footprint boundaries. Classify daylight using the solar-centre elevation criterion at entry, midpoint and exit.
+4. Compute area-weighted rolling coverage and complete no-access intervals from the end of one opportunity to the start of the next. Report record-edge censoring and targets with no access separately.
+5. Compare selected orbital, optical and revisit calculations with [independent analytical checks](evidence/ANALYTICAL_COMPARISON.csv).
 
-**The ≤72-hour daylight revisit requirement is NOT MET.** For the nominal swath and ideal ±20° roll, the maximum complete daylight gap is **312.22 h** at a sampled agricultural target in Sidi Bibi. The historical reference point is outside this calculation. Minimum area coverage across rolling 72-hour daylight windows is **0%**. See the [saved aggregate results](data/published_results.json), [result traceability](evidence/RESULT_TRACEABILITY.csv) and [analytical comparisons](evidence/ANALYTICAL_COMPARISON.csv).
+## Key Assumptions and Limitations
 
-Numerical verification tests the stated models and implementations. Geometric reachability describes intersection with the modelled footprint. Daylight optical opportunity applies the solar elevation criterion. Physical and operational validation would require evidence of payload performance, image quality, attitude control and an achievable observation schedule.
+- The agricultural mask is provisional. Incomplete greenhouse source coverage affects the southern part of the study area.
+- Terrestrial coordinates use Earth orientation data that include predictions.
+- The roll sensitivities represent independent reachability at each target. The optical model uses a provisional ground sample. Optical IFOV and line acquisition rate are separate quantities.
+- Payload performance, attitude determination and control, image quality and operational scheduling remain unvalidated.
 
-The provisional agricultural mask, incomplete southern greenhouse source, predicted Earth orientation and ideal roll limit the interpretation. The TA=90° case varies initial true anomaly at fixed osculating inputs. See the [scientific limitations](evidence/SCIENTIFIC_LIMITATIONS.md) for phase interpretation, censoring and the historical seven-day archive exception.
+See the [scientific limitations](evidence/SCIENTIFIC_LIMITATIONS.md) for the initial true-anomaly sensitivity at fixed osculating inputs, the treatment of censored intervals and the historical seven-day archive exception.
 
-## Publications and public reproduction
+## Key Results
 
-The [publication index](documents/ACCEPTED_DOCUMENTS.md) lists the first editorial revision of 2A RevD3.4, 2A-1 RevD3.5 and 2A-2 v0.2.1. The [evidence index](documents/PUBLIC_EVIDENCE_AVAILABILITY.md) identifies the public records and the internal references cited by the PDFs. [Figure notices](figures/README.md) document upstream geographic and imagery sources.
+| Measure | Result |
+|---|---|
+| Daylight revisit requirement | ≤72 h |
+| Maximum complete daylight no-access interval | **312.22 h** for the nominal 30 km swath and ideal ±20° roll |
+| Worst-case sampled agricultural target | Sidi Bibi |
+| Requirement verdict | **NOT MET** |
 
-The [GMAT guide](docs/GMAT_GUI.md) describes the native scenario and output setup. The [Python examples and tests](docs/REPRODUCING_PUBLIC_EXAMPLES.md) cover controlled geometry, analytical formulas and the six-window saved gap calculation. Full ROI reproduction requires the datasets and reference products listed in [complete-study input requirements](docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md).
+Even in the ideal ±20° case, the minimum area coverage across rolling 72 h daylight windows is 0%. The historical reference point is excluded from the agricultural gap calculation. The result concerns modelled daylight opportunity under the stated assumptions. An achievable imaging schedule requires separate operational validation. [Saved results](data/published_results.json) · [Result traceability](evidence/RESULT_TRACEABILITY.csv) · [Gap and censoring figure](figures/04_gap_evidence.png)
 
-See [project attribution](../../ATTRIBUTION.md) for engineering contributions and source credits.
+## Figures
+
+| Chtouka-Massa study region | Near-Sun-synchronous reference orbit |
+|---|---|
+| <img src="figures/11_Technical_Atlas_Compact_RevD3_2.png" width="300" alt="Technical atlas showing the seven-commune study boundary and provisional agricultural mask"> | <img src="figures/10_Orbital_Globe_Compact_RevD3_4.png" width="400" alt="Orbital globe showing the reference trajectory and Chtouka location"> |
+
+## Publications
+
+| Document | Publication |
+|---|---|
+| 2A | [Orbital analysis summary](documents/AtlasSAT_2A_Orbital_Analysis_OnePager_RevD3_4_Editorial_Rev1.pdf) |
+| 2A-1 | [Orbital verification, coverage and revisit](documents/AtlasSAT_2A-1_Orbital_Analysis_RevD3_5_Editorial_Rev1.pdf) |
+| 2A-2 | [Analytical derivations and independent verification](documents/AtlasSAT_2A-2_Analytical_Derivations_v0.2.1_Editorial_Rev1.pdf) |
+
+## Repository Contents
+
+| Path | Contents |
+|---|---|
+| [`simulation/GMAT/`](simulation/GMAT/) | Native GMAT mission |
+| [`src/`](src/) | OEM processing, access geometry, revisit metrics and analytical formulas |
+| [`figures/`](figures/) | Regional maps, orbit illustrations and result plots |
+| [`data/`](data/) and [`evidence/`](evidence/) | Public example inputs, saved results, comparison records and limitations |
+| [`documents/`](documents/) | Publications and the evidence index |
+
+## Reproducibility
+
+The public examples exercise the geometry, analytical formulas and gap aggregation from six saved daylight windows. Reproducing the full agricultural coverage study requires the archived target geometries, kernels and reference products.
+
+- [GMAT GUI mission and output setup](docs/GMAT_GUI.md)
+- [Python examples and test commands](docs/REPRODUCING_PUBLIC_EXAMPLES.md)
+- [Reproducibility scope](../../REPRODUCIBILITY_SCOPE.md)
+- [Public evidence index](documents/PUBLIC_EVIDENCE_AVAILABILITY.md)
+
+## Data and Figure Sources
+
+Map data © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright) (ODbL). Natural Earth context is public domain. © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. [Figure source notices and crop-data credits](figures/README.md)
+
+Relief produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018, provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30.
