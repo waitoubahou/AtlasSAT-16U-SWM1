@@ -25,7 +25,7 @@ The provisional agricultural mask, incomplete southern greenhouse source, predic
 
 ## Publications and public reproduction
 
-The [publication index](documents/ACCEPTED_DOCUMENTS.md) lists 2A RevD3.4, 2A-1 RevD3.5 and 2A-2 v0.2.1. The [evidence index](documents/PUBLIC_EVIDENCE_AVAILABILITY.md) identifies the public records and the internal references cited by the PDFs. [Figure notices](figures/README.md) document upstream geographic and imagery sources.
+The [publication index](documents/ACCEPTED_DOCUMENTS.md) lists the first editorial revision of 2A RevD3.4, 2A-1 RevD3.5 and 2A-2 v0.2.1. The [evidence index](documents/PUBLIC_EVIDENCE_AVAILABILITY.md) identifies the public records and the internal references cited by the PDFs. [Figure notices](figures/README.md) document upstream geographic and imagery sources.
 
 The [GMAT guide](docs/GMAT_GUI.md) describes the native scenario and output setup. The [Python examples and tests](docs/REPRODUCING_PUBLIC_EXAMPLES.md) cover controlled geometry, analytical formulas and the six-window saved gap calculation. Full ROI reproduction requires the datasets and reference products listed in [complete-study input requirements](docs/INTERNAL_REPRODUCTION_REQUIREMENTS.md).
 
